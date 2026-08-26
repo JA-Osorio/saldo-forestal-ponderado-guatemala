@@ -109,10 +109,10 @@ def _layout_plotly(salida: Any) -> dict[str, Any]:
 
 
 def _resultado_numerado(cuaderno, rotulo: str):
+    resultado_id = rotulo.strip().rstrip(".:")
     for celda in _celdas_resultado(cuaderno):
-        plano = celda.outputs[0].get("data", {}).get("text/plain", "")
-        plano = "".join(plano) if isinstance(plano, list) else str(plano)
-        if plano.startswith(rotulo):
+        if celda.metadata.get("result_id") == resultado_id:
+            assert len(celda.get("outputs", [])) == 1
             return celda.outputs[0]
     raise AssertionError(f"No se encontró {rotulo}.")
 
@@ -375,14 +375,13 @@ def test_tablas_compactas_y_descargas_atribuidas(cuaderno):
     excesos: list[tuple[str, int]] = []
     for celda in _celdas_resultado(cuaderno):
         salida = celda.outputs[0]
-        plano = salida.get("data", {}).get("text/plain", "")
-        plano = "".join(plano) if isinstance(plano, list) else str(plano)
-        if not plano.startswith(("Tabla ", "Recuadro ")):
+        resultado_id = str(celda.metadata.get("result_id", ""))
+        if not resultado_id.startswith(("Tabla ", "Recuadro ")):
             continue
         html = _html_salida(salida)
         columnas = len(re.findall(r"<th>", html))
         if columnas > 5:
-            excesos.append((plano, columnas))
+            excesos.append((resultado_id, columnas))
         assert "class='sf-tabla'" in html
         assert "Plotly.newPlot(" not in html
         assert "Descargar CSV completo" in html
