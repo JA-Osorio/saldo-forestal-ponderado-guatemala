@@ -1,0 +1,6 @@
+proporcion_region_id,region_nombre,sitios_referencia,recuperacion_20_anios,rho20_min,rho20_central,rho20_max,caracter,justificacion
+REG-PET-N,"Norte de Petén, bosque estacional sobre calizas","Yucatán y Quintana Roo, México",66.4-66.7%,0.6640000000,0.6655000000,0.6670000000,Proxy regional operativo,"Plataforma kárstica, estacionalidad y bosques tropicales estacionales."
+REG-PET-FTN,Sur de Petén y tierras bajas de la FTN,"Chajul, México",59.4%,0.5940000000,0.5940000000,0.5940000000,Proxy regional operativo,Correspondencia operativa con bosques húmedos de tierras bajas del ámbito de la Selva Maya.
+REG-TB-HUM,"Tierras bajas húmedas del Caribe, Izabal y Pacífico","Sarapiquí, Costa Rica, y sitios húmedos de Panamá",59.3-76.6%,0.5930000000,0.6795000000,0.7660000000,Proxy regional operativo,Bosques tropicales húmedos de baja altitud y alta disponibilidad de agua.
+REG-ORI-EST,Bosques estacionales de Oriente,"Santa Rosa, Costa Rica, y El Ocote, México",33.6-84.9%,0.3360000000,0.5925000000,0.8490000000,Proxy regional operativo,Bosques tropicales estacionales del oriente de Guatemala.
+REG-SEC-MOT,Corredor seco y valle del Motagua,"Sitios secos de México, Costa Rica, Bolivia y Brasil",25-65%,0.2500000000,0.4500000000,0.6500000000,Sobre analítico redondeado a partir de sitios secos,Mayor déficit hídrico y recuperación generalmente más lenta.

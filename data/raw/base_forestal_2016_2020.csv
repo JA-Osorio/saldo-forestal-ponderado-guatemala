@@ -1,0 +1,343 @@
+cod_dep,depto,codigo,municipio,perdida_bruta_ha,ganancia_bruta_ha,balance_neto_cobertura_ha,tipo_unidad
+1,Guatemala,,Lago de Amatitlán,11.14743346,1.72637682,9.42105664,Unidad lacustre no municipal
+1,Guatemala,101,Guatemala,84.99027521,1.40337487,83.58690034,Municipio
+1,Guatemala,102,Santa Catarina Pinula,45.51076649,27.19383699,18.3169295,Municipio
+1,Guatemala,103,San José Pinula,278.38168492,101.71664614,176.66503878,Municipio
+1,Guatemala,104,San José del Golfo,0.60004953,0.0,0.60004953,Municipio
+1,Guatemala,105,Palencia,68.63691394,5.71134927,62.92556467,Municipio
+1,Guatemala,106,Chinautla,113.60108326,3.27226798,110.32881528,Municipio
+1,Guatemala,107,San Pedro Ayampuc,70.90019759,1.86878686,69.03141073,Municipio
+1,Guatemala,108,Mixco,108.32514183,0.43275903,107.8923828,Municipio
+1,Guatemala,109,San Pedro Sacatepéquez,13.86611539,0.77866408,13.08745131,Municipio
+1,Guatemala,110,San Juan Sacatepéquez,387.85273155,7.39577121,380.45696034,Municipio
+1,Guatemala,111,San Raymundo,247.84183895,2.33066121,245.51117774,Municipio
+1,Guatemala,112,Chuarrancho,81.26459653,4.88147178,76.38312475000001,Municipio
+1,Guatemala,113,Fraijanes,53.09835927,8.7431367,44.35522257,Municipio
+1,Guatemala,114,Amatitlán,34.53331167,12.46775522,22.065556450000003,Municipio
+1,Guatemala,115,Villa Nueva,66.28278164,9.26348799,57.01929365,Municipio
+1,Guatemala,116,Villa Canales,51.68988211,2.43144315,49.25843896,Municipio
+1,Guatemala,117,Petapa,26.22486658,0.34637003,25.87849655,Municipio
+2,El Progreso,201,Guastatoya,3.78664803,0.08647345,3.70017458,Municipio
+2,El Progreso,202,Morazán,668.32689449,346.64596016,321.68093433,Municipio
+2,El Progreso,203,San Agustín Acasaguastlán,662.64311017,50.035917870000006,612.6071923,Municipio
+2,El Progreso,204,San Cristóbal Acasaguastlán,141.02864135,28.77223186,112.25640948999998,Municipio
+2,El Progreso,205,El Jícaro,1.7213349299999998,0.1728842099999999,1.54845072,Municipio
+2,El Progreso,206,Sansare,2.37111033,0.08651159,2.28459874,Municipio
+2,El Progreso,207,Sanarate,52.50977193,1.80232438,50.70744755,Municipio
+2,El Progreso,208,San Antonio La Paz,5.10374167,1.74369211,3.36004956,Municipio
+3,Sacatepéquez,301,Antigua Guatemala,10.23596713,48.73710099,-38.50113386,Municipio
+3,Sacatepéquez,302,Jocotenango,14.8829159,0.0,14.8829159,Municipio
+3,Sacatepéquez,303,Pastores,92.49919788,1.38489329,91.11430459,Municipio
+3,Sacatepéquez,304,Sumpango,75.77669046,0.17301702,75.60367344,Municipio
+3,Sacatepéquez,305,Santo Domingo Xenacoj,58.44974359,0.17304842,58.27669517,Municipio
+3,Sacatepéquez,306,Santiago Sacatepéquez,78.20675436,0.0,78.20675436,Municipio
+3,Sacatepéquez,307,San Bartolomé Milpas Altas,0.92585474,0.08654605,0.83930869,Municipio
+3,Sacatepéquez,308,San Lucas Sacatepéquez,31.22526506,0.0,31.22526506,Municipio
+3,Sacatepéquez,309,Santa Lucía Milpas Altas,3.6619086,0.0,3.6619086,Municipio
+3,Sacatepéquez,310,Magdalena Milpas Altas,9.78280632,5.45717041,4.325635910000001,Municipio
+3,Sacatepéquez,311,Santa María de Jesús,28.28304511,30.47400455,-2.1909594400000003,Municipio
+3,Sacatepéquez,312,Ciudad Vieja,12.82730294,0.0,12.82730294,Municipio
+3,Sacatepéquez,313,San Miguel Dueñas,16.44850263,0.17317867,16.27532396,Municipio
+3,Sacatepéquez,314,Alotenango,61.133852260000005,1.20853107,59.925321190000005,Municipio
+3,Sacatepéquez,315,San Antonio Aguas Calientes,0.0,0.0,0.0,Municipio
+3,Sacatepéquez,316,Santa Catarina Barahona,2.27260212,0.1731303,2.09947182,Municipio
+4,Chimaltenango,401,Chimaltenango,70.32388177,1.22995083,69.09393094,Municipio
+4,Chimaltenango,402,San José Poaquil,95.99907038,2.02629667,93.97277371,Municipio
+4,Chimaltenango,403,San Martín Jilotepeque,2376.44543455,13.46441139,2362.98102316,Municipio
+4,Chimaltenango,404,Comalapa,102.13660621,1.38388212,100.75272409,Municipio
+4,Chimaltenango,405,Santa Apolonia,139.09206197,0.08646875,139.00559322,Municipio
+4,Chimaltenango,406,Tecpán Guatemala,387.39758051,3.71821831,383.6793622,Municipio
+4,Chimaltenango,407,Patzún,646.7943010700001,0.95193036,645.8423707100001,Municipio
+4,Chimaltenango,408,Pochuta,54.8250238,142.88515213,-88.06012833,Municipio
+4,Chimaltenango,409,Patzicía,59.03379531,57.65618533,1.3776099800000026,Municipio
+4,Chimaltenango,410,Santa Cruz Balanyá,7.29671203,0.0,7.29671203,Municipio
+4,Chimaltenango,411,Acatenango,37.71310137,123.61212035,-85.89901898,Municipio
+4,Chimaltenango,412,Yepocapa,145.73708684000002,854.35406432,-708.6169774800001,Municipio
+4,Chimaltenango,413,San Andrés Itzapa,195.42336951,217.17968525,-21.75631574000002,Municipio
+4,Chimaltenango,414,Parramos,25.08061632,0.0,25.08061632,Municipio
+4,Chimaltenango,415,Zaragoza,69.60132266,0.0,69.60132266,Municipio
+4,Chimaltenango,416,El Tejar,50.60557302,0.0,50.60557302,Municipio
+5,Escuintla,501,Escuintla,2408.17416194,7.30186025,2400.87230169,Municipio
+5,Escuintla,502,Santa Lucia Cotzulmalguapa,580.96211081,307.50812281,273.45398800000004,Municipio
+5,Escuintla,503,La Democracia,75.85415476,13.77267504,62.08147972,Municipio
+5,Escuintla,504,Siquinalá,629.55011427,146.2670912,483.28302307,Municipio
+5,Escuintla,505,Masagua,108.77567678,276.18440123,-167.40872445,Municipio
+5,Escuintla,506,Tiquisate,209.3021312,226.80862378,-17.506492580000014,Municipio
+5,Escuintla,507,La Gomera,55.19586352,79.98250302,-24.786639499999996,Municipio
+5,Escuintla,508,Guanagazapa,117.42616558,122.91750685,-5.491341269999992,Municipio
+5,Escuintla,509,San José,256.13283708,421.11461163,-164.98177454999995,Municipio
+5,Escuintla,510,Iztapa,122.5761984,122.09083569,0.4853627099999897,Municipio
+5,Escuintla,511,Palín,44.99211565,0.0,44.99211565,Municipio
+5,Escuintla,512,San Vicente Pacaya,129.40683595,1.2998668,128.10696915,Municipio
+5,Escuintla,513,Nueva Concepción,197.34821401,133.04548133,64.30273267999999,Municipio
+5,Escuintla,514,Sipacate,747.04031619,133.51926723,613.52104896,Municipio
+6,Santa Rosa,601,Cuilapa,37.32352354,21.63636081,15.687162729999995,Municipio
+6,Santa Rosa,602,Barberena,225.61560781,38.03857244,187.57703537,Municipio
+6,Santa Rosa,603,Santa Rosa de Lima,38.94574239,2.25163924,36.69410315,Municipio
+6,Santa Rosa,604,Casillas,94.26318623,22.69570845,71.56747778,Municipio
+6,Santa Rosa,605,San Rafael Las Flores,2.51547776,2.33831578,0.1771619800000001,Municipio
+6,Santa Rosa,606,Oratorio,255.90015292,145.19050723,110.70964569,Municipio
+6,Santa Rosa,607,San Juan Tecuaco,53.00783656,0.34702802,52.66080854,Municipio
+6,Santa Rosa,608,Chiquimulilla,612.47531949,764.3082825199999,-151.83296302999997,Municipio
+6,Santa Rosa,609,Taxisco,336.38168208,740.24295621,-403.86127413,Municipio
+6,Santa Rosa,610,Santa María Ixhuatán,69.00223044,28.61972552,40.38250492,Municipio
+6,Santa Rosa,611,Guazacapán,49.214420440000005,119.38659991,-70.17217947,Municipio
+6,Santa Rosa,612,Santa Cruz Naranjo,4.59189037,0.42535035,4.166540019999999,Municipio
+6,Santa Rosa,613,Pueblo Nuevo Viñas,120.32260601,3.93704058,116.38556543,Municipio
+6,Santa Rosa,614,Nueva Santa Rosa,3.98503007,0.77950624,3.20552383,Municipio
+7,Sololá,,Lago de Atitlán,17.38789708,8.56903579,8.81886129,Unidad lacustre no municipal
+7,Sololá,701,Sololá,10.13218682,0.0,10.13218682,Municipio
+7,Sololá,702,San José Chacayá,4.73824381,0.0,4.73824381,Municipio
+7,Sololá,703,Santa María Visitación,0.0,0.0,0.0,Municipio
+7,Sololá,704,Santa Lucía Utatlán,11.69752809,0.0,11.69752809,Municipio
+7,Sololá,705,Nahualá,20.79272909,0.02507143,20.76765766,Municipio
+7,Sololá,706,Santa Catarina Ixtahuacán,5.88232192,0.34607635,5.53624557,Municipio
+7,Sololá,707,Santa Clara La Laguna,25.94881923,0.0,25.94881923,Municipio
+7,Sololá,708,Concepción,7.35156101,0.25946142,7.09209959,Municipio
+7,Sololá,709,San Andrés Semetabaj,41.67205083,0.86506853,40.8069823,Municipio
+7,Sololá,710,Panajachel,1.64351006,0.51900368,1.12450638,Municipio
+7,Sololá,711,Santa Catarina Palopó,2.07640838,2.32596912,-0.2495607399999997,Municipio
+7,Sololá,712,San Antonio Palopó,31.83889268,2.18398771,29.65490497,Municipio
+7,Sololá,713,San Lucas Tolimán,82.092892,13.09105444,69.00183756000001,Municipio
+7,Sololá,714,Santa Cruz La Laguna,1.55713331,1.55720268,-6.937000000006854e-05,Municipio
+7,Sololá,715,San Pablo La Laguna,0.43255799,0.0,0.43255799,Municipio
+7,Sololá,716,San Marcos La Laguna,4.15281943,0.50960796,3.64321147,Municipio
+7,Sololá,717,San Juan La Laguna,60.50004119,60.49297439,0.0070667999999969,Municipio
+7,Sololá,718,San Pedro La Laguna,64.36299005000001,0.17308778,64.18990227,Municipio
+7,Sololá,719,Santiago Atitlán,81.58288259,263.51067079,-181.9277882,Municipio
+8,Totonicapán,801,Totonicapán,31.29307058,1.18510395,30.10796663,Municipio
+8,Totonicapán,802,San Cristóbal Totonicapán,0.17289734,0.0,0.17289734,Municipio
+8,Totonicapán,803,San Francisco El Alto,2.33373116,0.0,2.33373116,Municipio
+8,Totonicapán,804,San Andrés Xecul,0.0,0.0,0.0,Municipio
+8,Totonicapán,805,Momostenango,146.48402563,3.87116427,142.61286135999998,Municipio
+8,Totonicapán,806,Santa María Chiquimula,248.28388919,0.43213702,247.85175217,Municipio
+8,Totonicapán,807,Santa Lucía La Reforma,6.60240154,1.24729601,5.35510553,Municipio
+8,Totonicapán,808,San Bartolo Aguas Calientes,22.60933802,0.25911576,22.35022226,Municipio
+9,Quetzaltenango,901,Quetzaltenango,40.32408019,0.08649707,40.23758312,Municipio
+9,Quetzaltenango,902,Salcajá,0.0,0.0,0.0,Municipio
+9,Quetzaltenango,903,Olintepeque,0.06368471,0.0,0.06368471,Municipio
+9,Quetzaltenango,904,San Carlos Sija,83.05764373,0.34554696,82.71209677,Municipio
+9,Quetzaltenango,905,Sibilia,0.0,0.0,0.0,Municipio
+9,Quetzaltenango,906,Cabricán,3.8009408,2.84887204,0.95206876,Municipio
+9,Quetzaltenango,907,Cajolá,1.72910637,0.0,1.72910637,Municipio
+9,Quetzaltenango,908,San Miguel Sigüila,0.0,0.0,0.0,Municipio
+9,Quetzaltenango,909,San Juan Ostuncalco,0.60541326,4.168052070000001,-3.562638810000001,Municipio
+9,Quetzaltenango,910,San Mateo,0.0,0.25947796,-0.25947796,Municipio
+9,Quetzaltenango,911,Concepción Chiquirichapa,0.17298355,0.10245486,0.07052869,Municipio
+9,Quetzaltenango,912,San Martín Sacatepéquez,9.25691971,226.45877611,-217.2018564,Municipio
+9,Quetzaltenango,913,Almolonga,12.38359268,0.0,12.38359268,Municipio
+9,Quetzaltenango,914,Cantel,1.61401629,0.0,1.61401629,Municipio
+9,Quetzaltenango,915,Huitán,0.0,0.0,0.0,Municipio
+9,Quetzaltenango,916,Zunil,20.50448777,0.25958454,20.24490323,Municipio
+9,Quetzaltenango,917,Colomba,566.19430689,135.10717508,431.08713181,Municipio
+9,Quetzaltenango,918,San Francisco La Unión,0.28215782,0.0,0.28215782,Municipio
+9,Quetzaltenango,919,El Palmar,231.45912099,2.3372815,229.12183949,Municipio
+9,Quetzaltenango,920,Coatepeque,484.50755405,1439.37734044,-954.86978639,Municipio
+9,Quetzaltenango,921,Génova,274.70047408,505.44915799,-230.74868391,Municipio
+9,Quetzaltenango,922,Flores Costa Cuca,153.14268299,150.29497855,2.847704440000001,Municipio
+9,Quetzaltenango,923,La Esperanza,0.17294173,0.0,0.17294173,Municipio
+9,Quetzaltenango,924,Palestina de los Altos,0.0,0.0,0.0,Municipio
+10,Suchitepéquez,1001,Mazatenango,241.2400374,194.25723035,46.98280705000002,Municipio
+10,Suchitepéquez,1002,Cuyotenango,188.77831539,412.88612273,-224.10780734,Municipio
+10,Suchitepéquez,1003,San Francisco Zapotitlán,36.66900784,120.55420587,-83.88519803,Municipio
+10,Suchitepéquez,1004,San Bernardino,19.77415026,88.1529864,-68.37883614,Municipio
+10,Suchitepéquez,1005,San José El Ídolo,190.87294514,955.78243684,-764.9094917,Municipio
+10,Suchitepéquez,1006,Santo Domingo Suchitepéquez,136.48999041,898.5997205,-762.10973009,Municipio
+10,Suchitepéquez,1007,San Lorenzo,126.72262279,839.0529908,-712.33036801,Municipio
+10,Suchitepéquez,1008,Samayac,35.58067904,377.71362538,-342.13294634,Municipio
+10,Suchitepéquez,1009,San Pablo Jocopila,0.0,3.09767968,-3.09767968,Municipio
+10,Suchitepéquez,1010,San Antonio Suchitepéquez,113.60916827,346.97711911,-233.36795084,Municipio
+10,Suchitepéquez,1011,San Miguel Panán,36.40669881,201.33360076,-164.92690195,Municipio
+10,Suchitepéquez,1012,San Gabriel,12.43215724,9.70087846,2.73127878,Municipio
+10,Suchitepéquez,1013,Chicacao,268.44690356,2458.07019508,-2189.62329152,Municipio
+10,Suchitepéquez,1014,Patulul,308.3218701,617.73741772,-309.41554762000004,Municipio
+10,Suchitepéquez,1015,Santa Bárbara,277.96774702,1485.22533038,-1207.25758336,Municipio
+10,Suchitepéquez,1016,San Juan Bautista,52.53596972,466.68758867,-414.15161895000006,Municipio
+10,Suchitepéquez,1017,Santo Tomas La Unión,0.60596426,0.0,0.60596426,Municipio
+10,Suchitepéquez,1018,Zunilito,0.0,0.0,0.0,Municipio
+10,Suchitepéquez,1019,Pueblo Nuevo,18.02905907,0.0,18.02905907,Municipio
+10,Suchitepéquez,1020,Río Bravo,365.28397132,187.66371445,177.62025687,Municipio
+10,Suchitepéquez,1021,La Máquina,30.08308347,412.80641957,-382.7233361,Municipio
+11,Retalhuleu,1101,Retalhuleu,976.98427813,2092.0490755200003,-1115.0647973900004,Municipio
+11,Retalhuleu,1102,San Sebastián,21.89508619,162.97743591,-141.08234972,Municipio
+11,Retalhuleu,1103,Santa Cruz Muluá,264.68056609,588.37676775,-323.69620166,Municipio
+11,Retalhuleu,1104,San Martín Zapotitlán,30.3970884,0.0,30.3970884,Municipio
+11,Retalhuleu,1105,San Felipe Retalhuleu,68.60441741999999,31.12371782,37.4806996,Municipio
+11,Retalhuleu,1106,San Andrés Villa Seca,793.82988105,1072.2269761,-278.39709505,Municipio
+11,Retalhuleu,1107,Champerico,403.40978241,1010.87923085,-607.46944844,Municipio
+11,Retalhuleu,1108,Nuevo San Carlos,124.69587135,339.71331564,-215.01744429,Municipio
+11,Retalhuleu,1109,El Asintal,144.08387902,454.14737252,-310.06349349999994,Municipio
+12,San Marcos,1201,San Marcos,13.29058045,8.03870835,5.2518721,Municipio
+12,San Marcos,1202,San Pedro Sacatepéquez,24.74746583,16.08265152,8.66481431,Municipio
+12,San Marcos,1203,San Antonio Sacatepéquez,11.84336512,0.17287357,11.67049155,Municipio
+12,San Marcos,1204,Comitancillo,3.28217048,0.26365932,3.01851116,Municipio
+12,San Marcos,1205,San Miguel Ixtahuacán,35.21553432,1.81274853,33.40278579,Municipio
+12,San Marcos,1206,Concepción Tutuapa,24.06061568,1.64002411,22.420591570000003,Municipio
+12,San Marcos,1207,Tacaná,99.16226258,184.21448854,-85.05222595999999,Municipio
+12,San Marcos,1208,Sibinal,10.99837059,35.10905596,-24.11068537,Municipio
+12,San Marcos,1209,Tajumulco,25.81612265,10.77988444,15.03623821,Municipio
+12,San Marcos,1210,Tejutla,3.1095869,0.34545679,2.76413011,Municipio
+12,San Marcos,1211,San Rafael Pie de la Cuesta,0.0,0.0,0.0,Municipio
+12,San Marcos,1212,Nuevo Progreso,107.36617468,517.39636426,-410.03018958000007,Municipio
+12,San Marcos,1213,El Tumbador,117.75280469,276.63800718,-158.88520248999998,Municipio
+12,San Marcos,1214,El Rodeo,8.56593727,50.72911977,-42.1631825,Municipio
+12,San Marcos,1215,Malacatán,93.86349231,1039.60226597,-945.73877366,Municipio
+12,San Marcos,1216,Catarina,53.82280487,273.26714721,-219.44434234,Municipio
+12,San Marcos,1217,Ayutla,45.80488683,15.03187682,30.77301001,Municipio
+12,San Marcos,1218,Ocós,26.62308896,64.05123118,-37.42814222,Municipio
+12,San Marcos,1219,San Pablo,42.17564278,409.37540082,-367.19975804,Municipio
+12,San Marcos,1220,El Quetzal,9.95631451,45.364455320000005,-35.408140810000006,Municipio
+12,San Marcos,1221,La Reforma,6.05601404,27.02878398,-20.97276994,Municipio
+12,San Marcos,1222,Pajapita,589.66884568,1006.91984366,-417.25099798,Municipio
+12,San Marcos,1223,Ixchiguán,5.38111868,15.82216048,-10.4410418,Municipio
+12,San Marcos,1224,San José Ojetenam,9.06729774,3.97226224,5.095035500000001,Municipio
+12,San Marcos,1225,San Cristóbal Cucho,0.0,0.0,0.0,Municipio
+12,San Marcos,1226,Sipacapa,16.0610244,14.41718783,1.6438365700000013,Municipio
+12,San Marcos,1227,Esquipulas Palo Gordo,2.76698763,3.89123478,-1.12424715,Municipio
+12,San Marcos,1228,Río Blanco,0.43209316,0.17280743,0.25928573,Municipio
+12,San Marcos,1229,San Lorenzo,38.25130624,0.0,38.25130624,Municipio
+12,San Marcos,1230,La Blanca,105.52090067,133.54012442,-28.01922375000001,Municipio
+13,Huehuetenango,1301,Huehuetenango,15.61976337,0.08524336,15.53452001,Municipio
+13,Huehuetenango,1302,Chiantla,85.11627362,66.49594465,18.620328970000003,Municipio
+13,Huehuetenango,1303,Malacatancito,47.42917154,2.30016713,45.12900441,Municipio
+13,Huehuetenango,1304,Cuilco,120.12192887,29.67695557,90.4449733,Municipio
+13,Huehuetenango,1305,Nentón,510.28925418,181.90275624,328.38649794,Municipio
+13,Huehuetenango,1306,San Pedro Nécta,12.76094598,17.67740968,-4.9164637,Municipio
+13,Huehuetenango,1307,Jacaltenango,79.06051501,1.37547147,77.68504354000001,Municipio
+13,Huehuetenango,1308,San Pedro Soloma,242.62418516,161.14539161,81.47879355,Municipio
+13,Huehuetenango,1309,San Idelfonso Ixtahuacán,5.34906529,1.03540247,4.31366282,Municipio
+13,Huehuetenango,1310,Santa Bárbara,7.26979071,0.43144116,6.838349549999999,Municipio
+13,Huehuetenango,1311,La Libertad,38.91299824,10.60832544,28.3046728,Municipio
+13,Huehuetenango,1312,La Democracia,5.16060202,0.25599286,4.90460916,Municipio
+13,Huehuetenango,1313,San Miguel Acatán,58.24095113,21.17177793,37.0691732,Municipio
+13,Huehuetenango,1314,San Rafael La Independencia,5.16879747,16.219671310000003,-11.05087384,Municipio
+13,Huehuetenango,1315,Todos Santos Cuchumatán,31.43572773,14.05273386,17.38299387,Municipio
+13,Huehuetenango,1316,San Juan Atitán,13.47081933,0.17246798,13.29835135,Municipio
+13,Huehuetenango,1317,Santa Eulalia,1081.40500577,147.88214036,933.52286541,Municipio
+13,Huehuetenango,1318,San Mateo Ixtatán,1338.86782444,94.24411454,1244.6237099,Municipio
+13,Huehuetenango,1319,Colotenango,5.83880888,8.88376085,-3.04495197,Municipio
+13,Huehuetenango,1320,San Sebastián Huehuetenango,2.76044795,1.03514841,1.7252995400000002,Municipio
+13,Huehuetenango,1321,Tectitán,11.26405391,4.83443484,6.429619069999999,Municipio
+13,Huehuetenango,1322,Concepción Huista,39.85452334,3.88347041,35.97105293,Municipio
+13,Huehuetenango,1323,San Juan Ixcoy,133.33364727,77.91815582,55.415491450000005,Municipio
+13,Huehuetenango,1324,San Antonio Huista,2.5757253,0.17235144,2.4033738600000003,Municipio
+13,Huehuetenango,1325,San Sebastián Coatán,41.11007201,44.25215042,-3.1420784099999963,Municipio
+13,Huehuetenango,1326,Barillas,3000.8787835800003,2906.96859411,93.9101894700002,Municipio
+13,Huehuetenango,1327,Aguacatán,29.24425595,0.4631563,28.78109965,Municipio
+13,Huehuetenango,1328,San Rafael Pétzal,4.93943721,0.74918169,4.19025552,Municipio
+13,Huehuetenango,1329,San Gaspar Ixchil,4.22827228,0.63119454,3.59707774,Municipio
+13,Huehuetenango,1330,Santiago Chimaltenango,7.38277262,5.51863596,1.86413666,Municipio
+13,Huehuetenango,1331,Santa Ana Huista,9.56248776,0.25846813,9.30401963,Municipio
+13,Huehuetenango,1332,Unión Cantinil,8.7918464,0.0,8.7918464,Municipio
+13,Huehuetenango,1333,Petatán,0.61277978,0.0,0.61277978,Municipio
+14,Quiché,1401,Santa Cruz del Quiché,259.05225441,0.25912707,258.79312734,Municipio
+14,Quiché,1402,Chiché,375.93274016,0.0,375.93274016,Municipio
+14,Quiché,1403,Chinique,466.39023962,0.08637095,466.30386867,Municipio
+14,Quiché,1404,Zacualpa,197.56452721,1.58847799,195.97604922,Municipio
+14,Quiché,1405,Chajul,1002.1215214,1993.1186264,-990.997105,Municipio
+14,Quiché,1406,Chichicastenango,127.1247567,1.03760867,126.08714803,Municipio
+14,Quiché,1407,Patzité,22.47890965,0.0,22.47890965,Municipio
+14,Quiché,1408,San Antonio Ilotenango,25.91607744,0.08635981,25.82971763,Municipio
+14,Quiché,1409,San Pedro Jocopilas,1508.67613198,6.95530231,1501.72082967,Municipio
+14,Quiché,1410,Cunén,267.89895457,285.90340299,-18.004448420000017,Municipio
+14,Quiché,1411,San Juan Cotzal,264.27032833,47.64193051,216.62839782,Municipio
+14,Quiché,1412,Joyabaj,223.44211571,21.47119621,201.9709195,Municipio
+14,Quiché,1413,Nebaj,974.15084996,1293.40228337,-319.2514334100001,Municipio
+14,Quiché,1414,San Andrés Sajcabajá,177.86271231,132.52495253,45.33775978,Municipio
+14,Quiché,1415,Uspantán,1963.25546217,720.7533896,1242.50207257,Municipio
+14,Quiché,1416,Sacapulas,227.76046922,136.22406601,91.53640321,Municipio
+14,Quiché,1417,San Bartolomé Jocotenango,342.91846948,168.01147526,174.90699422,Municipio
+14,Quiché,1418,Canillá,105.95888909,341.45910778,-235.50021869,Municipio
+14,Quiché,1419,Chicamán,883.02358821,78.2356461,804.7879421099999,Municipio
+14,Quiché,1420,Ixcán,3420.63280275,4393.40433893,-972.7715361799995,Municipio
+14,Quiché,1421,Pachalum,6.82734128,0.25930019,6.56804109,Municipio
+15,Baja Verapaz,1501,Salamá,849.1907205,199.22604758,649.96467292,Municipio
+15,Baja Verapaz,1502,San Miguel Chicaj,52.4261172,38.62090209,13.80521511,Municipio
+15,Baja Verapaz,1503,Rabinal,153.6873849,15.84740583,137.83997907000003,Municipio
+15,Baja Verapaz,1504,Cubulco,1021.90004339,9.83929896,1012.06074443,Municipio
+15,Baja Verapaz,1505,Granados,150.4384114,3.31556741,147.12284399,Municipio
+15,Baja Verapaz,1506,El Chol,36.2148505,2.27604102,33.93880948,Municipio
+15,Baja Verapaz,1507,San Jerónimo,684.21646449,30.64331717,653.57314732,Municipio
+15,Baja Verapaz,1508,Purulhá,867.8568792599999,30.60980293,837.2470763299999,Municipio
+16,Alta Verapaz,1601,Cobán,6607.67211423,925.77287686,5681.89923737,Municipio
+16,Alta Verapaz,1602,Santa Cruz Verapaz,205.00426863,408.72836492,-203.72409629,Municipio
+16,Alta Verapaz,1603,San Cristóbal Verapaz,1059.41397052,252.10427853,807.30969199,Municipio
+16,Alta Verapaz,1604,Tactic,174.47970505,58.1497823,116.32992275,Municipio
+16,Alta Verapaz,1605,Tamahú,101.65131745,3.19228191,98.45903554,Municipio
+16,Alta Verapaz,1606,Tucurú,319.72626169,14.58086164,305.14540005,Municipio
+16,Alta Verapaz,1607,Panzós,1981.16053139,54.60133638,1926.55919501,Municipio
+16,Alta Verapaz,1608,Senahú,3231.68781765,91.47591874,3140.21189891,Municipio
+16,Alta Verapaz,1609,San Pedro Carchá,3369.29386351,1177.18903913,2192.10482438,Municipio
+16,Alta Verapaz,1610,San Juan Chamelco,262.14938085,379.84291258,-117.69353173000002,Municipio
+16,Alta Verapaz,1611,Lanquín,615.3353952499999,1570.83572591,-955.50033066,Municipio
+16,Alta Verapaz,1612,Cahabón,3064.56902161,1419.72404841,1644.8449732,Municipio
+16,Alta Verapaz,1613,Chisec,3481.51455865,3339.82329957,141.69125907999978,Municipio
+16,Alta Verapaz,1614,Chahal,1896.79599483,1563.95044719,332.84554763999995,Municipio
+16,Alta Verapaz,1615,Fray Bartolomé de las Casas,3585.51089686,2061.83794143,1523.67295543,Municipio
+16,Alta Verapaz,1616,Santa Catalina la Tinta,466.44628978,4.48817958,461.9581102,Municipio
+16,Alta Verapaz,1617,Raxruhá,1786.21499793,1124.38439544,661.83060249,Municipio
+17,Petén,1701,Flores,7237.49764799,8226.32626797,-988.8286199800004,Municipio
+17,Petén,1702,San José,2412.31671459,1835.33070074,576.9860138500001,Municipio
+17,Petén,1703,San Benito,791.96740724,1199.73338372,-407.7659764800002,Municipio
+17,Petén,1704,San Andrés,36273.46745827,27107.477075550003,9165.99038272,Municipio
+17,Petén,1705,La Libertad,25181.688425260003,17057.505547779998,8124.182877480005,Municipio
+17,Petén,1706,San Francisco,2785.16326182,2289.72130577,495.44195605,Municipio
+17,Petén,1707,Santa Ana,4233.79679556,5860.57984521,-1626.78304965,Municipio
+17,Petén,1708,Dolores,7108.29124767,10293.36398922,-3185.0727415500005,Municipio
+17,Petén,1709,San Luis,12351.41462716,13370.20929401,-1018.794666849999,Municipio
+17,Petén,1710,Sayaxché,12525.86023005,14289.339983329995,-1763.4797532799969,Municipio
+17,Petén,1711,Melchor de Mencos,6936.87762646,5207.605129660001,1729.272496799999,Municipio
+17,Petén,1712,Poptún,11893.975496149998,9060.04694025,2833.928555899998,Municipio
+17,Petén,1713,Las Cruces,7597.645269619999,6721.52553353,876.1197360899996,Municipio
+17,Petén,1714,El Chal,3186.87608944,2925.5684728,261.30761663999965,Municipio
+18,Izabal,1801,Puerto Barrios,2009.36756975,94.0507412,1915.31682855,Municipio
+18,Izabal,1802,Livingston,7163.53443353,2063.93560304,5099.59883049,Municipio
+18,Izabal,1803,El Estor,4835.85202861,1979.96475726,2855.8872713500004,Municipio
+18,Izabal,1804,Morales,1163.22724742,947.89281143,215.33443598999983,Municipio
+18,Izabal,1805,Los Amates,861.6970483599999,377.79362092,483.90342744,Municipio
+19,Zacapa,1901,Zacapa,596.11210363,256.18195017,339.93015346,Municipio
+19,Zacapa,1902,Estanzuela,0.60535641,43.93807891,-43.3327225,Municipio
+19,Zacapa,1903,Río Hondo,245.95621229,86.88741907,159.06879321999998,Municipio
+19,Zacapa,1904,Gualán,617.17987374,1432.08277536,-814.90290162,Municipio
+19,Zacapa,1905,Teculután,48.91167828,57.98301059,-9.071332309999995,Municipio
+19,Zacapa,1906,Usumatlán,17.17316358,1.72778833,15.44537525,Municipio
+19,Zacapa,1907,Cabañas,79.61943905,165.61450394,-85.99506489,Municipio
+19,Zacapa,1908,San Diego,190.43780364,0.0,190.43780364,Municipio
+19,Zacapa,1909,La Unión,190.935253,3.63084501,187.30440799,Municipio
+19,Zacapa,1910,Huité,106.8177919,137.28214088,-30.464348979999983,Municipio
+19,Zacapa,1911,San Jorge,1.12403459,0.00996893,1.1140656599999998,Municipio
+20,Chiquimula,2001,Chiquimula,1215.9342214,18.91074291,1197.02347849,Municipio
+20,Chiquimula,2002,San José La Arada,323.11285686,0.86534201,322.24751485,Municipio
+20,Chiquimula,2003,San Juan la Ermita,2.33605062,0.0,2.33605062,Municipio
+20,Chiquimula,2004,Jocotán,80.55827129,0.69173048,79.86654080999999,Municipio
+20,Chiquimula,2005,Camotán,226.59190968,1.47650288,225.1154068,Municipio
+20,Chiquimula,2006,Olopa,1.47140225,0.08655514,1.38484711,Municipio
+20,Chiquimula,2007,Esquipulas,139.02439422,3.54920655,135.47518767,Municipio
+20,Chiquimula,2008,Concepción Las Minas,23.0430196,53.52579996,-30.48278036,Municipio
+20,Chiquimula,2009,Quezaltepeque,27.09628918,0.519449,26.57684018,Municipio
+20,Chiquimula,2010,San Jacinto,0.08653949,0.08653815,1.3400000000024503e-06,Municipio
+20,Chiquimula,2011,Ipala,5.45650079,61.851356,-56.39485521,Municipio
+21,Jalapa,2101,Jalapa,389.46540355,143.36605391,246.09934964,Municipio
+21,Jalapa,2102,San Pedro Pinula,251.54623593,3.89893485,247.64730108,Municipio
+21,Jalapa,2103,San Luis Jilotepeque,302.94446915,12.58085555,290.36361359999995,Municipio
+21,Jalapa,2104,San Manuel Chaparrón,18.58802907,1.0109301,17.57709897,Municipio
+21,Jalapa,2105,San Carlos Alzatate,10.73987811,4.15680796,6.583070149999999,Municipio
+21,Jalapa,2106,Monjas,9.7537771,0.08659786,9.66717924,Municipio
+21,Jalapa,2107,Mataquescuintla,180.23547356,48.04949717,132.18597639,Municipio
+22,Jutiapa,2201,Jutiapa,103.78875471,11.00790223,92.78085248,Municipio
+22,Jutiapa,2202,El Progreso,0.0,0.0,0.0,Municipio
+22,Jutiapa,2203,Santa Catarina Mita,22.20015444,9.7004254,12.499729039999998,Municipio
+22,Jutiapa,2204,Agua Blanca,44.49706457,113.23905491,-68.74199034,Municipio
+22,Jutiapa,2205,Asunción Mita,33.30873814,269.13034855,-235.82161041,Municipio
+22,Jutiapa,2206,Yupiltepeque,0.0,0.0,0.0,Municipio
+22,Jutiapa,2207,Atescatempa,0.0,1.91498372,-1.91498372,Municipio
+22,Jutiapa,2208,Jerez,47.96464159,8.67998546,39.28465613,Municipio
+22,Jutiapa,2209,El Adelanto,0.0,19.51226359,-19.51226359,Municipio
+22,Jutiapa,2210,Zapotitlán,3.57393662,55.49089416,-51.916957540000006,Municipio
+22,Jutiapa,2211,Comapa,21.26768561,161.81310608,-140.54542047,Municipio
+22,Jutiapa,2212,Jalpatagua,392.91204245,222.45954004,170.45250241,Municipio
+22,Jutiapa,2213,Conguaco,52.57615109,9.02561477,43.550536320000006,Municipio
+22,Jutiapa,2214,Moyuta,351.33649689,184.03050419,167.3059927,Municipio
+22,Jutiapa,2215,Pasaco,65.07542679,83.67599564,-18.60056885,Municipio
+22,Jutiapa,2216,San José Acatempa,48.97624325,12.7543172,36.22192605000001,Municipio
+22,Jutiapa,2217,Quesada,19.89275702,0.0,19.89275702,Municipio

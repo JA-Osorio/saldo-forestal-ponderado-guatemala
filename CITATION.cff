@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: >-
+  Cite este cuaderno y mantenga la atribución a las fuentes primarias indicada
+  en cada tabla y figura.
+title: "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala"
+type: software
+version: 1.0.0
+date-released: 2026-08-26
+url: "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/releases/tag/v1.0.0"
+repository-code: "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala"
+authors:
+  - family-names: Osorio
+    given-names: Juan Alejandro
+    orcid: "https://orcid.org/0009-0001-4260-772X"
+    affiliation: "IARNA, Universidad Rafael Landívar"
+abstract: >-
+  Compendio reproducible que reconstruye la pérdida bruta, la recuperación y
+  la pérdida neta de cobertura forestal de Guatemala para 2016–2020, y calcula
+  el saldo forestal ponderado por recuperación mediante proporciones de
+  biomasa a veinte años. Incluye una completación nacional
+  conservadora, valoración económica indicativa, trayectorias 2026–2035 y una
+  aproximación local para municipios con evidencia estructural de manglar.
+keywords:
+  - Guatemala
+  - deforestación bruta
+  - pérdida neta
+  - recuperación forestal
+  - biomasa secundaria
+  - valoración de servicios ecosistémicos
+  - reproducibilidad
+license:
+  - CC-BY-4.0
+  - MIT

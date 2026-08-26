@@ -1,0 +1,36 @@
+name: Publicar versión 1.0.0
+
+on:
+  push:
+    branches: ["publicar-v1.0.0"]
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    if: github.repository == 'JA-Osorio/saldo-forestal-ponderado-guatemala'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Obtener la versión aprobada
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Crear la entrega estable
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.0.0 \
+            outputs/downloads/resultados_saldo_forestal_guatemala.zip \
+            --target main \
+            --title "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala — v1.0.0" \
+            --notes-file .github/release-v1.0.0.md
+
+      - name: Retirar la rama de activación
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method DELETE "repos/${GITHUB_REPOSITORY}/git/refs/heads/publicar-v1.0.0"

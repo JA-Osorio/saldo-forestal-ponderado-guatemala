@@ -1,0 +1,10 @@
+clasificacion_institucional,clasificacion_ponderada,municipios,porcentaje_fila
+Ganancia,Ganancia,42,63.6363636364
+Ganancia,Indeterminado,9,13.6363636364
+Ganancia,Pérdida,15,22.7272727273
+Equilibrio,Ganancia,0,0.0000000000
+Equilibrio,Indeterminado,2,100.0000000000
+Equilibrio,Pérdida,0,0.0000000000
+Pérdida,Ganancia,0,0.0000000000
+Pérdida,Indeterminado,0,0.0000000000
+Pérdida,Pérdida,104,100.0000000000

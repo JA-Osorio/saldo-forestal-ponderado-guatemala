@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "fecha_corte": "2026-08-26",
+  "periodo_forestal": "2016-2020",
+  "unidades_base": 342,
+  "municipios": 340,
+  "municipios_con_proporcion": 172,
+  "municipios_mangle": 13,
+  "valor_unitario_2026_gtq_ha_anio": 29986.51802756075,
+  "tasa_descuento_central": 0.04,
+  "horizonte_servicios_anios": 25,
+  "horizonte_escenarios_anios": 10,
+  "nota": "La recuperación ponderada y la aproximación local de manglar se comparan sobre dominios superpuestos; no se suman."
+}

@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Entornos y herramientas
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Construcción y ejecución temporal
+/build/
+/dist/
+*.log
+
+# Configuración local y credenciales
+/.env
+/.env.*
+!/.env.example
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

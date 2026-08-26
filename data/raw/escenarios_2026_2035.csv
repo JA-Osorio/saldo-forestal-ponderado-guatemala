@@ -1,0 +1,4 @@
+escenario,multiplicador_perdida_bruta,multiplicador_recuperacion,descripcion
+Contención proporcional,0.25,0.25,Reduce en igual proporción los flujos observados sin atribuir restauración no modelada
+Continuidad,1.0,1.0,Mantiene los flujos observados de perdida y recuperacion
+Deterioro proporcional acelerado,2.0,2.0,Duplica en igual proporción los flujos observados de pérdida y recuperación

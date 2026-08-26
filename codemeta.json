@@ -1,0 +1,48 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala",
+  "description": "Compendio reproducible para reconstruir la pérdida bruta, la recuperación y la pérdida neta de cobertura forestal de Guatemala en 2016–2020, y calcular el saldo forestal ponderado por recuperación, la valoración económica indicativa y una aproximación local de manglar.",
+  "version": "1.0.0",
+  "url": "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/releases/tag/v1.0.0",
+  "codeRepository": "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala",
+  "dateCreated": "2026-08-26",
+  "dateModified": "2026-08-26",
+  "datePublished": "2026-08-26",
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0001-4260-772X",
+      "givenName": "Juan Alejandro",
+      "familyName": "Osorio",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "IARNA, Universidad Rafael Landívar"
+      }
+    }
+  ],
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.11–3.13",
+  "applicationCategory": "Environmental data analysis",
+  "keywords": [
+    "Guatemala",
+    "deforestación bruta",
+    "pérdida neta",
+    "recuperación forestal",
+    "biomasa secundaria",
+    "servicios ecosistémicos",
+    "reproducibilidad"
+  ],
+  "license": [
+    "https://spdx.org/licenses/MIT.html",
+    "https://spdx.org/licenses/CC-BY-4.0.html"
+  ],
+  "isBasedOn": [
+    "https://sig.inab.gob.gt/portal/apps/storymaps/stories/eac535d7b61a47f7b12a9b81eb9c15b6",
+    "https://doi.org/10.1038/nature16512",
+    "https://doi.org/10.5061/dryad.82vr4",
+    "https://sig.inab.gob.gt/portal/apps/storymaps/stories/955793375059405ab4964bb40813b9fd"
+  ],
+  "developmentStatus": "active",
+  "inLanguage": "es"
+}

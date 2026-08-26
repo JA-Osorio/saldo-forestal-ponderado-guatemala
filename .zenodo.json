@@ -1,0 +1,27 @@
+{
+  "title": "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala",
+  "description": "Compendio reproducible sobre pérdida bruta, recuperación reportada y pérdida neta de cobertura forestal en Guatemala para 2016–2020. Presenta resultados nacionales y municipales, el saldo forestal ponderado por recuperación mediante proporciones de biomasa a veinte años, una completación nacional conservadora, valoración económica indicativa, trayectorias 2026–2035 y una aproximación local para municipios con evidencia estructural de manglar. El cuaderno funciona como nota metodológica reproducible.",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Osorio, Juan Alejandro",
+      "orcid": "0009-0001-4260-772X",
+      "affiliation": "IARNA, Universidad Rafael Landívar"
+    }
+  ],
+  "version": "1.0.0",
+  "publication_date": "2026-08-26",
+  "access_right": "open",
+  "license": "mit",
+  "keywords": [
+    "Guatemala",
+    "deforestación bruta",
+    "pérdida neta",
+    "recuperación forestal",
+    "biomasa secundaria",
+    "servicios ecosistémicos",
+    "reproducibilidad"
+  ],
+  "language": "spa",
+  "notes": "Licenciamiento por tipo de contenido: el código original se distribuye bajo MIT; los datos derivados, la documentación, las tablas y las figuras originales se distribuyen bajo CC BY 4.0. Los materiales de terceros conservan sus condiciones de uso y derechos de origen."
+}
