@@ -331,6 +331,7 @@ def test_titulo_canonico_y_seccion_final_como_citar(cuaderno):
     assert markdown[0].startswith(f"# {titulo}")
     assert markdown[-1].startswith("## Cómo citar")
     assert "Osorio, J. A. (2026)" in markdown[-1]
+    assert "https://doi.org/10.5281/zenodo.22119075" in markdown[-1]
 
 
 def test_comparacion_ponderada_y_trayectorias_distinguibles(cuaderno):

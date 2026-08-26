@@ -2072,7 +2072,7 @@ def construir_cuaderno():
             > Osorio, J. A. (2026). *Deforestación bruta, recuperación y saldo forestal
             > ponderado en Guatemala* (Versión 1.0.0) [Cuaderno reproducible]. Instituto de
             > Investigación en Ciencias Naturales y Tecnología, Universidad Rafael Landívar.
-            > https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/releases/tag/v1.0.0
+            > https://doi.org/10.5281/zenodo.22119075
 
             Esta referencia identifica la versión pública 1.0.0. Cada figura y tabla está
             acompañada por la atribución de sus fuentes primarias.

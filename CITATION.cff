@@ -6,7 +6,8 @@ title: "Deforestación bruta, recuperación y saldo forestal ponderado en Guatem
 type: software
 version: 1.0.0
 date-released: 2026-08-26
-url: "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/releases/tag/v1.0.0"
+doi: "10.5281/zenodo.22119075"
+url: "https://doi.org/10.5281/zenodo.22119075"
 repository-code: "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala"
 authors:
   - family-names: Osorio

@@ -1,6 +1,7 @@
 # Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala
 
 [![Validar publicación](https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/actions/workflows/validar.yml/badge.svg)](https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/actions/workflows/validar.yml)
+[![DOI](https://zenodo.org/badge/1347880444.svg)](https://doi.org/10.5281/zenodo.22119074)
 [![Datos: CC BY 4.0](https://img.shields.io/badge/datos-CC%20BY%204.0-1682FC.svg)](LICENSE)
 [![Código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-2EA44F.svg)](LICENSE_CODE)
 [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JA-Osorio/saldo-forestal-ponderado-guatemala/blob/v1.0.0/notebooks/saldo_forestal_ponderado_guatemala.ipynb)
@@ -115,7 +116,7 @@ El [registro de fuentes](data/metadata/registro_fuentes.csv) identifica URL, uso
 
 La referencia general del cuaderno es:
 
-> Osorio, J. A. (2026). *Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala* (Versión 1.0.0) [Cuaderno reproducible]. Instituto de Investigación en Ciencias Naturales y Tecnología, Universidad Rafael Landívar. https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/releases/tag/v1.0.0
+> Osorio, J. A. (2026). *Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala* (Versión 1.0.0) [Cuaderno reproducible]. Instituto de Investigación en Ciencias Naturales y Tecnología, Universidad Rafael Landívar. https://doi.org/10.5281/zenodo.22119075
 
 Al reutilizar una tabla, figura o conjunto de resultados, conserve esta referencia y la atribución a las fuentes primarias indicada en la salida correspondiente.
 
