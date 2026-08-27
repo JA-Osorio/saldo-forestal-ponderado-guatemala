@@ -8,6 +8,7 @@ código en Colab o Jupyter.
 from __future__ import annotations
 
 import ast
+import json
 import os
 from pathlib import Path
 import re
@@ -2494,7 +2495,18 @@ def ejecutar_cuaderno(cuaderno):
 def main() -> None:
     DESTINO.parent.mkdir(parents=True, exist_ok=True)
     cuaderno = ejecutar_cuaderno(construir_cuaderno())
-    nbf.write(cuaderno, DESTINO)
+    # El formato compacto conserva todas las celdas y salidas, reduce el peso
+    # de transferencia y mantiene una serialización determinista.
+    DESTINO.write_text(
+        json.dumps(
+            cuaderno,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     resultados = sum("result" in c.metadata.get("tags", []) for c in cuaderno.cells)
     print(
         f"Cuaderno construido y ejecutado: {DESTINO.relative_to(REPO)} "
