@@ -1,0 +1,4 @@
+# Entorno reproducible del árbol numerado. Las versiones directas están fijadas
+# en pyproject.toml; esta entrada instala el proyecto y sus extras de cuaderno y
+# verificación desde la raíz del repositorio.
+-e .[notebook,test]

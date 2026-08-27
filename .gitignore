@@ -18,6 +18,15 @@ venv/
 /dist/
 *.log
 
+# Estructura heredada: los productos públicos usan únicamente carpetas numeradas
+/data/
+/docs/
+/notebooks/
+/outputs/
+/scripts/
+/src/
+/tests/
+
 # Configuración local y credenciales
 /.env
 /.env.*

@@ -1,6 +1,6 @@
 {
   "title": "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala",
-  "description": "Compendio reproducible sobre pérdida bruta, recuperación reportada y pérdida neta de cobertura forestal en Guatemala para 2016–2020. Presenta resultados nacionales y municipales, el saldo forestal ponderado por recuperación mediante proporciones de biomasa a veinte años, una completación nacional conservadora, valoración económica indicativa, trayectorias 2026–2035 y una aproximación local para municipios con evidencia estructural de manglar. El cuaderno funciona como nota metodológica reproducible.",
+  "description": "Compendio reproducible sobre pérdida bruta, recuperación reportada y pérdida neta de cobertura forestal en Guatemala para 2016–2020. Presenta resultados nacionales y municipales, el saldo forestal ponderado mediante proporciones de biomasa a veinte años y la trazabilidad de la correspondencia territorial experta codificada: 172 municipios incluidos, 168 excluidos y dos unidades lacustres. Incluye una completación nacional conservadora, valoración económica indicativa, trayectorias 2026–2035 y una aproximación local de manglar. La reproducibilidad computacional está resuelta; la validación ecológica de las hectáreas recuperadas permanece pendiente.",
   "upload_type": "software",
   "creators": [
     {
@@ -19,6 +19,8 @@
     "pérdida neta",
     "recuperación forestal",
     "biomasa secundaria",
+    "correspondencia territorial",
+    "trazabilidad",
     "servicios ecosistémicos",
     "reproducibilidad"
   ],

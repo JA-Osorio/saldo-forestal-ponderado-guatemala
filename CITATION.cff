@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: >-
-  Cite este cuaderno y mantenga la atribución a las fuentes primarias indicada
-  en cada tabla y figura.
+  Cite este compendio y mantenga la atribución a las fuentes primarias indicada
+  en cada producto.
 title: "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala"
 type: software
 version: 1.0.0
@@ -18,15 +18,19 @@ abstract: >-
   Compendio reproducible que reconstruye la pérdida bruta, la recuperación y
   la pérdida neta de cobertura forestal de Guatemala para 2016–2020, y calcula
   el saldo forestal ponderado por recuperación mediante proporciones de
-  biomasa a veinte años. Incluye una completación nacional
-  conservadora, valoración económica indicativa, trayectorias 2026–2035 y una
-  aproximación local para municipios con evidencia estructural de manglar.
+  biomasa a veinte años. Documenta la asignación de 172 municipios como
+  correspondencia territorial experta codificada, mantiene 168 municipios
+  fuera del dominio y separa dos unidades lacustres. Incluye una completación
+  nacional conservadora, valoración económica indicativa, trayectorias
+  2026–2035 y una aproximación local de manglar.
 keywords:
   - Guatemala
   - deforestación bruta
   - pérdida neta
   - recuperación forestal
   - biomasa secundaria
+  - correspondencia territorial
+  - trazabilidad
   - valoración de servicios ecosistémicos
   - reproducibilidad
 license:

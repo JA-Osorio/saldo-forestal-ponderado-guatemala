@@ -2,14 +2,14 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "name": "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala",
-  "description": "Compendio reproducible para reconstruir la pérdida bruta, la recuperación y la pérdida neta de cobertura forestal de Guatemala en 2016–2020, y calcular el saldo forestal ponderado por recuperación, la valoración económica indicativa y una aproximación local de manglar.",
+  "description": "Compendio reproducible sobre pérdida bruta, recuperación y pérdida neta de cobertura forestal de Guatemala en 2016–2020. Calcula un saldo ponderado por recuperación y documenta la asignación de 172 municipios mediante correspondencia territorial experta codificada, con 168 municipios fuera del dominio y dos unidades lacustres separadas.",
   "version": "1.0.0",
   "identifier": "https://doi.org/10.5281/zenodo.22119075",
   "url": "https://doi.org/10.5281/zenodo.22119075",
   "sameAs": "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/releases/tag/v1.0.0",
   "codeRepository": "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala",
   "dateCreated": "2026-08-26",
-  "dateModified": "2026-08-26",
+  "dateModified": "2026-08-27",
   "datePublished": "2026-08-26",
   "author": [
     {
@@ -32,6 +32,8 @@
     "pérdida neta",
     "recuperación forestal",
     "biomasa secundaria",
+    "correspondencia territorial",
+    "trazabilidad",
     "servicios ecosistémicos",
     "reproducibilidad"
   ],

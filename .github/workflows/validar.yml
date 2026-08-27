@@ -32,33 +32,35 @@ jobs:
           python-version: "3.11.11"
           cache: pip
           cache-dependency-path: |
-            requirements.txt
+            04_reproduccion_python/requirements.txt
             pyproject.toml
 
       - name: Instalar entorno fijado
         run: |
           python -m pip install --upgrade "pip==24.3.1"
-          python -m pip install -r requirements.txt
+          python -m pip install -r 04_reproduccion_python/requirements.txt
           python -m pip check
           python -m ipykernel install --user --name python3 --display-name "Python 3"
 
       - name: Reconstruir resultados
-        run: python scripts/run_pipeline.py
+        run: |
+          python 04_reproduccion_python/reproducir_saldo_forestal_guatemala.py
+          python 04_reproduccion_python/generar_manifiestos.py
 
       - name: Ejecutar cuaderno y validar publicación
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -t CUADERNOS < <(find notebooks -maxdepth 1 -type f -name '*.ipynb' -print)
+          mapfile -t CUADERNOS < <(find 04_reproduccion_python -maxdepth 1 -type f -name '*.ipynb' -print)
           test "${#CUADERNOS[@]}" -eq 1
-          mkdir -p build/notebooks
+          mkdir -p build/cuadernos
           jupyter nbconvert \
             --to notebook \
             --execute "${CUADERNOS[0]}" \
-            --output-dir build/notebooks \
+            --output-dir build/cuadernos \
             --ExecutePreprocessor.timeout=1200 \
             --ExecutePreprocessor.kernel_name=python3
-          export CUADERNO_EJECUTADO="build/notebooks/$(basename "${CUADERNOS[0]}")"
+          export CUADERNO_EJECUTADO="build/cuadernos/$(basename "${CUADERNOS[0]}")"
           python -m pytest
 
       - name: Conservar evidencia de la ejecución
@@ -68,6 +70,9 @@ jobs:
           name: evidencia-reproducibilidad
           if-no-files-found: warn
           path: |
-            build/notebooks/*.ipynb
-            outputs/tables/controles_calidad.csv
-            outputs/downloads/manifiesto_resultados.csv
+            build/cuadernos/*.ipynb
+            build/resultados_saldo_forestal_guatemala.zip
+            05_verificacion/controles_calidad_saldo_forestal_guatemala_2016_2020.csv
+            05_verificacion/reproduccion_por_sitio_recuperacion_biomasa_20_anios.csv
+            05_verificacion/manifiesto_archivos.csv
+            05_verificacion/manifiesto_resultados.csv

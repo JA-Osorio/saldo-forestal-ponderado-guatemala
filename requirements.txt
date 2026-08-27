@@ -1,3 +1,0 @@
-# Entorno de ejecución y validación. Las versiones directas están fijadas en
-# pyproject.toml; esta entrada instala el proyecto y todos sus extras públicos.
--e .[notebook,test]
