@@ -21,7 +21,7 @@ En el archivo de origen:
 - `ganancia_bruta_ha` se normaliza como `recuperacion_bruta_ha`;
 - `balance_neto_cobertura_ha` se normaliza como `perdida_neta_ha`;
 - se mantienen dos unidades lacustres no municipales;
-- la identidad \(N=B-R\) se verifica antes de cualquier cálculo.
+- la identidad $N=B-R$ se verifica antes de cualquier cálculo.
 
 La cifra nacional de pérdida bruta, cerca de 245 mil ha, corresponde al acumulado 2016–2020. No es una observación exclusiva del año 2020.
 
@@ -71,10 +71,10 @@ El valor medio de Q22,553/ha/año a precios de 2019 resume 21 estudios sobre apr
 
 El factor de homologación 2019–2026 se deriva del cuadro oficial *Producto interno bruto: año de referencia 2013; años 2013–2026* del Banco de Guatemala, consultado el 26 de agosto de 2026. Se calcula como el cociente entre los deflactores implícitos de ambos años:
 
-\[
+$$
 \frac{1{,}008{,}060.4/657{,}811.4}{593{,}972.0/515{,}350.3}
 =1.32960218275.
-\]
+$$
 
 - [Cuadro del PIB, año de referencia 2013](https://banguat.gob.gt/sites/default/files/banguat/cuentasnac/PIB2013/resumidos/1.1_PIB_Tasa_de_Variacion_AR2013.pdf)
 

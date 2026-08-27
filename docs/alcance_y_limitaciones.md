@@ -8,7 +8,7 @@ El objetivo es cuantificar cuánto depende el diagnóstico de una decisión de c
 
 ## Lo que sí puede sostenerse
 
-- La identidad \(N=B-R\) se reproduce exactamente con la base municipal disponible.
+- La identidad $N=B-R$ se reproduce exactamente con la base municipal disponible.
 - La deforestación bruta, la recuperación y la pérdida neta se pueden comparar nacional, departamental y municipalmente.
 - Las proporciones de recuperación de biomasa a veinte años pueden usarse de forma transparente para ponderar la recuperación dentro de un dominio explícito (Poorter et al., 2016).
 - La completación conservadora permite construir un intervalo nacional sin extrapolar las proporciones regionales a los municipios excluidos.
@@ -23,7 +23,7 @@ La recuperación reportada para 2016–2020, medida como ganancia de cobertura f
 
 ### Cobertura nacional homogénea de las proporciones regionales
 
-Las proporciones regionales se aplican a 172 municipios. Los demás municipios no se imputan con una media nacional; se mantienen bajo \(\rho=1\) en la completación conservadora. Esta decisión limita la aplicación del ponderador al dominio sustentado y evita presentar una extrapolación como evidencia.
+Las proporciones regionales se aplican a 172 municipios. Los demás municipios no se imputan con una media nacional; se mantienen bajo $\rho=1$ en la completación conservadora. Esta decisión limita la aplicación del ponderador al dominio sustentado y evita presentar una extrapolación como evidencia.
 
 ### Cuenta de manglar
 
@@ -43,7 +43,7 @@ La base no identifica agentes responsables, tenencia, cadenas productivas ni des
 |---|---|---|
 | Resultado institucional | 340 municipios y dos unidades lacustres | Reproducción nacional de cobertura |
 | Proporciones de recuperación a veinte años | 172 municipios | Ponderación de la recuperación |
-| Completación conservadora | 342 unidades | Resultado nacional con \(\rho=1\) fuera del dominio de aplicación |
+| Completación conservadora | 342 unidades | Resultado nacional con $\rho=1$ fuera del dominio de aplicación |
 | Aproximación local de manglar | 13 municipios, superpuestos con el dominio de aplicación | Contraste local de resultados |
 | Costos de desastres | Agregados documentales | Contexto no aditivo |
 

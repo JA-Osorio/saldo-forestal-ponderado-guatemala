@@ -80,31 +80,51 @@ describirse como deforestación ocurrida únicamente en 2020.
 
 ## Método y alcance
 
-El punto de partida es la identidad institucional:
+El cálculo comienza con el balance institucional de cobertura forestal:
 
-\[
-N_i=B_i-R_i,
-\]
+$$
+N_i = B_i - R_i
+$$
 
-donde \(B_i\) es la pérdida bruta, \(R_i\) la recuperación reportada como
-ganancia de cobertura forestal y \(N_i\) la pérdida neta. Esta identidad
-expresa un balance de cobertura y no una equivalencia ecológica inmediata.
+Se lee como: *la pérdida neta es igual a la pérdida bruta menos la recuperación
+reportada*.
 
-El saldo ponderado se define como:
+| Símbolo | Significado | Unidad |
+|:---:|---|---:|
+| $i$ | Municipio o unidad territorial analizada | — |
+| $B_i$ | Pérdida bruta de cobertura forestal | ha |
+| $R_i$ | Recuperación reportada como ganancia de cobertura forestal | ha |
+| $N_i$ | Pérdida neta institucional | ha |
+| $\rho_i$ | Proporción utilizada para ponderar la recuperación | Adimensional, entre 0 y 1 |
+| $\rho_{20,i}$ | Proporción de biomasa recuperada a veinte años | Adimensional, entre 0 y 1 |
+| $H_i(\rho_i)$ | Saldo forestal ponderado | ha |
 
-\[
-H_i(\rho)=B_i-\rho_iR_i,
-\]
+Esta identidad expresa un balance de cobertura. Por sí sola no implica que una
+hectárea recuperada tenga de inmediato la misma biomasa que una hectárea de
+bosque perdida.
 
-donde \(\rho_i\) representa la proporción de recuperación reconocida en cada
-caso de cálculo:
+Para incorporar esa diferencia, la recuperación se multiplica por una
+proporción antes de restarla:
 
-1. \(\rho=0\): la recuperación no se descuenta de la pérdida bruta;
-2. \(\rho=1\): la recuperación se descuenta completamente, como en la pérdida
-   neta institucional;
-3. \(\rho=\rho_{20}\): la recuperación se pondera mediante proporciones de
-   biomasa a veinte años derivadas de Poorter et al. (2016), únicamente dentro
-   del dominio documentado.
+$$
+H_i(\rho_i) = B_i - \rho_i R_i
+$$
+
+El término $\rho_i R_i$ es la parte de la recuperación que se descuenta de la
+pérdida bruta. La operación puede leerse como: *pérdida bruta menos
+recuperación ponderada*. Como $\rho_i$ no tiene unidad, el resultado continúa
+expresándose en hectáreas.
+
+Los tres casos usados en el cuaderno son:
+
+| Caso | Sustitución en la fórmula | Interpretación |
+|---|---:|---|
+| Sin descontar la recuperación | $H_i(0)=B_i$ | El saldo coincide con la pérdida bruta. |
+| Balance institucional | $H_i(1)=B_i-R_i=N_i$ | La recuperación se descuenta por completo. |
+| Recuperación ponderada a veinte años | $H_i(\rho_{20,i})=B_i-\rho_{20,i}R_i$ | Solo se descuenta la proporción de biomasa recuperada a veinte años. |
+
+Las proporciones $\rho_{20,i}$ se derivan de Poorter et al. (2016) y se aplican
+únicamente dentro del dominio documentado.
 
 La [nota metodológica](docs/metodologia.md) presenta las fórmulas de
 completación nacional, valoración, trayectorias y aplicación local de manglar.
@@ -212,8 +232,8 @@ reutilización.
 
 - Las proporciones a veinte años no describen la edad de la recuperación
   reportada para 2016–2020.
-- La completación nacional aplica \(\rho_{20}\) solo dentro de 172 municipios
-  elegibles y mantiene \(\rho=1\) fuera del dominio.
+- La completación nacional aplica $\rho_{20}$ solo dentro de 172 municipios
+  elegibles y mantiene $\rho=1$ fuera del dominio.
 - Los flujos municipales usados en la aplicación de manglar no son cambios
   exclusivos de cobertura de manglar.
 - La recuperación ponderada y la aproximación local de manglar se comparan,

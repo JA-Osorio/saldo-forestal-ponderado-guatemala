@@ -104,13 +104,13 @@ Antes de distribuir los resultados:
 
 Instale el proyecto en modo editable con `python -m pip install -e ".[dev]"` y ejecute el script desde la raíz.
 
-### No se cumple \(N=B-R\)
+### No se cumple $N=B-R$
 
 No corrija el archivo procesado. Verifique la fuente, separador decimal, encabezados y huella del insumo. Documente cualquier sustitución de archivo.
 
 ### El intervalo aparece invertido
 
-Recuerde que una proporción de recuperación mayor reduce \(H=B-\rho R\). El límite inferior usa `rho20_max`; el superior usa `rho20_min`.
+Recuerde que una proporción de recuperación mayor reduce $H=B-\rho R$. El límite inferior usa `rho20_max`; el superior usa `rho20_min`.
 
 ### La recuperación ponderada y manglar no reconcilian al sumarlos
 
