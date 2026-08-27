@@ -1,41 +1,41 @@
-# Brechas restantes para el cierre científico
+# Alcance de la asignación territorial y validación ecológica pendiente
 
 ## Estado alcanzado
 
-La trazabilidad computacional está resuelta. El mismo universo, las reglas versionadas como `1.0.0` y los valores fuente regeneran exactamente la clasificación y los resultados de referencia.
+La trazabilidad computacional está resuelta. El mismo universo, las reglas documentadas y los valores fuente regeneran exactamente la clasificación y los resultados de referencia.
 
-La partición verificada comprende 172 municipios incluidos, 168 excluidos y dos unidades lacustres. Los conteos de las cinco regiones son 9, 32, 62, 35 y 34 para `REG-PET-N`, `REG-PET-FTN`, `REG-TB-HUM`, `REG-ORI-EST` y `REG-SEC-MOT`, respectivamente.
+La partición verificada comprende 172 municipios incluidos, 168 municipios fuera del dominio de aplicación y dos unidades lacustres. Los cinco grupos territoriales contienen 9, 32, 62, 35 y 34 municipios, respectivamente. Los identificadores técnicos `REG-PET-N`, `REG-PET-FTN`, `REG-TB-HUM`, `REG-ORI-EST` y `REG-SEC-MOT` se conservan en los archivos para asegurar la reproducción fila por fila.
 
-Este cierre permite responder, para cualquier municipio:
+Para cada municipio, los archivos permiten identificar:
 
 - qué código se utilizó;
 - a qué región fue asignado;
 - qué regla produjo la asignación;
-- qué sitios y porcentajes alimentaron su intervalo;
+- qué sitios de referencia y valores alimentaron su proporción de regeneración equivalente;
 - cómo se calculó el resultado final.
 
 ## Brecha que permanece
 
-La clasificación territorial codificada no fue generada por variables ambientales conservadas en los archivos. Por eso todavía no puede responderse con evidencia cuantitativa por qué todo el territorio —o, preferiblemente, las hectáreas recuperadas— de cada municipio es comparable con esos sitios.
+La asignación documentada de municipios a grupos territoriales de referencia no fue generada por variables ambientales conservadas en los archivos. Por ello, los datos disponibles no demuestran cuantitativamente que todo el territorio —o, preferiblemente, las hectáreas registradas como ganancia de cobertura— de cada municipio sea comparable con los sitios científicos utilizados.
 
 Los casos más sensibles incluyen municipios con gradientes altitudinales o ecosistemas mixtos dentro de `REG-PET-FTN`, `REG-ORI-EST` y `REG-SEC-MOT`. Tampoco debe equipararse `REG-PET-FTN` con la delimitación legal de la Franja Transversal del Norte ni `REG-SEC-MOT` con la delimitación oficial completa del Corredor Seco.
 
-## Dos formas legítimas de cerrar
+## Niveles de validación
 
-### Cierre como correspondencia experta codificada
+### Reproducibilidad de la asignación actual
 
-Es la vía mínima compatible con el procedimiento documentado:
+El procedimiento publicado cumple las siguientes condiciones:
 
 1. conservar las listas exactas por código;
-2. denominar el método *correspondencia territorial experta codificada*;
-3. presentar las cinco regiones como construcciones analíticas;
+2. denominar el método *asignación documentada de municipios a grupos territoriales de referencia*;
+3. presentar los cinco grupos como construcciones analíticas;
 4. publicar las reglas, bitácoras, fuentes, huellas y pruebas;
 5. declarar que la transferencia no constituye validación ecológica nacional;
-6. someter la lista a una revisión técnica documentada por especialistas forestales o territoriales.
+6. mantener separados los criterios territoriales, los sitios científicos de referencia y los intervalos aplicados.
 
-Con esta formulación, la clasificación es reproducible y transparente, aunque conserve juicio experto.
+Con esta formulación, la asignación es reproducible y transparente, aunque no demuestra equivalencia ecológica municipio por municipio.
 
-### Cierre como clasificación ecológica empírica
+### Validación ecológica empírica complementaria
 
 Requiere rehacer la homologación con evidencia espacial:
 
@@ -46,8 +46,8 @@ Requiere rehacer la homologación con evidencia espacial:
 - reglas explícitas de pertenencia y precedencia;
 - proporción de las hectáreas recuperadas que corresponde a cada estrato.
 
-Esta vía puede cambiar los conteos históricos. No se deben calibrar los umbrales para forzar nuevamente 172 municipios; cualquier cambio debe tratarse como una nueva versión metodológica.
+Esta validación puede cambiar los conteos del procedimiento actual. Los umbrales no deben calibrarse para reproducir artificialmente el total de 172 municipios; cualquier cambio debe documentarse como una modificación metodológica.
 
-## Recomendación para el producto actual
+## Alcance del suplemento actual
 
-El producto puede cerrarse sin inventar una clasificación ambiental retrospectiva si adopta explícitamente la primera vía. La versión 1.0.0 aporta reglas exactas, valores originales, transformaciones, bitácoras y pruebas. Antes de presentar la correspondencia como validada ecológicamente, sigue siendo necesaria la segunda vía o una validación técnica externa claramente documentada.
+El suplemento aporta reglas exactas, valores originales, transformaciones, bitácoras y pruebas que permiten reproducir la asignación y sus resultados. La asignación no debe presentarse como equivalencia ecológica validada mientras no se complete el cruce espacial descrito o una validación técnica externa claramente documentada.

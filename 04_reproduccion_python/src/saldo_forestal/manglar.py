@@ -87,8 +87,8 @@ def comparar_metodos_locales(
 
     columnas_recuperacion = [
         "codigo",
-        "rho20_min",
-        "rho20_max",
+        "proporcion_regeneracion_equivalente_min",
+        "proporcion_regeneracion_equivalente_max",
         "saldo_ponderado_inferior_ha",
         "saldo_ponderado_superior_ha",
         "clasificacion_ponderada",
@@ -99,7 +99,7 @@ def comparar_metodos_locales(
         how="left",
         validate="one_to_one",
     )
-    if len(comparacion) != 13 or comparacion["rho20_min"].isna().any():
+    if len(comparacion) != 13 or comparacion["proporcion_regeneracion_equivalente_min"].isna().any():
         raise ValueError("Los trece municipios locales deben pertenecer al dominio de aplicación.")
     return comparacion
 

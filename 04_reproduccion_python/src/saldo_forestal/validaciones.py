@@ -8,7 +8,7 @@ import pandas as pd
 
 def ejecutar_controles(
     base: pd.DataFrame,
-    correspondencia: pd.DataFrame,
+    asignacion_territorial: pd.DataFrame,
     catalogo: pd.DataFrame,
     recuperacion: pd.DataFrame,
     completacion: pd.DataFrame,
@@ -60,30 +60,30 @@ def ejecutar_controles(
         f"{base['recuperacion_bruta_ha'].sum():,.8f} ha",
     )
     registrar(
-        "Regiones de referencia de rho20",
+        "Grupos con proporción de regeneración equivalente",
         len(catalogo) == 5,
-        f"{len(catalogo)} regiones",
+        f"{len(catalogo)} grupos territoriales de referencia",
     )
-    conteos_dominio = correspondencia["estado_dominio"].value_counts()
+    conteos_dominio = asignacion_territorial["estado_dominio"].value_counts()
     registrar(
-        "Partición de la correspondencia territorial",
-        len(correspondencia) == 342
-        and int(conteos_dominio.get("elegible_recuperacion_20_anios", 0)) == 172
+        "Partición de la asignación territorial documentada",
+        len(asignacion_territorial) == 342
+        and int(conteos_dominio.get("elegible_regeneracion_equivalente", 0)) == 172
         and int(conteos_dominio.get("fuera_dominio_regla_residual", 0)) == 168
         and int(conteos_dominio.get("unidad_no_municipal", 0)) == 2,
         "172 municipios incluidos, 168 excluidos y 2 unidades no municipales",
     )
-    conteos_regiones = (
-        correspondencia.loc[
-            correspondencia["estado_dominio"].eq("elegible_recuperacion_20_anios"),
-            "proporcion_region_id",
+    conteos_grupoes = (
+        asignacion_territorial.loc[
+            asignacion_territorial["estado_dominio"].eq("elegible_regeneracion_equivalente"),
+            "proporcion_grupo_id",
         ]
         .value_counts()
         .to_dict()
     )
     registrar(
-        "Conteos de las cinco regiones de proporción",
-        conteos_regiones
+        "Conteos de los cinco grupos territoriales de referencia",
+        conteos_grupoes
         == {
             "REG-TB-HUM": 62,
             "REG-ORI-EST": 35,
@@ -94,7 +94,7 @@ def ejecutar_controles(
         "REG-PET-N=9; REG-PET-FTN=32; REG-TB-HUM=62; REG-ORI-EST=35; REG-SEC-MOT=34",
     )
     registrar(
-        "Municipios con proporción a veinte años",
+        "Municipios con proporción de regeneración equivalente",
         len(recuperacion) == 172,
         f"{len(recuperacion)} municipios",
     )
@@ -129,7 +129,7 @@ def ejecutar_controles(
     registrar("Municipios de la aplicación local", len(local) == 13, f"{len(local)} municipios")
     registrar(
         "Soporte común de recuperación ponderada y manglar",
-        comparacion_local["rho20_min"].notna().all() and len(comparacion_local) == 13,
+        comparacion_local["proporcion_regeneracion_equivalente_min"].notna().all() and len(comparacion_local) == 13,
         "Los trece municipios locales pertenecen al dominio de aplicación",
     )
     registrar(

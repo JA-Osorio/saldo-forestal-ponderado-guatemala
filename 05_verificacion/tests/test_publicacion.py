@@ -238,6 +238,21 @@ def test_el_cuaderno_ejecuta_sin_errores(cuaderno):
         (r"Perfil\s+Ambiental", "Perfil Ambiental"),
         (r"Manuscrito\s+en\s+preparaci[oó]n", "manuscrito en preparación"),
         (r"comparaci[oó]n\s+de\s+reglas", "comparación de reglas"),
+        (r"identidad\s+institucional", "identidad institucional"),
+        (
+            r"correspondencia\s+territorial\s+experta(?:\s+codificada)?",
+            "correspondencia territorial experta",
+        ),
+        (
+            r"proporci[oó]n(?:es)?\s+(?:de\s+recuperaci[oó]n\s+de\s+biomasa\s+)?"
+            r"a\s+veinte\s+a[nñ]os",
+            "proporción a veinte años",
+        ),
+        (
+            r"recuperaci[oó]n\s+ponderada\s+a\s+veinte\s+a[nñ]os",
+            "recuperación ponderada a veinte años",
+        ),
+        (r"p[eé]rdida\s+neta\s+institucional", "pérdida neta institucional"),
     ],
 )
 def test_terminos_descartados_no_aparecen_en_el_texto_publico(
@@ -331,13 +346,13 @@ def test_titulo_canonico_y_seccion_final_como_citar(cuaderno):
     assert cuaderno.metadata.get("title") == titulo
     markdown = [celda.source for celda in cuaderno.cells if celda.cell_type == "markdown"]
     assert titulo in markdown[0]
-    assert "Cuaderno reproducible y nota metodológica" in markdown[0]
+    assert "Material suplementario en línea" in markdown[0]
     assert markdown[-1].startswith("## Cómo citar")
     assert "Osorio, J. A. (2026)" in markdown[-1]
     assert "https://doi.org/10.5281/zenodo.22119075" in markdown[-1]
 
 
-def test_ruta_principal_es_didactica_y_deja_las_derivaciones_en_el_anexo(cuaderno):
+def test_ruta_principal_es_suplementaria_y_deja_las_derivaciones_en_el_anexo(cuaderno):
     markdown = "\n".join(
         celda.source for celda in cuaderno.cells if celda.cell_type == "markdown"
     )
@@ -346,23 +361,158 @@ def test_ruta_principal_es_didactica_y_deja_las_derivaciones_en_el_anexo(cuadern
     )
     assert separador
     assert principal.count("$$") // 2 <= 3
-    assert "La lectura sigue seis preguntas" in principal
-    assert "Una proporción de 60 % significa" in principal
+    assert "material suplementario en línea" in principal.casefold()
+    assert "## 3. Asignación territorial de la proporción de regeneración equivalente" in principal
+    assert "después de veinte años" in principal
+    assert "La lectura sigue seis preguntas" not in principal
+    assert "responde una pregunta" not in principal.casefold()
+    assert "¿" not in principal
+    assert re.search(
+        r"^#{2,4}\s+\d+\.\s+(?:qu[eé]|c[oó]mo|por\s+qu[eé])\b",
+        principal,
+        flags=re.IGNORECASE | re.MULTILINE,
+    ) is None
     assert "San Andrés Villa Seca (`1106`)" in principal
     assert "Mostrar las fórmulas y la definición de sus símbolos" in anexo
 
 
-def test_tabla_territorial_explica_los_grupos_y_subordina_los_codigos(cuaderno):
+def test_tabla_territorial_explica_criterio_referencias_proporcion_y_aplicacion(cuaderno):
     salida = _resultado_numerado(cuaderno, "Tabla 4.")
     html = _html_salida(salida)
-    assert "Cómo se clasifican las unidades territoriales del análisis" in html
-    assert "Fundamento territorial documentado" in html
-    assert "Norte y centro de Petén (REG-PET-N)" in html
-    assert "Fuera del dominio: otros municipios (REG-ALT-MON)" in html
-    assert "no hay una característica ecológica común verificada" in html
-    assert ">9<" in html
+    assert (
+        "Asignación territorial y proporciones de regeneración equivalente "
+        "utilizadas en el cálculo"
+    ) in html
+    for encabezado in (
+        "Grupo territorial en Guatemala",
+        "Criterio de agrupación",
+        "Territorios o sitios utilizados como referencia",
+        "Proporción de regeneración equivalente",
+        "Aplicación en el cálculo",
+        "Unidades",
+    ):
+        assert f"<th>{encabezado}</th>" in html
+
+    for grupo in (
+        "Norte y centro de Petén",
+        "Sur de Petén y vertiente norte",
+        "Tierras bajas húmedas del Caribe y del Pacífico",
+        "Oriente de Guatemala",
+        "Valles secos interiores, Motagua y Salamá–Chixoy",
+        "Otros municipios",
+        "Lagos de Amatitlán y Atitlán",
+    ):
+        assert grupo in html
+
+    for referencia in (
+        "Quintana Roo y Yucatán",
+        "Chajul",
+        "Sarapiquí",
+        "Santa Rosa",
+        "Sitios secos",
+    ):
+        assert referencia in html
+
+    for proporcion in (
+        "66.4–66.7 %; punto medio 66.6 %",
+        "59.4 % (valor único)",
+        "59.3–76.6 %; punto medio 68.0 %",
+        "33.6–84.9 %; punto medio 59.3 %",
+        "25.0–65.0 %; punto medio 45.0 %",
+    ):
+        assert proporcion in html
+
+    for unidades in (9, 32, 62, 35, 34, 168, 2):
+        assert re.search(rf"<td(?:\s+class='sf-num')?>{unidades}</td>", html)
+
+    assert "Se aplica el intervalo a la recuperación reportada" in html
+    assert "Se conserva N = B − R reportado por INAB y CONAP" in html
+    assert "Se conserva N = B − R en la suma nacional" in html
+    assert "download='asignacion_grupos_territoriales_proporcion_regeneracion_equivalente.csv'" in html
     assert "9.000" not in html
     assert "Altiplano y bosques montanos" not in _texto_publico(cuaderno)
+
+
+def test_figura_5_muestra_intervalos_puntos_medios_y_valores_por_sitio(cuaderno):
+    salida = _resultado_numerado(cuaderno, "Figura 5.")
+    trazas = _datos_plotly(salida)
+    layout = _layout_plotly(salida)
+
+    intervalos = [
+        traza for traza in trazas if traza.get("name") == "Intervalo aplicado"
+    ]
+    assert len(intervalos) == 5
+    observados = sorted(
+        (round(float(traza["x"][0]), 4), round(float(traza["x"][1]), 4))
+        for traza in intervalos
+    )
+    esperados = sorted(
+        [
+            (0.6640, 0.6670),
+            (0.5940, 0.5940),
+            (0.5930, 0.7660),
+            (0.3360, 0.8490),
+            (0.2500, 0.6500),
+        ]
+    )
+    assert observados == esperados
+    assert all("lines" in traza.get("mode", "") for traza in intervalos)
+
+    punto_medio = next(
+        traza
+        for traza in trazas
+        if traza.get("name") == "Punto medio del intervalo"
+    )
+    assert punto_medio.get("marker", {}).get("symbol") == "diamond"
+    assert sorted(round(float(valor), 4) for valor in punto_medio["x"]) == sorted(
+        [0.6655, 0.5940, 0.6795, 0.5925, 0.4500]
+    )
+
+    limites = next(
+        traza
+        for traza in trazas
+        if traza.get("name") == "Límite del intervalo"
+    )
+    assert limites.get("marker", {}).get("symbol") == "circle"
+
+    sitios = next(
+        traza
+        for traza in trazas
+        if traza.get("name") == "Valor publicado por sitio"
+    )
+    assert sitios.get("marker", {}).get("symbol") == "circle-open"
+    nombres_sitios = {
+        str(fila[0]) for fila in sitios.get("customdata", []) if fila
+    }
+    for nombre in (
+        "Quintana Roo",
+        "Yucatán",
+        "Chajul",
+        "Barro Colorado Island",
+        "Sarapiquí (Chazdon)",
+        "El Ocote 1",
+        "Santa Rosa",
+        "Chamela",
+        "Nizanda",
+    ):
+        assert nombre in nombres_sitios
+
+    assert (
+        layout.get("xaxis", {}).get("title", {}).get("text")
+        == "Proporción de regeneración equivalente (%)"
+    )
+    assert len(layout.get("yaxis", {}).get("ticktext", [])) == 5
+
+
+def test_completacion_nacional_separa_168_municipios_y_dos_lagos(cuaderno):
+    markdown = "\n".join(
+        celda.source for celda in cuaderno.cells if celda.cell_type == "markdown"
+    )
+    assert "| Otros municipios | 168 municipios" in markdown
+    assert "| Unidades lacustres | 2 lagos" in markdown
+    assert "| Total de la fuente | 342 registros" in markdown
+    assert "16,862 ha" in markdown
+    assert r"\sum_{i\in U\setminus P}(B_i-R_i)" in markdown
 
 
 def test_comparacion_ponderada_y_trayectorias_distinguibles(cuaderno):
@@ -412,7 +562,8 @@ def test_tablas_compactas_y_descargas_atribuidas(cuaderno):
             continue
         html = _html_salida(salida)
         columnas = len(re.findall(r"<th>", html))
-        if columnas > 5:
+        limite_columnas = 6 if resultado_id == "Tabla 4" else 5
+        if columnas > limite_columnas:
             excesos.append((resultado_id, columnas))
         assert "class='sf-tabla'" in html
         assert "Plotly.newPlot(" not in html
@@ -420,7 +571,10 @@ def test_tablas_compactas_y_descargas_atribuidas(cuaderno):
         assert "Descargar cita" not in html
         assert "max-width:" in html
 
-    assert not excesos, f"Las tablas visibles no deben exceder cinco columnas: {excesos}"
+    assert not excesos, (
+        "Las tablas visibles no deben exceder cinco columnas, salvo la Tabla 4 "
+        f"que integra seis dimensiones metodológicas: {excesos}"
+    )
     assert "osorio_2026_" in _texto_publico(cuaderno)
 
 

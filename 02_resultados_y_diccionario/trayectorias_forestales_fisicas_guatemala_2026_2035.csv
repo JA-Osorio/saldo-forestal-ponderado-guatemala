@@ -19,16 +19,16 @@ anio,escenario,regla,acumulado_inferior_ha,acumulado_superior_ha
 2033,Contención proporcional,Saldo ponderado por recuperación,58236.6157830780,61994.0139221807
 2034,Contención proporcional,Saldo ponderado por recuperación,65516.1927559628,69743.2656624533
 2035,Contención proporcional,Saldo ponderado por recuperación,72795.7697288475,77492.5174027258
-2026,Contención proporcional,Pérdida neta institucional,3296.0266580850,3296.0266580850
-2027,Contención proporcional,Pérdida neta institucional,6592.0533161700,6592.0533161700
-2028,Contención proporcional,Pérdida neta institucional,9888.0799742550,9888.0799742550
-2029,Contención proporcional,Pérdida neta institucional,13184.1066323400,13184.1066323400
-2030,Contención proporcional,Pérdida neta institucional,16480.1332904250,16480.1332904250
-2031,Contención proporcional,Pérdida neta institucional,19776.1599485100,19776.1599485100
-2032,Contención proporcional,Pérdida neta institucional,23072.1866065950,23072.1866065950
-2033,Contención proporcional,Pérdida neta institucional,26368.2132646800,26368.2132646800
-2034,Contención proporcional,Pérdida neta institucional,29664.2399227650,29664.2399227650
-2035,Contención proporcional,Pérdida neta institucional,32960.2665808500,32960.2665808500
+2026,Contención proporcional,Pérdida neta reportada,3296.0266580850,3296.0266580850
+2027,Contención proporcional,Pérdida neta reportada,6592.0533161700,6592.0533161700
+2028,Contención proporcional,Pérdida neta reportada,9888.0799742550,9888.0799742550
+2029,Contención proporcional,Pérdida neta reportada,13184.1066323400,13184.1066323400
+2030,Contención proporcional,Pérdida neta reportada,16480.1332904250,16480.1332904250
+2031,Contención proporcional,Pérdida neta reportada,19776.1599485100,19776.1599485100
+2032,Contención proporcional,Pérdida neta reportada,23072.1866065950,23072.1866065950
+2033,Contención proporcional,Pérdida neta reportada,26368.2132646800,26368.2132646800
+2034,Contención proporcional,Pérdida neta reportada,29664.2399227650,29664.2399227650
+2035,Contención proporcional,Pérdida neta reportada,32960.2665808500,32960.2665808500
 2026,Continuidad,Deforestación bruta,61098.6424605950,61098.6424605950
 2027,Continuidad,Deforestación bruta,122197.2849211900,122197.2849211900
 2028,Continuidad,Deforestación bruta,183295.9273817850,183295.9273817850
@@ -49,16 +49,16 @@ anio,escenario,regla,acumulado_inferior_ha,acumulado_superior_ha
 2033,Continuidad,Saldo ponderado por recuperación,232946.4631323120,247976.0556887227
 2034,Continuidad,Saldo ponderado por recuperación,262064.7710238510,278973.0626498130
 2035,Continuidad,Saldo ponderado por recuperación,291183.0789153900,309970.0696109034
-2026,Continuidad,Pérdida neta institucional,13184.1066323400,13184.1066323400
-2027,Continuidad,Pérdida neta institucional,26368.2132646800,26368.2132646800
-2028,Continuidad,Pérdida neta institucional,39552.3198970200,39552.3198970200
-2029,Continuidad,Pérdida neta institucional,52736.4265293600,52736.4265293600
-2030,Continuidad,Pérdida neta institucional,65920.5331617000,65920.5331617000
-2031,Continuidad,Pérdida neta institucional,79104.6397940400,79104.6397940400
-2032,Continuidad,Pérdida neta institucional,92288.7464263800,92288.7464263800
-2033,Continuidad,Pérdida neta institucional,105472.8530587200,105472.8530587200
-2034,Continuidad,Pérdida neta institucional,118656.9596910600,118656.9596910600
-2035,Continuidad,Pérdida neta institucional,131841.0663234000,131841.0663234000
+2026,Continuidad,Pérdida neta reportada,13184.1066323400,13184.1066323400
+2027,Continuidad,Pérdida neta reportada,26368.2132646800,26368.2132646800
+2028,Continuidad,Pérdida neta reportada,39552.3198970200,39552.3198970200
+2029,Continuidad,Pérdida neta reportada,52736.4265293600,52736.4265293600
+2030,Continuidad,Pérdida neta reportada,65920.5331617000,65920.5331617000
+2031,Continuidad,Pérdida neta reportada,79104.6397940400,79104.6397940400
+2032,Continuidad,Pérdida neta reportada,92288.7464263800,92288.7464263800
+2033,Continuidad,Pérdida neta reportada,105472.8530587200,105472.8530587200
+2034,Continuidad,Pérdida neta reportada,118656.9596910600,118656.9596910600
+2035,Continuidad,Pérdida neta reportada,131841.0663234000,131841.0663234000
 2026,Deterioro proporcional acelerado,Deforestación bruta,122197.2849211900,122197.2849211900
 2027,Deterioro proporcional acelerado,Deforestación bruta,244394.5698423800,244394.5698423800
 2028,Deterioro proporcional acelerado,Deforestación bruta,366591.8547635700,366591.8547635700
@@ -79,13 +79,13 @@ anio,escenario,regla,acumulado_inferior_ha,acumulado_superior_ha
 2033,Deterioro proporcional acelerado,Saldo ponderado por recuperación,465892.9262646240,495952.1113774454
 2034,Deterioro proporcional acelerado,Saldo ponderado por recuperación,524129.5420477020,557946.1252996260
 2035,Deterioro proporcional acelerado,Saldo ponderado por recuperación,582366.1578307800,619940.1392218068
-2026,Deterioro proporcional acelerado,Pérdida neta institucional,26368.2132646800,26368.2132646800
-2027,Deterioro proporcional acelerado,Pérdida neta institucional,52736.4265293600,52736.4265293600
-2028,Deterioro proporcional acelerado,Pérdida neta institucional,79104.6397940400,79104.6397940400
-2029,Deterioro proporcional acelerado,Pérdida neta institucional,105472.8530587200,105472.8530587200
-2030,Deterioro proporcional acelerado,Pérdida neta institucional,131841.0663234000,131841.0663234000
-2031,Deterioro proporcional acelerado,Pérdida neta institucional,158209.2795880800,158209.2795880800
-2032,Deterioro proporcional acelerado,Pérdida neta institucional,184577.4928527600,184577.4928527600
-2033,Deterioro proporcional acelerado,Pérdida neta institucional,210945.7061174400,210945.7061174400
-2034,Deterioro proporcional acelerado,Pérdida neta institucional,237313.9193821200,237313.9193821200
-2035,Deterioro proporcional acelerado,Pérdida neta institucional,263682.1326468000,263682.1326468000
+2026,Deterioro proporcional acelerado,Pérdida neta reportada,26368.2132646800,26368.2132646800
+2027,Deterioro proporcional acelerado,Pérdida neta reportada,52736.4265293600,52736.4265293600
+2028,Deterioro proporcional acelerado,Pérdida neta reportada,79104.6397940400,79104.6397940400
+2029,Deterioro proporcional acelerado,Pérdida neta reportada,105472.8530587200,105472.8530587200
+2030,Deterioro proporcional acelerado,Pérdida neta reportada,131841.0663234000,131841.0663234000
+2031,Deterioro proporcional acelerado,Pérdida neta reportada,158209.2795880800,158209.2795880800
+2032,Deterioro proporcional acelerado,Pérdida neta reportada,184577.4928527600,184577.4928527600
+2033,Deterioro proporcional acelerado,Pérdida neta reportada,210945.7061174400,210945.7061174400
+2034,Deterioro proporcional acelerado,Pérdida neta reportada,237313.9193821200,237313.9193821200
+2035,Deterioro proporcional acelerado,Pérdida neta reportada,263682.1326468000,263682.1326468000

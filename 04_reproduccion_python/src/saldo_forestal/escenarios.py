@@ -61,8 +61,8 @@ def calcular_escenarios_nacionales(
     validar_escenarios(escenarios)
     b = completacion_nacional["perdida_bruta_ha"]
     r = completacion_nacional["recuperacion_bruta_ha"]
-    rho_min = completacion_nacional["rho_aplicada_min"]
-    rho_max = completacion_nacional["rho_aplicada_max"]
+    rho_min = completacion_nacional["proporcion_regeneracion_equivalente_aplicada_min"]
+    rho_max = completacion_nacional["proporcion_regeneracion_equivalente_aplicada_max"]
     filas: list[dict[str, float | str]] = []
     for _, escenario in escenarios.iterrows():
         mb = float(escenario["multiplicador_perdida_bruta"])
@@ -73,7 +73,7 @@ def calcular_escenarios_nacionales(
                 aplicar_escenario(b, r, rho_max, mb, mr).sum(),
                 aplicar_escenario(b, r, rho_min, mb, mr).sum(),
             ),
-            "Pérdida neta institucional": (
+            "Pérdida neta reportada": (
                 aplicar_escenario(b, r, 1.0, mb, mr).sum(),
                 aplicar_escenario(b, r, 1.0, mb, mr).sum(),
             ),

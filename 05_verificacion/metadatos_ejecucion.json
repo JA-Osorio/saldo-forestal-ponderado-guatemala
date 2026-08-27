@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "version_metodo_correspondencia": "1.0.0",
+  "version_metodo_asignacion_territorial": "1.0.0",
   "fecha_corte": "2026-08-26",
   "periodo_forestal": "2016-2020",
   "unidades_base": 342,
@@ -8,7 +8,7 @@
   "municipios_con_proporcion": 172,
   "municipios_excluidos": 168,
   "unidades_lacustres": 2,
-  "municipios_mangle": 13,
+  "municipios_manglar": 13,
   "porcentajes_reproducidos_dryad": 13,
   "valor_unitario_2026_gtq_ha_anio": 29986.51802756075,
   "tasa_descuento_central": 0.04,

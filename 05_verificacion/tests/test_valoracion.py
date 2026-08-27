@@ -14,10 +14,10 @@ def test_factores_anualidad():
     assert np.isclose(factor_anualidad(0.04, 10), 8.110895779)
 
 
-def test_resultado_institucional_reproduce_capitulo(base, completacion):
+def test_resultado_reportado_reproduce_fuente(base, completacion):
     comparacion = construir_comparacion_nacional(base, completacion)
     valoracion = valorar_comparacion_nacional(comparacion)
-    neta = valoracion.loc[valoracion["regla"].eq("Pérdida neta institucional")].iloc[0]
+    neta = valoracion.loc[valoracion["regla"].eq("Pérdida neta reportada")].iloc[0]
     assert np.isclose(neta["flujo_anual_inferior_gtq"] / 1e6, 395.345451, atol=1e-6)
     assert np.isclose(neta["vp_cohorte_inferior_gtq"] / 1e6, 6_176.118244, atol=1e-6)
     assert np.isclose(neta["vp_diez_cohortes_inferior_gtq"] / 1e6, 50_093.851399, atol=1e-6)

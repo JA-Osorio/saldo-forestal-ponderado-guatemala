@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "saldo-forestal-ponderado-guatemala"
 version = "1.0.0"
-description = "Cálculos reproducibles para contrastar la deforestación neta con saldos forestales ponderados en Guatemala."
+description = "Material suplementario reproducible sobre cobertura forestal y saldo ponderado en Guatemala, 2016–2020."
 requires-python = ">=3.11,<3.14"
 authors = [
   { name = "Juan Alejandro Osorio" },

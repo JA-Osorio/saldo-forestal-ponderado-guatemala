@@ -1,4 +1,4 @@
-cod_dep,depto,codigo,municipio,perdida_bruta_ha,recuperacion_bruta_ha,perdida_neta_ha,tipo_unidad,rho_aplicada_min,rho_aplicada_max,en_dominio_recuperacion,saldo_ponderado_inferior_ha,saldo_ponderado_superior_ha
+cod_dep,depto,codigo,municipio,perdida_bruta_ha,recuperacion_bruta_ha,perdida_neta_ha,tipo_unidad,proporcion_regeneracion_equivalente_aplicada_min,proporcion_regeneracion_equivalente_aplicada_max,en_dominio_recuperacion,saldo_ponderado_inferior_ha,saldo_ponderado_superior_ha
 1,Guatemala,,Lago de Amatitlán,11.1474334600,1.7263768200,9.4210566400,Unidad lacustre no municipal,1.0000000000,1.0000000000,False,9.4210566400,9.4210566400
 1,Guatemala,101,Guatemala,84.9902752100,1.4033748700,83.5869003400,Municipio,1.0000000000,1.0000000000,False,83.5869003400,83.5869003400
 1,Guatemala,102,Santa Catarina Pinula,45.5107664900,27.1938369900,18.3169295000,Municipio,1.0000000000,1.0000000000,False,18.3169295000,18.3169295000

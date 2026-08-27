@@ -1,0 +1,38 @@
+CRÉDITOS — VERSIÓN 1.0.0
+
+Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala
+
+AUTORÍA
+
+Juan Alejandro Osorio
+Instituto de Investigación en Ciencias Naturales y Tecnología (IARNA)
+Universidad Rafael Landívar
+ORCID: 0009-0001-4260-772X
+Perfil: https://github.com/JA-Osorio
+
+DOI de esta versión:
+https://doi.org/10.5281/zenodo.22119075
+
+DOI conceptual de todas las versiones:
+https://doi.org/10.5281/zenodo.22119074
+
+CONTRIBUCIONES
+
+Juan Alejandro Osorio: conceptualización, metodología, curación de datos,
+programación, análisis formal, validación, visualización, documentación y
+preparación del material suplementario reproducible.
+
+FUENTES INSTITUCIONALES Y CIENTÍFICAS
+
+El Instituto Nacional de Bosques (INAB) y el Consejo Nacional de Áreas
+Protegidas (CONAP) son las fuentes de la dinámica de cobertura forestal
+2016–2020. Poorter et al. (2016, 2017) son las fuentes científicas de los
+valores de recuperación relativa de biomasa aérea utilizados para parametrizar
+la proporción de regeneración equivalente. Las demás fuentes se atribuyen en
+el registro de fuentes, el cuaderno y cada producto derivado.
+
+La ponderación de la recuperación, la asignación documentada de municipios a
+grupos territoriales de referencia, la completación nacional, la valoración
+indicativa y las trayectorias son cálculos del autor. No constituyen
+estadísticas oficiales ni implican aval de las instituciones o autores de las
+fuentes primarias.

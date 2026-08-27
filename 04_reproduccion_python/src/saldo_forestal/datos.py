@@ -111,22 +111,22 @@ def leer_base_forestal(data_dir: Path | None = None) -> pd.DataFrame:
     return base
 
 
-def leer_configuracion_correspondencia(
+def leer_configuracion_asignacion_territorial(
     metodologia_dir: Path | None = None,
 ) -> dict[str, object]:
     ruta = _resolver_archivo(
-        "reglas_correspondencia_territorial_experta_codificada.json",
+        "reglas_asignacion_grupos_territoriales.json",
         metodologia_dir,
         directorio_metodologia(),
     )
     return json.loads(ruta.read_text(encoding="utf-8"))
 
 
-def leer_configuracion_regiones_sitios(
+def leer_configuracion_grupos_sitios(
     metodologia_dir: Path | None = None,
 ) -> dict[str, object]:
     ruta = _resolver_archivo(
-        "correspondencia_regiones_sitios_referencia.json",
+        "asignacion_grupos_sitios_referencia.json",
         metodologia_dir,
         directorio_metodologia(),
     )
@@ -135,7 +135,7 @@ def leer_configuracion_regiones_sitios(
 
 def leer_sitios_referencia(data_dir: Path | None = None) -> pd.DataFrame:
     sitios = _leer_csv(
-        "sitios_referencia_recuperacion_biomasa_20_anios.csv",
+        "sitios_referencia_proporcion_regeneracion_equivalente.csv",
         data_dir,
     )
     requeridas = {
@@ -163,31 +163,31 @@ def leer_fuente_dryad(data_dir: Path | None = None) -> pd.DataFrame:
     )
 
 
-def leer_correspondencia_territorial(
+def leer_asignacion_territorial(
     data_dir: Path | None = None,
     configuracion: dict[str, object] | str | Path | None = None,
 ) -> pd.DataFrame:
     """Reconstruye el dominio territorial desde la fuente y su configuración."""
 
-    from .correspondencia import construir_correspondencia_territorial
+    from .asignacion_territorial import construir_asignacion_territorial
 
-    configuracion_efectiva = configuracion or leer_configuracion_correspondencia()
-    return construir_correspondencia_territorial(
+    configuracion_efectiva = configuracion or leer_configuracion_asignacion_territorial()
+    return construir_asignacion_territorial(
         leer_base_forestal(data_dir),
         configuracion_efectiva,
     )
 
 
-def leer_catalogo_proporciones_recuperacion(
+def leer_catalogo_proporcion_regeneracion_equivalente(
     data_dir: Path | None = None,
     configuracion: dict[str, object] | str | Path | None = None,
 ) -> pd.DataFrame:
-    """Construye el catálogo regional desde sitios y configuración versionada."""
+    """Construye el catálogo por grupo desde sitios y configuración versionada."""
 
-    from .correspondencia import construir_catalogo_proporciones
+    from .asignacion_territorial import construir_catalogo_proporcion_regeneracion_equivalente
 
-    configuracion_efectiva = configuracion or leer_configuracion_regiones_sitios()
-    catalogo = construir_catalogo_proporciones(
+    configuracion_efectiva = configuracion or leer_configuracion_grupos_sitios()
+    catalogo = construir_catalogo_proporcion_regeneracion_equivalente(
         configuracion_efectiva,
         leer_sitios_referencia(data_dir),
     )
@@ -310,15 +310,15 @@ def validar_base_forestal(base: pd.DataFrame) -> None:
 
 
 def validar_catalogo_proporciones(catalogo: pd.DataFrame) -> None:
-    requeridas = {"proporcion_region_id", "rho20_min", "rho20_central", "rho20_max"}
+    requeridas = {"proporcion_grupo_id", "proporcion_regeneracion_equivalente_min", "proporcion_regeneracion_equivalente_central", "proporcion_regeneracion_equivalente_max"}
     if faltan := requeridas.difference(catalogo.columns):
         raise ValueError(f"Faltan columnas en el catálogo de proporciones: {sorted(faltan)}")
-    proporciones = catalogo[["rho20_min", "rho20_central", "rho20_max"]]
+    proporciones = catalogo[["proporcion_regeneracion_equivalente_min", "proporcion_regeneracion_equivalente_central", "proporcion_regeneracion_equivalente_max"]]
     if not ((proporciones >= 0) & (proporciones <= 1)).all().all():
         raise ValueError("Las proporciones de recuperación deben estar en el intervalo [0, 1].")
     if not (
-        (catalogo["rho20_min"] <= catalogo["rho20_central"])
-        & (catalogo["rho20_central"] <= catalogo["rho20_max"])
+        (catalogo["proporcion_regeneracion_equivalente_min"] <= catalogo["proporcion_regeneracion_equivalente_central"])
+        & (catalogo["proporcion_regeneracion_equivalente_central"] <= catalogo["proporcion_regeneracion_equivalente_max"])
     ).all():
         raise ValueError("Los límites de recuperación no están ordenados.")
 

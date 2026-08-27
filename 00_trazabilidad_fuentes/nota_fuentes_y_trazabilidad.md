@@ -2,7 +2,7 @@
 
 ## Principio de procedencia
 
-La publicación separa cinco capas ordenadas:
+El repositorio organiza el suplemento en cinco capas:
 
 1. **Fuentes y trazabilidad (`00_trazabilidad_fuentes/`):** insumos preservados, referencias y bitácoras.
 2. **Metodología (`01_metodologia/`):** reglas, fórmulas y parámetros.
@@ -23,7 +23,7 @@ En el archivo de origen:
 - `ganancia_bruta_ha` se normaliza como `recuperacion_bruta_ha`;
 - `balance_neto_cobertura_ha` se normaliza como `perdida_neta_ha`;
 - se mantienen dos unidades lacustres no municipales;
-- la identidad $N=B-R$ se verifica antes de cualquier cálculo.
+- la igualdad $N=B-R$ reportada por INAB y CONAP se verifica antes de cualquier cálculo complementario.
 
 La cifra nacional de pérdida bruta, cerca de 245 mil ha, corresponde al acumulado 2016–2020. No es una observación exclusiva del año 2020.
 
@@ -41,18 +41,18 @@ Los periodos históricos no forman un panel perfectamente encadenado: tienen int
 - [*Bosques* (IARNA-URL, 2022)](https://infoiarna.url.edu.gt/publicacion/bosques/)
 - [Dinámica de cobertura forestal de Guatemala 2010–2016](https://infoiarna.url.edu.gt/publicacion/dinamica-de-cobertura-forestal-de-guatemala-2010-2016-folleto/)
 
-## Recuperación de biomasa a veinte años
+## Proporción de regeneración equivalente
 
-Las proporciones proceden del artículo de Poorter et al. (2016) y del conjunto de datos publicado en Dryad en 2017:
+Los parámetros proceden de la publicación de Poorter et al. (2016) y del conjunto de datos publicado en Dryad en 2017:
 
-- [Artículo en *Nature*](https://doi.org/10.1038/nature16512)
+- [Publicación en *Nature*](https://doi.org/10.1038/nature16512)
 - [*Data from: Biomass resilience of Neotropical secondary forests* (Dryad, 2017; CC0)](https://doi.org/10.5061/dryad.82vr4)
 
-El artículo estudia recuperación de biomasa aérea de bosques secundarios neotropicales veinte años después del abandono. La base municipal guatemalteca no informa la edad ni el origen de la recuperación reportada, medida como ganancia de cobertura forestal. Por eso las proporciones se emplean para ponderar la recuperación a veinte años y no como equivalencia ecológica actual.
+Poorter et al. (2016) estiman la recuperación relativa de biomasa aérea de bosques secundarios neotropicales veinte años después del abandono. En este suplemento, esos valores parametrizan la *proporción de regeneración equivalente* aplicada a la ganancia de cobertura forestal. El horizonte corresponde a los sitios científicos de referencia: la base municipal guatemalteca no informa la edad, el origen ni la biomasa de la superficie registrada como ganancia.
 
-La asignación municipal se denomina **correspondencia territorial experta codificada**. Las listas explícitas y la regla residual producen 172 municipios incluidos, 168 excluidos y dos unidades lacustres. Dentro del dominio, los conteos son 9 (`REG-PET-N`), 32 (`REG-PET-FTN`), 62 (`REG-TB-HUM`), 35 (`REG-ORI-EST`) y 34 (`REG-SEC-MOT`). Es una construcción analítica del proyecto y no una clasificación publicada por la fuente científica.
+La *asignación documentada de municipios a grupos territoriales de referencia* utiliza cinco listas explícitas y una regla residual. El procedimiento produce 172 municipios dentro del dominio de aplicación, 168 fuera de él y dos unidades lacustres separadas. Los cinco grupos contienen 9, 32, 62, 35 y 34 municipios. Es una construcción analítica del suplemento y no una regionalización publicada por Poorter et al. (2016).
 
-La bitácora `00_trazabilidad_fuentes/trazabilidad_municipio_region_guatemala_2016_2020.csv` conserva la decisión para las 342 unidades. La relación entre regiones, sitios e intervalos está en `00_trazabilidad_fuentes/trazabilidad_region_sitio_recuperacion_biomasa_20_anios.csv`; el catálogo de aplicación está en `02_resultados_y_diccionario/catalogo_proporciones_recuperacion_biomasa_20_anios.csv`.
+La bitácora `00_trazabilidad_fuentes/trazabilidad_municipio_grupo_territorial_guatemala_2016_2020.csv` conserva la decisión para las 342 unidades. La relación entre grupos territoriales, sitios e intervalos está en `00_trazabilidad_fuentes/trazabilidad_grupo_sitio_proporcion_regeneracion_equivalente.csv`; el catálogo de aplicación está en `02_resultados_y_diccionario/catalogo_proporcion_regeneracion_equivalente.csv`. Los nombres técnicos de estos archivos se mantienen para conservar la compatibilidad de la cadena reproducible.
 
 Cuatro intervalos se obtienen directamente de los valores publicados por sitio. Para `REG-SEC-MOT`, los sitios numéricos producen $[0.254,0.645]$ y el redondeo exterior en incrementos de 0.05 produce $[0.25,0.65]$. La reproducción desde Dryad verifica trece porcentajes a una decimal; Quintana Roo solo se verifica en la tabla ampliada porque no aparece en el CSV público.
 

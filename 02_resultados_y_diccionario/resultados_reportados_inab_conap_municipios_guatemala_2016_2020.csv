@@ -1,4 +1,4 @@
-cod_dep,depto,codigo,municipio,perdida_bruta_ha,recuperacion_bruta_ha,perdida_neta_ha,tipo_unidad,perdida_neta_calculada_ha,perdida_bruta_anual_ha,recuperacion_bruta_anual_ha,perdida_neta_anual_ha,clasificacion_institucional
+cod_dep,depto,codigo,municipio,perdida_bruta_ha,recuperacion_bruta_ha,perdida_neta_ha,tipo_unidad,perdida_neta_calculada_ha,perdida_bruta_anual_ha,recuperacion_bruta_anual_ha,perdida_neta_anual_ha,clasificacion_perdida_neta_reportada
 1,Guatemala,101,Guatemala,84.9902752100,1.4033748700,83.5869003400,Municipio,83.5869003400,21.2475688025,0.3508437175,20.8967250850,Pérdida
 1,Guatemala,102,Santa Catarina Pinula,45.5107664900,27.1938369900,18.3169295000,Municipio,18.3169295000,11.3776916225,6.7984592475,4.5792323750,Pérdida
 1,Guatemala,103,San José Pinula,278.3816849200,101.7166461400,176.6650387800,Municipio,176.6650387800,69.5954212300,25.4291615350,44.1662596950,Pérdida

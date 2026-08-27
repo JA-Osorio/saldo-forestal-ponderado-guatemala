@@ -1,9 +1,10 @@
-"""Reconstrucción trazable de la correspondencia territorial y sus proporciones.
+"""Reconstrucción trazable de la asignación territorial y sus proporciones.
 
 Este módulo separa tres operaciones reproducibles: la asignación de las 342
-unidades territoriales, la construcción del catálogo de proporciones a veinte
-años y la verificación de los porcentajes publicados a partir del CSV de
-Dryad. Poorter et al. (2016) y Dryad son fuentes; no nombran el método.
+unidades territoriales, la construcción del catálogo de proporciones de
+regeneración equivalente y la verificación de los porcentajes publicados a
+partir del CSV de Dryad. El horizonte de veinte años corresponde a la variable
+de recuperación relativa de biomasa de la fuente, no al nombre del método.
 """
 
 from __future__ import annotations
@@ -70,7 +71,7 @@ def _expandir_codigos(expresiones: list[str]) -> set[int]:
     return codigos
 
 
-def construir_correspondencia_territorial(
+def construir_asignacion_territorial(
     base: pd.DataFrame,
     configuracion: dict[str, Any] | str | Path | None = None,
 ) -> pd.DataFrame:
@@ -78,28 +79,28 @@ def construir_correspondencia_territorial(
 
     especificacion = _cargar_json(
         configuracion,
-        "reglas_correspondencia_territorial_experta_codificada.json",
+        "reglas_asignacion_grupos_territoriales.json",
     )
     requeridas = {"cod_dep", "depto", "codigo", "municipio", "tipo_unidad"}
     if faltan := requeridas.difference(base.columns):
         raise ValueError(f"Faltan columnas en el universo territorial: {sorted(faltan)}")
 
     asignaciones: dict[int, dict[str, Any]] = {}
-    for region in sorted(especificacion["regiones"], key=lambda fila: fila["prioridad"]):
-        codigos = _expandir_codigos(region["codigos"])
+    for grupo in sorted(especificacion["grupos_territoriales"], key=lambda fila: fila["prioridad"]):
+        codigos = _expandir_codigos(grupo["codigos"])
         superpuestos = set(asignaciones).intersection(codigos)
         if superpuestos:
             raise ValueError(
-                "Las listas de correspondencia deben ser disjuntas; "
+                "Las listas de asignación deben ser disjuntas; "
                 f"códigos superpuestos: {sorted(superpuestos)}"
             )
-        proporcion_region_id = region.get("proporcion_region_id")
-        if not proporcion_region_id:
-            raise ValueError(f"La región {region['region_id']} no identifica su proporción.")
+        proporcion_grupo_id = grupo.get("proporcion_grupo_id")
+        if not proporcion_grupo_id:
+            raise ValueError(f"El grupo {grupo['grupo_territorial_id']} no identifica su proporción.")
         for codigo in codigos:
             asignaciones[codigo] = {
-                **region,
-                "proporcion_region_id": proporcion_region_id,
+                **grupo,
+                "proporcion_grupo_id": proporcion_grupo_id,
             }
 
     municipales = base.loc[base["tipo_unidad"].eq(TIPO_MUNICIPIO), "codigo"]
@@ -118,7 +119,7 @@ def construir_correspondencia_territorial(
         es_municipio = getattr(fila, "tipo_unidad") == TIPO_MUNICIPIO
         if not es_municipio:
             decision = no_municipal
-            tipo_decision = "unidad_no_municipal"
+            ruta_asignacion = "unidad_no_municipal"
             origen_decision = "atributo_directo_de_la_fuente"
             decision_manual = "no_aplica"
             revision_ecologica = "no_aplica"
@@ -126,17 +127,17 @@ def construir_correspondencia_territorial(
             codigo_entero = int(codigo)
             if codigo_entero in asignaciones:
                 decision = asignaciones[codigo_entero]
-                tipo_decision = "lista_explicita"
+                ruta_asignacion = "lista_explicita"
             else:
                 decision = residual
-                tipo_decision = "regla_residual"
+                ruta_asignacion = "regla_residual"
             origen_decision = "procedimiento_reconstruido"
             decision_manual = "si"
             revision_ecologica = decision.get("revision_ecologica", "pendiente")
 
-        proporcion_region_id = decision.get("proporcion_region_id")
+        proporcion_grupo_id = decision.get("proporcion_grupo_id")
         estado = decision["estado_dominio"]
-        if es_municipio and proporcion_region_id:
+        if es_municipio and proporcion_grupo_id:
             estado = ESTADO_RECUPERACION_ELEGIBLE
         codigo_entero = int(codigo) if pd.notna(codigo) else None
         filas.append(
@@ -146,19 +147,19 @@ def construir_correspondencia_territorial(
                 "codigo": codigo_entero,
                 "codigo_canonico": f"{codigo_entero:04d}" if codigo_entero is not None else None,
                 "municipio": getattr(fila, "municipio"),
-                "region_id": decision["region_id"],
-                "region_nombre": decision["region_nombre"],
+                "grupo_territorial_id": decision["grupo_territorial_id"],
+                "grupo_territorial_nombre": decision["grupo_territorial_nombre"],
                 "estado_dominio": estado,
-                "proporcion_region_id": proporcion_region_id,
+                "proporcion_grupo_id": proporcion_grupo_id,
                 "regla_id": decision["regla_id"],
-                "tipo_decision": tipo_decision,
-                "criterio_operativo": decision["criterio_operativo"],
-                "decision_manual_codificada": decision_manual,
+                "ruta_asignacion": ruta_asignacion,
+                "criterio_agrupacion": decision["criterio_agrupacion"],
+                "asignacion_fijada_en_regla": decision_manual,
                 "origen_decision": origen_decision,
                 "estado_evidencia": decision["estado_evidencia"],
                 "revision_ecologica": revision_ecologica,
                 "fuente_universo": FUENTE_UNIVERSO,
-                "fuente_intervalo": FUENTE_INTERVALO if proporcion_region_id else None,
+                "fuente_intervalo": FUENTE_INTERVALO if proporcion_grupo_id else None,
                 "version_metodo": especificacion["version_metodo"],
             }
         )
@@ -176,7 +177,7 @@ def construir_correspondencia_territorial(
     if resultado.loc[
         resultado["estado_dominio"].eq(ESTADO_RECUPERACION_ELEGIBLE), "codigo"
     ].duplicated().any():
-        raise ValueError("La correspondencia contiene municipios elegibles duplicados.")
+        raise ValueError("La asignación territorial contiene municipios elegibles duplicados.")
     return resultado
 
 
@@ -195,15 +196,15 @@ def _formatear_intervalo(porcentaje_min: float, porcentaje_max: float) -> str:
     return f"{formatear(porcentaje_min)}-{formatear(porcentaje_max)}%"
 
 
-def construir_catalogo_proporciones(
+def construir_catalogo_proporcion_regeneracion_equivalente(
     configuracion: dict[str, Any] | str | Path | None = None,
     sitios: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
-    """Construye las cinco proporciones regionales desde los valores por sitio."""
+    """Construye las cinco proporciones por grupo desde los valores por sitio."""
 
     especificacion = _cargar_json(
         configuracion,
-        "correspondencia_regiones_sitios_referencia.json",
+        "asignacion_grupos_sitios_referencia.json",
     )
     sitios_fuente = (sitios.copy() if sitios is not None else _leer_sitios_por_defecto())
     requeridas = {"site_name", "relative_recovery_pct_20y"}
@@ -215,96 +216,199 @@ def construir_catalogo_proporciones(
 
     territorial = _cargar_json(
         None,
-        "reglas_correspondencia_territorial_experta_codificada.json",
+        "reglas_asignacion_grupos_territoriales.json",
     )
-    nombres_regiones = {
-        region["proporcion_region_id"]: region["region_nombre"]
-        for region in territorial["regiones"]
+    nombres_grupos = {
+        grupo["proporcion_grupo_id"]: grupo["grupo_territorial_nombre"]
+        for grupo in territorial["grupos_territoriales"]
     }
     filas: list[dict[str, Any]] = []
-    for region in especificacion["regiones"]:
-        proporcion_region_id = region["proporcion_region_id"]
-        nombres = region["sitios_numericos"]
+    for grupo in especificacion["grupos_territoriales"]:
+        proporcion_grupo_id = grupo["proporcion_grupo_id"]
+        nombres = grupo["sitios_numericos"]
         faltantes = set(nombres).difference(sitios_indice.index)
         if faltantes:
             raise ValueError(
-                f"Faltan sitios numéricos para {proporcion_region_id}: {sorted(faltantes)}"
+                f"Faltan sitios numéricos para {proporcion_grupo_id}: {sorted(faltantes)}"
             )
         valores = pd.to_numeric(
             sitios_indice.loc[nombres, "relative_recovery_pct_20y"],
             errors="coerce",
         )
         if valores.isna().any():
-            raise ValueError(f"Hay sitios numéricos sin porcentaje en {proporcion_region_id}.")
+            raise ValueError(f"Hay sitios numéricos sin porcentaje en {proporcion_grupo_id}.")
         porcentaje_min = float(valores.min())
         porcentaje_max = float(valores.max())
-        rho20_min_bruto = porcentaje_min / 100
-        rho20_max_bruto = porcentaje_max / 100
-        redondeo = region.get("redondeo", "ninguno")
+        proporcion_regeneracion_equivalente_min_bruto = porcentaje_min / 100
+        proporcion_regeneracion_equivalente_max_bruto = porcentaje_max / 100
+        redondeo = grupo.get("redondeo", "ninguno")
         if redondeo == "minimo_hacia_abajo_y_maximo_hacia_arriba_a_incrementos_de_0.05":
-            rho20_min = math.floor((rho20_min_bruto + 1e-12) / 0.05) * 0.05
-            rho20_max = math.ceil((rho20_max_bruto - 1e-12) / 0.05) * 0.05
+            proporcion_regeneracion_equivalente_min = math.floor((proporcion_regeneracion_equivalente_min_bruto + 1e-12) / 0.05) * 0.05
+            proporcion_regeneracion_equivalente_max = math.ceil((proporcion_regeneracion_equivalente_max_bruto - 1e-12) / 0.05) * 0.05
         elif redondeo == "ninguno":
-            rho20_min, rho20_max = rho20_min_bruto, rho20_max_bruto
+            proporcion_regeneracion_equivalente_min, proporcion_regeneracion_equivalente_max = proporcion_regeneracion_equivalente_min_bruto, proporcion_regeneracion_equivalente_max_bruto
         else:
             raise ValueError(f"Operación de redondeo no reconocida: {redondeo!r}")
 
         filas.append(
             {
-                "proporcion_region_id": proporcion_region_id,
-                "region_nombre": region.get(
-                    "region_nombre",
-                    nombres_regiones.get(proporcion_region_id, proporcion_region_id),
+                "proporcion_grupo_id": proporcion_grupo_id,
+                "grupo_territorial_nombre": grupo.get(
+                    "grupo_territorial_nombre",
+                    nombres_grupos.get(proporcion_grupo_id, proporcion_grupo_id),
                 ),
-                "sitios_referencia": region["etiqueta_sitios"],
-                "recuperacion_20_anios": _formatear_intervalo(
-                    100 * rho20_min,
-                    100 * rho20_max,
+                "sitios_referencia": grupo["etiqueta_sitios"],
+                "intervalo_proporcion_regeneracion_equivalente": _formatear_intervalo(
+                    100 * proporcion_regeneracion_equivalente_min,
+                    100 * proporcion_regeneracion_equivalente_max,
                 ),
-                "rho20_min": rho20_min,
-                "rho20_central": (rho20_min + rho20_max) / 2,
-                "rho20_max": rho20_max,
-                "caracter": region["caracter"],
-                "justificacion": region["justificacion"],
+                "proporcion_regeneracion_equivalente_min": proporcion_regeneracion_equivalente_min,
+                "proporcion_regeneracion_equivalente_central": (proporcion_regeneracion_equivalente_min + proporcion_regeneracion_equivalente_max) / 2,
+                "proporcion_regeneracion_equivalente_max": proporcion_regeneracion_equivalente_max,
+                "tratamiento_intervalo": grupo["tratamiento_intervalo"],
+                "fundamento_vinculacion_sitios": grupo["fundamento_vinculacion_sitios"],
             }
         )
 
     catalogo = pd.DataFrame(filas)
-    if len(catalogo) != 5 or not catalogo["proporcion_region_id"].is_unique:
-        raise ValueError("El catálogo debe contener cinco regiones de proporción únicas.")
+    if len(catalogo) != 5 or not catalogo["proporcion_grupo_id"].is_unique:
+        raise ValueError("El catálogo debe contener cinco grupos territoriales únicos.")
     return catalogo
 
 
-def construir_trazabilidad_region_sitio(
+def construir_resumen_grupos_territoriales(
+    catalogo: pd.DataFrame,
     configuracion: dict[str, Any] | str | Path | None = None,
-    sitios: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
-    """Registra el uso numérico o contextual de cada sitio por región."""
+    """Integra criterios, referencias, intervalos y aplicación en una sola tabla."""
 
     especificacion = _cargar_json(
         configuracion,
-        "correspondencia_regiones_sitios_referencia.json",
+        "reglas_asignacion_grupos_territoriales.json",
+    )
+    catalogo_indice = catalogo.set_index("proporcion_grupo_id")
+    filas: list[dict[str, Any]] = []
+
+    for orden, grupo in enumerate(
+        sorted(especificacion["grupos_territoriales"], key=lambda fila: fila["prioridad"]),
+        start=1,
+    ):
+        grupo_id = grupo["proporcion_grupo_id"]
+        if grupo_id not in catalogo_indice.index:
+            raise ValueError(f"Falta el intervalo del grupo territorial {grupo_id}.")
+        intervalo = catalogo_indice.loc[grupo_id]
+        filas.append(
+            {
+                "orden": orden,
+                "grupo_territorial_id": grupo["grupo_territorial_id"],
+                "grupo_territorial_nombre": grupo["grupo_territorial_nombre"],
+                "tipo_unidad_analitica": "municipios_con_proporcion",
+                "criterio_agrupacion": grupo["criterio_agrupacion"],
+                "territorios_sitios_referencia": intervalo["sitios_referencia"],
+                "fundamento_vinculacion_sitios": intervalo[
+                    "fundamento_vinculacion_sitios"
+                ],
+                "intervalo_proporcion_regeneracion_equivalente": intervalo[
+                    "intervalo_proporcion_regeneracion_equivalente"
+                ],
+                "proporcion_regeneracion_equivalente_min": intervalo[
+                    "proporcion_regeneracion_equivalente_min"
+                ],
+                "proporcion_regeneracion_equivalente_central": intervalo[
+                    "proporcion_regeneracion_equivalente_central"
+                ],
+                "proporcion_regeneracion_equivalente_max": intervalo[
+                    "proporcion_regeneracion_equivalente_max"
+                ],
+                "tratamiento_intervalo": intervalo["tratamiento_intervalo"],
+                "aplicacion_calculo": (
+                    "Se aplica el intervalo a la recuperación reportada"
+                ),
+                "unidades": int(grupo["conteo_municipios"]),
+                "codigos_municipales": ", ".join(grupo["codigos"]),
+            }
+        )
+
+    residual = especificacion["regla_residual"]
+    no_municipal = especificacion["regla_no_municipal"]
+    filas.extend(
+        [
+            {
+                "orden": 6,
+                "grupo_territorial_id": residual["grupo_territorial_id"],
+                "grupo_territorial_nombre": residual["grupo_territorial_nombre"],
+                "tipo_unidad_analitica": "municipios_fuera_del_dominio",
+                "criterio_agrupacion": residual["criterio_agrupacion"],
+                "territorios_sitios_referencia": "No se asignan",
+                "fundamento_vinculacion_sitios": "No aplica",
+                "intervalo_proporcion_regeneracion_equivalente": "No aplica",
+                "proporcion_regeneracion_equivalente_min": np.nan,
+                "proporcion_regeneracion_equivalente_central": np.nan,
+                "proporcion_regeneracion_equivalente_max": np.nan,
+                "tratamiento_intervalo": "No se asigna un intervalo",
+                "aplicacion_calculo": "Se conserva N = B − R reportado por INAB y CONAP",
+                "unidades": int(
+                    especificacion["conteos_esperados"]["municipios_excluidos"]
+                ),
+                "codigos_municipales": "Códigos no incluidos en las cinco listas",
+            },
+            {
+                "orden": 7,
+                "grupo_territorial_id": no_municipal["grupo_territorial_id"],
+                "grupo_territorial_nombre": no_municipal["grupo_territorial_nombre"],
+                "tipo_unidad_analitica": "unidades_lacustres_no_municipales",
+                "criterio_agrupacion": no_municipal["criterio_agrupacion"],
+                "territorios_sitios_referencia": "No aplica",
+                "fundamento_vinculacion_sitios": "No aplica",
+                "intervalo_proporcion_regeneracion_equivalente": "No aplica",
+                "proporcion_regeneracion_equivalente_min": np.nan,
+                "proporcion_regeneracion_equivalente_central": np.nan,
+                "proporcion_regeneracion_equivalente_max": np.nan,
+                "tratamiento_intervalo": "Fuera de la clasificación municipal",
+                "aplicacion_calculo": "Se conserva N = B − R en la suma nacional",
+                "unidades": int(
+                    especificacion["conteos_esperados"]["unidades_lacustres"]
+                ),
+                "codigos_municipales": "No aplica",
+            },
+        ]
+    )
+    resumen = pd.DataFrame(filas).sort_values("orden").reset_index(drop=True)
+    if len(resumen) != 7 or int(resumen["unidades"].sum()) != 342:
+        raise ValueError("El resumen territorial debe reconciliar 172 + 168 + 2 unidades.")
+    return resumen
+
+
+def construir_trazabilidad_grupo_sitio(
+    configuracion: dict[str, Any] | str | Path | None = None,
+    sitios: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    """Registra el uso numérico o contextual de cada sitio por grupo territorial."""
+
+    especificacion = _cargar_json(
+        configuracion,
+        "asignacion_grupos_sitios_referencia.json",
     )
     sitios_fuente = (sitios.copy() if sitios is not None else _leer_sitios_por_defecto())
     sitios_indice = sitios_fuente.set_index("site_name", drop=False)
     territorial = _cargar_json(
         None,
-        "reglas_correspondencia_territorial_experta_codificada.json",
+        "reglas_asignacion_grupos_territoriales.json",
     )
-    nombres_regiones = {
-        region["proporcion_region_id"]: region["region_nombre"]
-        for region in territorial["regiones"]
+    nombres_grupos = {
+        grupo["proporcion_grupo_id"]: grupo["grupo_territorial_nombre"]
+        for grupo in territorial["grupos_territoriales"]
     }
     filas: list[dict[str, Any]] = []
-    for region in especificacion["regiones"]:
-        proporcion_region_id = region["proporcion_region_id"]
+    for grupo in especificacion["grupos_territoriales"]:
+        proporcion_grupo_id = grupo["proporcion_grupo_id"]
         usos = [
             ("sitios_numericos", "numerico"),
             ("sitios_contextuales_sin_porcentaje", "contextual_sin_porcentaje"),
-            ("sitios_secos_asignados_a_otra_region", "asignado_a_otra_region"),
+            ("sitios_secos_asignados_a_otro_grupo", "asignado_a_otro_grupo"),
         ]
         for campo, uso in usos:
-            for nombre in region.get(campo, []):
+            for nombre in grupo.get(campo, []):
                 if nombre not in sitios_indice.index:
                     raise ValueError(f"El sitio {nombre!r} no existe en la fuente tabular.")
                 sitio = sitios_indice.loc[nombre]
@@ -312,10 +416,10 @@ def construir_trazabilidad_region_sitio(
                     raise ValueError(f"El sitio {nombre!r} aparece más de una vez.")
                 filas.append(
                     {
-                        "proporcion_region_id": proporcion_region_id,
-                        "region_nombre": region.get(
-                            "region_nombre",
-                            nombres_regiones.get(proporcion_region_id, proporcion_region_id),
+                        "proporcion_grupo_id": proporcion_grupo_id,
+                        "grupo_territorial_nombre": grupo.get(
+                            "grupo_territorial_nombre",
+                            nombres_grupos.get(proporcion_grupo_id, proporcion_grupo_id),
                         ),
                         "site_id": sitio["site_id"],
                         "site_name": sitio["site_name"],
@@ -323,8 +427,8 @@ def construir_trazabilidad_region_sitio(
                         "rainfall_mm": sitio["rainfall_mm"],
                         "relative_recovery_pct_20y": sitio["relative_recovery_pct_20y"],
                         "uso_sitio": uso,
-                        "regla_intervalo": region["regla_intervalo"],
-                        "redondeo": region.get("redondeo", "ninguno"),
+                        "regla_intervalo": grupo["regla_intervalo"],
+                        "redondeo": grupo.get("redondeo", "ninguno"),
                         "fuente_verificacion": (
                             "tabla_ampliada"
                             if sitio["site_name"] == "Quintana Roo"

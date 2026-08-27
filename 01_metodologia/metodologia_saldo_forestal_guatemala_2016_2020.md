@@ -1,22 +1,22 @@
-# Metodología
+# Metodología del cálculo
 
 ## 1. Unidad, periodo y convención de signo
 
-La base forestal cubre el periodo acumulado 2016–2020 y contiene 342 unidades: 340 municipios y dos unidades lacustres no municipales. Los cálculos preservan los decimales originales; el redondeo se reserva para las tablas de comunicación.
+El estudio de cobertura forestal de INAB y CONAP (2023) reporta resultados acumulados para 2016–2020 correspondientes a los 340 municipios de Guatemala y dos unidades lacustres no municipales. Los cálculos preservan los decimales de la fuente; el redondeo se reserva para las tablas de comunicación.
 
 Para una unidad territorial $i$:
 
-- $B_i$: pérdida o deforestación bruta de cobertura forestal, en hectáreas;
-- $R_i$: recuperación reportada, medida como ganancia de cobertura forestal, en hectáreas;
-- $N_i$: pérdida neta institucional, en hectáreas.
+- $B_i$: pérdida o deforestación bruta de cobertura forestal reportada, en hectáreas;
+- $R_i$: ganancia bruta de cobertura forestal reportada, en hectáreas;
+- $N_i$: pérdida neta reportada por INAB y CONAP, en hectáreas.
 
-Un saldo positivo representa pérdida; uno negativo representa ganancia. La identidad de la fuente es:
+Un saldo positivo representa pérdida; uno negativo representa ganancia. INAB y CONAP obtienen la pérdida neta como:
 
 $$
 N_i=B_i-R_i.
 $$
 
-La reproducción institucional verifica esta igualdad para cada unidad y reconcilia los agregados municipales, departamentales y nacionales.
+La cadena reproducible verifica esta igualdad para cada unidad y reconcilia los agregados municipales, departamentales y nacionales.
 
 Las magnitudes anuales 2016–2020 se obtienen dividiendo el acumulado entre cuatro:
 
@@ -26,9 +26,9 @@ $$
 
 Esta anualización es una tasa media del periodo, no una observación para cada año.
 
-## 2. Problema de contabilización
+## 2. Ponderación de la ganancia de cobertura
 
-El saldo neto es una identidad válida de cambio de cobertura. Su límite aparece cuando $R_i$ se interpreta como sustituto completo e inmediato de $B_i$, aunque la base de cobertura no identifica edad, biomasa, origen, composición, permanencia, manejo ni equivalencia de servicios ecosistémicos.
+El saldo neto es una medida válida del cambio de cobertura reportado. La base no identifica la edad, biomasa, origen, composición, permanencia, manejo ni equivalencia de servicios ecosistémicos de la superficie registrada como ganancia. Por ello, el cálculo complementario pondera la cantidad de ganancia que se descuenta de la pérdida bruta.
 
 Para hacer visible esa decisión se utiliza:
 
@@ -36,30 +36,30 @@ $$
 H_i(\rho)=B_i-\rho_iR_i,
 $$
 
-donde $\rho_i\in[0,1]$ es la proporción de recuperación reconocida en cada caso.
+donde $\rho_i\in[0,1]$ es la *proporción de regeneración equivalente* aplicada a la ganancia de cobertura de cada unidad.
 
 | Caso de cálculo | Proporción | Interpretación |
 |---|---:|---|
-| Deforestación bruta | $\rho=0$ | No resta la recuperación |
-| Pérdida neta institucional | $\rho=1$ | Resta toda la recuperación |
-| Saldo ponderado | $\rho=\rho_{20}$ | Resta una proporción de recuperación de biomasa a veinte años |
+| Deforestación bruta | $\rho=0$ | No descuenta la ganancia de cobertura |
+| Pérdida neta reportada por INAB y CONAP | $\rho=1$ | Descuenta toda la ganancia de cobertura |
+| Saldo ponderado | $\rho=\rho_i$ | Descuenta la proporción de regeneración equivalente asignada |
 
-El ejercicio no afirma que la superficie reportada como ganancia de cobertura tenga veinte años. Usa deliberadamente ese horizonte generoso para preguntar si, incluso bajo una recuperación prolongada, la resta completa está respaldada por la evidencia de biomasa.
+En esta aplicación, la proporción de regeneración equivalente se parametriza con la recuperación relativa de biomasa aérea observada a los veinte años en los sitios de Poorter et al. (2016). Ese horizonte pertenece a los sitios científicos de referencia: no indica que la ganancia de cobertura registrada en Guatemala tenga veinte años ni constituye una medición de biomasa municipal.
 
-## 3. Proporciones regionales de recuperación de biomasa a veinte años
+## 3. Asignación territorial de la proporción de regeneración equivalente
 
-Poorter et al. (2016) estiman la recuperación de biomasa aérea de bosques secundarios neotropicales veinte años después del abandono. El repositorio utiliza esos valores como fuente de intervalos regionales para ponderar la recuperación, no como medición directa de las ganancias de cobertura reportadas en Guatemala.
+Los valores publicados por Poorter et al. (2016) se organizan como intervalos aplicables a grupos territoriales. Estos intervalos ponderan la ganancia de cobertura y no representan mediciones directas de las superficies reportadas en Guatemala.
 
-Los municipios se asignan a cinco regiones de referencia mediante **correspondencia territorial experta codificada**: listas explícitas de códigos y una regla residual, documentadas en `01_metodologia/reglas_correspondencia_territorial_experta_codificada.json`. El dominio contiene 172 municipios. Otros 168 quedan fuera porque sus códigos no aparecen en ninguna de las cinco listas; esta regla residual no demuestra que compartan una misma condición ecológica. Las dos unidades lacustres tampoco forman parte del universo municipal. Los conteos son 9, 32, 62, 35 y 34 para `REG-PET-N`, `REG-PET-FTN`, `REG-TB-HUM`, `REG-ORI-EST` y `REG-SEC-MOT`, respectivamente.
+La *asignación documentada de municipios a grupos territoriales de referencia* se ejecuta mediante cinco listas explícitas de códigos y una regla residual, conservadas en `01_metodologia/reglas_asignacion_grupos_territoriales.json`. El dominio de aplicación contiene 172 municipios. Otros 168 quedan fuera porque sus códigos no aparecen en las cinco listas; esta regla residual no implica que compartan una condición ecológica. Las dos unidades lacustres se conservan separadas del universo municipal. Los cinco grupos contienen 9, 32, 62, 35 y 34 municipios, respectivamente.
 
 La asignación es reproducible, pero no constituye todavía una validación ecológica de las hectáreas recuperadas. Esa validación requiere cruces espaciales con elevación, tipo de bosque, estacionalidad y otras variables ambientales.
 
-Para cada municipio elegible se conservan $\rho_{20}^{\min}$, $\rho_{20}^{\text{central}}$ y $\rho_{20}^{\max}$. Como $H$ disminuye cuando $\rho$ aumenta, los límites del saldo se orientan así:
+Para cada municipio incluido se conservan los límites mínimo y máximo y el punto medio de la proporción: $\rho_i^{\min}$, $\rho_i^{\text{central}}$ y $\rho_i^{\max}$. Como $H$ disminuye cuando $\rho$ aumenta, los límites del saldo se orientan así:
 
 $$
-H_i^{\inf}=B_i-\rho_{20,i}^{\max}R_i,
+H_i^{\inf}=B_i-\rho_i^{\max}R_i,
 \qquad
-H_i^{\sup}=B_i-\rho_{20,i}^{\min}R_i.
+H_i^{\sup}=B_i-\rho_i^{\min}R_i.
 $$
 
 Por tanto, “inferior” y “superior” se refieren a la magnitud de pérdida ponderada, no al valor de la proporción.
@@ -76,7 +76,7 @@ $$
 \rho_i^*=\frac{B_i}{R_i},\qquad R_i>0.
 $$
 
-Indica qué proporción de recuperación sería necesaria para neutralizar la pérdida. No identifica causas ni desempeño institucional.
+Indica qué proporción de regeneración equivalente neutralizaría aritméticamente la pérdida. No identifica causas del cambio de cobertura ni desempeño de actores territoriales.
 
 ## 4. Dominio de aplicación y completación nacional conservadora
 
@@ -91,20 +91,20 @@ La completación evita extrapolar las proporciones a ecosistemas incompatibles:
 $$
 H_{GT}^{\inf}
 =
-\sum_{i\in P}\left(B_i-\rho_{20,i}^{\max}R_i\right)
+\sum_{i\in P}\left(B_i-\rho_i^{\max}R_i\right)
 +
-\sum_{i\notin P}(B_i-R_i),
+\sum_{i\in U\setminus P}(B_i-R_i),
 $$
 
 $$
 H_{GT}^{\sup}
 =
-\sum_{i\in P}\left(B_i-\rho_{20,i}^{\min}R_i\right)
+\sum_{i\in P}\left(B_i-\rho_i^{\min}R_i\right)
 +
-\sum_{i\notin P}(B_i-R_i),
+\sum_{i\in U\setminus P}(B_i-R_i),
 $$
 
-donde $P$ es el dominio elegible. Fuera de $P$ se conserva $\rho=1$, el supuesto institucional más favorable a la compensación.
+donde $U$ contiene los 342 registros de la fuente —340 municipios y dos unidades lacustres— y $P\subset U$ contiene los 172 municipios del dominio. En los otros 168 municipios y en los dos lagos se conserva $B_i-R_i$, equivalente al cálculo de pérdida neta reportado por INAB y CONAP; los lagos no reciben una proporción municipal.
 
 Esta operación produce un resultado nacional sin llamar “nacional” al subtotal de 172 municipios. No resuelve la falta de evidencia específica para los ecosistemas excluidos; la hace explícita.
 
@@ -141,25 +141,25 @@ $H_{i,m}^{\inf}>\varepsilon$, ganancia cuando
 $H_{i,m}^{\sup}<-\varepsilon$ e indeterminación cuando el intervalo contiene
 cero dentro de esa tolerancia.
 
-Esta es una aproximación local para municipios con evidencia estructural de manglar. $B_i$ y $R_i$ siguen siendo cambios forestales municipales totales de la base general; no son cambios exclusivos de cobertura de manglar. La proporción estructural local y la proporción de recuperación de biomasa a veinte años (Poorter et al., 2016) miden fenómenos distintos. Los resultados se comparan sobre los mismos trece municipios, pero no se promedian ni se suman.
+Esta es una aproximación local para municipios con evidencia estructural de manglar. $B_i$ y $R_i$ siguen siendo cambios forestales municipales totales de la base general; no son cambios exclusivos de cobertura de manglar. La proporción estructural local y la proporción de regeneración equivalente miden fenómenos distintos. Los resultados se comparan sobre los mismos trece municipios, pero no se promedian ni se suman.
 
 ## 6. Síntesis de resultados físicos
 
 La comparación nacional mantiene visibles tres magnitudes:
 
 1. deforestación bruta, $B$;
-2. saldo ponderado por recuperación, $H(\rho_{20})$;
-3. pérdida neta institucional, $N$.
+2. saldo ponderado por recuperación, $H(\rho)$;
+3. pérdida neta reportada por INAB y CONAP, $N$.
 
-Las brechas no se interpretan como nueva superficie observada. Expresan el efecto aritmético de cambiar la proporción de recuperación reconocida.
+Las brechas no se interpretan como nueva superficie observada. Expresan el efecto aritmético de cambiar la proporción de regeneración equivalente aplicada.
 
-En el dominio de aplicación también se calculan, para usos de investigación posteriores:
+En el dominio de aplicación también se calcula:
 
 $$
 G_i(\rho)=H_i(\rho)-N_i=(1-\rho_i)R_i.
 $$
 
-El cuaderno público conserva las variables necesarias, pero no presenta una narrativa política de “ganadores y perdedores”. Esa interpretación requiere datos de tenencia, agentes causales, uso de la tierra y distribución de servicios que no están en la base.
+La base no permite interpretar estas diferencias en términos de actores beneficiados o perjudicados. Esa atribución requeriría datos de tenencia, agentes causales, uso de la tierra y distribución de servicios.
 
 ## 7. Valoración económica indicativa
 
@@ -201,7 +201,7 @@ El flujo anual, el valor presente de una cohorte y el valor presente de diez coh
 
 ## 8. Escenarios 2026–2035
 
-Los escenarios distinguen la proporción de recuperación reconocida de la trayectoria futura. Para cada escenario $s$:
+Los escenarios distinguen la proporción de regeneración equivalente de la trayectoria futura. Para cada escenario $s$:
 
 $$
 H_{i,s}=m_s^B B_i-\rho_i m_s^R R_i,
@@ -221,7 +221,7 @@ La cadena de cálculo verifica, como mínimo:
 
 - 342 unidades y 340 municipios;
 - unicidad de los códigos municipales;
-- identidad $N=B-R$ por unidad;
+- igualdad $N=B-R$ por unidad;
 - 172 municipios elegibles en el dominio de aplicación;
 - proporciones dentro de $[0,1]$ y límites ordenados;
 - orientación correcta de los intervalos;

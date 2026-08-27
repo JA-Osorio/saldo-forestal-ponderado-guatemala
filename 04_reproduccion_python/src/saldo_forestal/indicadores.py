@@ -16,7 +16,7 @@ from .constantes import (
 
 
 def saldo_neto(perdida_bruta, recuperacion):
-    """Identidad institucional de cambio de cobertura: N = B - R."""
+    """Balance de pérdida neta reportado: N = B - R."""
 
     return perdida_bruta - recuperacion
 
@@ -74,7 +74,7 @@ def proporcion_critica(perdida_bruta, recuperacion):
     return float(resultado) if resultado.ndim == 0 else resultado
 
 
-def calcular_resultados_institucionales(base: pd.DataFrame) -> pd.DataFrame:
+def calcular_resultados_reportados_inab_conap(base: pd.DataFrame) -> pd.DataFrame:
     resultado = base.copy()
     resultado["perdida_neta_calculada_ha"] = saldo_neto(
         resultado["perdida_bruta_ha"], resultado["recuperacion_bruta_ha"]
@@ -85,18 +85,18 @@ def calcular_resultados_institucionales(base: pd.DataFrame) -> pd.DataFrame:
         atol=TOLERANCIA,
         rtol=0,
     ):
-        raise ValueError("La base no reproduce la identidad institucional.")
+        raise ValueError("La base no reproduce el balance N = B - R reportado.")
     for columna in ("perdida_bruta_ha", "recuperacion_bruta_ha", "perdida_neta_ha"):
         resultado[f"{columna.removesuffix('_ha')}_anual_ha"] = (
             resultado[columna] / PERIODO_BASE_ANIOS
         )
-    resultado["clasificacion_institucional"] = resultado["perdida_neta_ha"].map(
+    resultado["clasificacion_perdida_neta_reportada"] = resultado["perdida_neta_ha"].map(
         clasificar_saldo
     )
     return resultado
 
 
-def agregar_institucional(
+def agregar_resultados_reportados(
     resultados: pd.DataFrame,
     grupos: str | Iterable[str] | None = None,
 ) -> pd.DataFrame:
@@ -115,24 +115,24 @@ def agregar_institucional(
 
 def calcular_resultados_recuperacion(
     base: pd.DataFrame,
-    correspondencia: pd.DataFrame,
+    asignacion_territorial: pd.DataFrame,
     catalogo: pd.DataFrame,
 ) -> pd.DataFrame:
     """Reconstruye los 172 resultados municipales sin usar tablas derivadas."""
 
-    elegibles = correspondencia.loc[
-        correspondencia["estado_dominio"].eq(ESTADO_RECUPERACION_ELEGIBLE),
-        ["codigo", "region_id", "proporcion_region_id"],
+    elegibles = asignacion_territorial.loc[
+        asignacion_territorial["estado_dominio"].eq(ESTADO_RECUPERACION_ELEGIBLE),
+        ["codigo", "grupo_territorial_id", "proporcion_grupo_id"],
     ].copy()
     if len(elegibles) != 172 or elegibles["codigo"].duplicated().any():
         raise ValueError("El dominio de aplicación debe contener 172 códigos municipales únicos.")
     asignacion = elegibles.merge(
         catalogo,
-        on="proporcion_region_id",
+        on="proporcion_grupo_id",
         how="left",
         validate="many_to_one",
     )
-    if asignacion[["rho20_min", "rho20_max"]].isna().any().any():
+    if asignacion[["proporcion_regeneracion_equivalente_min", "proporcion_regeneracion_equivalente_max"]].isna().any().any():
         raise ValueError("Hay municipios elegibles sin proporciones de recuperación.")
 
     columnas_base = [
@@ -157,17 +157,17 @@ def calcular_resultados_recuperacion(
     inferior, superior = intervalo_saldo_ponderado(
         resultado["perdida_bruta_ha"],
         resultado["recuperacion_bruta_ha"],
-        resultado["rho20_min"],
-        resultado["rho20_max"],
+        resultado["proporcion_regeneracion_equivalente_min"],
+        resultado["proporcion_regeneracion_equivalente_max"],
     )
     resultado["saldo_ponderado_inferior_ha"] = inferior
     resultado["saldo_ponderado_superior_ha"] = superior
     resultado["saldo_ponderado_central_ha"] = saldo_ponderado(
         resultado["perdida_bruta_ha"],
         resultado["recuperacion_bruta_ha"],
-        resultado["rho20_central"],
+        resultado["proporcion_regeneracion_equivalente_central"],
     )
-    resultado["clasificacion_institucional"] = resultado["perdida_neta_ha"].map(
+    resultado["clasificacion_perdida_neta_reportada"] = resultado["perdida_neta_ha"].map(
         clasificar_saldo
     )
     resultado["clasificacion_ponderada"] = resultado.apply(
@@ -183,7 +183,7 @@ def calcular_resultados_recuperacion(
     resultado["brecha_ponderacion_superior_ha"] = (
         resultado["saldo_ponderado_superior_ha"] - resultado["perdida_neta_ha"]
     )
-    resultado["rho_critica"] = proporcion_critica(
+    resultado["proporcion_regeneracion_equivalente_critica"] = proporcion_critica(
         resultado["perdida_bruta_ha"], resultado["recuperacion_bruta_ha"]
     )
     return resultado.sort_values(["cod_dep", "codigo"]).reset_index(drop=True)
@@ -215,7 +215,7 @@ def completar_nacional_conservador(
     base: pd.DataFrame,
     resultados_recuperacion: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Aplica rho20 dentro del dominio de recuperación y rho=1 fuera de él.
+    """Aplica la proporción de regeneración equivalente dentro del dominio de recuperación y rho=1 fuera de él.
 
     El resultado conserva las 342 unidades de la base. No extrapola las
     proporciones al altiplano, bosques montanos ni unidades lacustres.
@@ -223,17 +223,17 @@ def completar_nacional_conservador(
 
     por_codigo = resultados_recuperacion.set_index("codigo")
     resultado = base.copy()
-    resultado["rho_aplicada_min"] = resultado["codigo"].map(por_codigo["rho20_min"])
-    resultado["rho_aplicada_max"] = resultado["codigo"].map(por_codigo["rho20_max"])
-    resultado["en_dominio_recuperacion"] = resultado["rho_aplicada_min"].notna()
-    resultado[["rho_aplicada_min", "rho_aplicada_max"]] = resultado[
-        ["rho_aplicada_min", "rho_aplicada_max"]
+    resultado["proporcion_regeneracion_equivalente_aplicada_min"] = resultado["codigo"].map(por_codigo["proporcion_regeneracion_equivalente_min"])
+    resultado["proporcion_regeneracion_equivalente_aplicada_max"] = resultado["codigo"].map(por_codigo["proporcion_regeneracion_equivalente_max"])
+    resultado["en_dominio_recuperacion"] = resultado["proporcion_regeneracion_equivalente_aplicada_min"].notna()
+    resultado[["proporcion_regeneracion_equivalente_aplicada_min", "proporcion_regeneracion_equivalente_aplicada_max"]] = resultado[
+        ["proporcion_regeneracion_equivalente_aplicada_min", "proporcion_regeneracion_equivalente_aplicada_max"]
     ].fillna(1.0)
     inferior, superior = intervalo_saldo_ponderado(
         resultado["perdida_bruta_ha"],
         resultado["recuperacion_bruta_ha"],
-        resultado["rho_aplicada_min"],
-        resultado["rho_aplicada_max"],
+        resultado["proporcion_regeneracion_equivalente_aplicada_min"],
+        resultado["proporcion_regeneracion_equivalente_aplicada_max"],
     )
     resultado["saldo_ponderado_inferior_ha"] = inferior
     resultado["saldo_ponderado_superior_ha"] = superior
@@ -281,19 +281,19 @@ def construir_comparacion_nacional(
     filas = [
         {
             "regla": "Deforestación bruta",
-            "proporcion_recuperacion": "0",
+            "proporcion_regeneracion_equivalente": "0",
             "resultado_inferior_ha": bruto,
             "resultado_superior_ha": bruto,
         },
         {
             "regla": "Saldo ponderado por recuperación",
-            "proporcion_recuperacion": "rho20 dentro del dominio; 1 fuera",
+            "proporcion_regeneracion_equivalente": "proporción de regeneración equivalente dentro del dominio; 1 fuera",
             "resultado_inferior_ha": ponderado_inf,
             "resultado_superior_ha": ponderado_sup,
         },
         {
-            "regla": "Pérdida neta institucional",
-            "proporcion_recuperacion": "1",
+            "regla": "Pérdida neta reportada",
+            "proporcion_regeneracion_equivalente": "1",
             "resultado_inferior_ha": neto,
             "resultado_superior_ha": neto,
         },

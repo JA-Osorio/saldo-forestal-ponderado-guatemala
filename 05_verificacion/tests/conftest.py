@@ -5,9 +5,9 @@ import shutil
 
 import pytest
 
-from saldo_forestal.correspondencia import (
-    construir_catalogo_proporciones,
-    construir_correspondencia_territorial,
+from saldo_forestal.asignacion_territorial import (
+    construir_catalogo_proporcion_regeneracion_equivalente,
+    construir_asignacion_territorial,
     reproducir_porcentajes_sitios,
 )
 from saldo_forestal.datos import leer_base_forestal, leer_evidencia_manglar
@@ -15,13 +15,13 @@ from saldo_forestal.indicadores import (
     calcular_resultados_recuperacion,
     completar_nacional_conservador,
 )
-from saldo_forestal.mangle import calcular_aproximacion_local
+from saldo_forestal.manglar import calcular_aproximacion_local
 from saldo_forestal.reproduccion import ejecutar_reproduccion
 
 
 ARTEFACTOS_DERIVADOS_EN_FUENTES = {
-    "trazabilidad_municipio_region_guatemala_2016_2020.csv",
-    "trazabilidad_region_sitio_recuperacion_biomasa_20_anios.csv",
+    "trazabilidad_municipio_grupo_territorial_guatemala_2016_2020.csv",
+    "trazabilidad_grupo_sitio_proporcion_regeneracion_equivalente.csv",
 }
 
 
@@ -36,13 +36,13 @@ def base():
 
 
 @pytest.fixture(scope="session")
-def correspondencia(base):
-    return construir_correspondencia_territorial(base)
+def asignacion_territorial(base):
+    return construir_asignacion_territorial(base)
 
 
 @pytest.fixture(scope="session")
 def catalogo():
-    return construir_catalogo_proporciones()
+    return construir_catalogo_proporcion_regeneracion_equivalente()
 
 
 @pytest.fixture(scope="session")
@@ -51,8 +51,8 @@ def reproduccion_sitios():
 
 
 @pytest.fixture(scope="session")
-def resultados_recuperacion(base, correspondencia, catalogo):
-    return calcular_resultados_recuperacion(base, correspondencia, catalogo)
+def resultados_recuperacion(base, asignacion_territorial, catalogo):
+    return calcular_resultados_recuperacion(base, asignacion_territorial, catalogo)
 
 
 @pytest.fixture(scope="session")
