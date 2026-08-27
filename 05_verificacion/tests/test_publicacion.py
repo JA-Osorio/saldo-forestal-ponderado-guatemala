@@ -330,10 +330,39 @@ def test_titulo_canonico_y_seccion_final_como_citar(cuaderno):
     titulo = "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala"
     assert cuaderno.metadata.get("title") == titulo
     markdown = [celda.source for celda in cuaderno.cells if celda.cell_type == "markdown"]
-    assert markdown[0].startswith(f"# {titulo}")
+    assert titulo in markdown[0]
+    assert "Cuaderno reproducible y nota metodológica" in markdown[0]
     assert markdown[-1].startswith("## Cómo citar")
     assert "Osorio, J. A. (2026)" in markdown[-1]
     assert "https://doi.org/10.5281/zenodo.22119075" in markdown[-1]
+
+
+def test_ruta_principal_es_didactica_y_deja_las_derivaciones_en_el_anexo(cuaderno):
+    markdown = "\n".join(
+        celda.source for celda in cuaderno.cells if celda.cell_type == "markdown"
+    )
+    principal, separador, anexo = markdown.partition(
+        "## Anexo metodológico. Fórmulas de reproducción"
+    )
+    assert separador
+    assert principal.count("$$") // 2 <= 3
+    assert "La lectura sigue seis preguntas" in principal
+    assert "Una proporción de 60 % significa" in principal
+    assert "San Andrés Villa Seca (`1106`)" in principal
+    assert "Mostrar las fórmulas y la definición de sus símbolos" in anexo
+
+
+def test_tabla_territorial_explica_los_grupos_y_subordina_los_codigos(cuaderno):
+    salida = _resultado_numerado(cuaderno, "Tabla 4.")
+    html = _html_salida(salida)
+    assert "Cómo se clasifican las unidades territoriales del análisis" in html
+    assert "Fundamento territorial documentado" in html
+    assert "Norte y centro de Petén (REG-PET-N)" in html
+    assert "Fuera del dominio: otros municipios (REG-ALT-MON)" in html
+    assert "no hay una característica ecológica común verificada" in html
+    assert ">9<" in html
+    assert "9.000" not in html
+    assert "Altiplano y bosques montanos" not in _texto_publico(cuaderno)
 
 
 def test_comparacion_ponderada_y_trayectorias_distinguibles(cuaderno):

@@ -10,8 +10,8 @@
   },
   "regla_residual": {
     "region_id": "REG-ALT-MON",
-    "region_nombre": "Altiplano y bosques montanos",
-    "estado_dominio": "fuera_dominio_altiplano_montano",
+    "region_nombre": "Fuera del dominio por regla residual",
+    "estado_dominio": "fuera_dominio_regla_residual",
     "proporcion_region_id": null,
     "regla_id": "R-RESIDUAL-01",
     "criterio_operativo": "Código municipal no incluido en ninguna de las cinco listas de correspondencia",

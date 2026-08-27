@@ -26,7 +26,7 @@ from IPython.display import HTML, display
 # reforzarse con marcadores y/o trazos discontinuos desde el gráfico llamador.
 TINTA = "#24363D"
 MUTED = "#5C6F77"
-TEAL = "#0072B2"
+TEAL = "#146C7A"
 TEAL_CLARO = "#EEF4F6"
 PERDIDA = "#D55E00"
 GANANCIA = "#0072B2"
@@ -38,24 +38,24 @@ TRAYECTORIA_NETA = "#0072B2"
 
 CSS_TABLAS = """
 <style>
-.sf-bloque{font-family:Arial,sans-serif;color:#24363D;margin:8px 0 18px;max-width:100%}
-.sf-lienzo{margin:0;max-width:100%}.sf-subtitulo{font-size:16px;line-height:1.4;margin:0 0 12px}
+.sf-bloque{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#24363D;margin:8px 0 18px;max-width:100%}
+.sf-lienzo{margin:0;max-width:100%}.sf-subtitulo{font-size:16px;font-weight:400;line-height:1.4;margin:18px 0 10px;padding:0 4px 7px;border-bottom:1px solid #E1E7E9;color:#26353B}
 .sf-rotulo{font-weight:700}
 .sf-descargas{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 0}
 .sf-descarga{display:inline-block;padding:6px 10px;border:1px solid #6F919C;border-radius:4px;
  color:#294E5B!important;background:#FFF;text-decoration:none;font-size:11px;font-weight:600}
 .sf-descarga:hover{background:#EEF4F6}
 .sf-tabla-contenedor{max-width:100%;overflow-x:auto;border-top:1px solid #AFC0C5}
-.sf-tabla{width:100%;border-collapse:collapse;table-layout:auto;font-size:11.5px;line-height:1.35}
+.sf-tabla{width:100%;border-collapse:collapse;table-layout:auto;font-size:11.5px;line-height:1.35;font-variant-numeric:tabular-nums lining-nums}
 .sf-tabla th{background:#EEF4F6;color:#24363D;font-weight:700;text-align:left;vertical-align:bottom;
  white-space:normal;overflow-wrap:anywhere;padding:10px 12px;border-bottom:1px solid #AFC0C5}
 .sf-tabla td{padding:8px 12px;border-bottom:1px solid #D9E3E6;vertical-align:top;white-space:normal}
 .sf-tabla tbody tr:nth-child(even){background:#F7FAFA}.sf-tabla .sf-num{text-align:right;white-space:nowrap}
 .sf-tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-.sf-tarjeta{border:1px solid #D9E3E6;border-top:4px solid #0072B2;border-radius:5px;padding:13px;background:#FFF}
+.sf-tarjeta{border:1px solid #D9E3E6;border-top:4px solid #146C7A;border-radius:5px;padding:13px;background:#FFF}
 .sf-etiqueta{font-size:11px;color:#5C6F77;text-transform:uppercase;letter-spacing:.04em}
 .sf-valor{font-size:24px;font-weight:700;margin:6px 0}.sf-detalle{font-size:11px;color:#5C6F77}
-.sf-hallazgo{border-left:5px solid #0072B2;background:#EEF4F6;padding:14px 16px;border-radius:4px;line-height:1.45}
+.sf-hallazgo{border-left:5px solid #146C7A;background:#EEF4F6;padding:14px 16px;border-radius:4px;line-height:1.45}
 </style>
 """
 

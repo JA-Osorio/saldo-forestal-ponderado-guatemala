@@ -69,7 +69,7 @@ def ejecutar_controles(
         "Partición de la correspondencia territorial",
         len(correspondencia) == 342
         and int(conteos_dominio.get("elegible_recuperacion_20_anios", 0)) == 172
-        and int(conteos_dominio.get("fuera_dominio_altiplano_montano", 0)) == 168
+        and int(conteos_dominio.get("fuera_dominio_regla_residual", 0)) == 168
         and int(conteos_dominio.get("unidad_no_municipal", 0)) == 2,
         "172 municipios incluidos, 168 excluidos y 2 unidades no municipales",
     )
