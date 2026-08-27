@@ -5,10 +5,10 @@ Unidades lacustres documentadas,Cumple,Lago de Amatitlán y lago de Atitlán
 Identidad N = B - R,Cumple,Verificación por fila
 Pérdida bruta nacional,Cumple,"244,394.56984238 ha"
 Recuperación nacional,Cumple,"191,658.14331302 ha"
-Regiones de referencia de rho20,Cumple,5 regiones
-Partición de la correspondencia territorial,Cumple,"172 municipios incluidos, 168 excluidos y 2 unidades no municipales"
-Conteos de las cinco regiones de proporción,Cumple,REG-PET-N=9; REG-PET-FTN=32; REG-TB-HUM=62; REG-ORI-EST=35; REG-SEC-MOT=34
-Municipios con proporción a veinte años,Cumple,172 municipios
+Grupos con proporción de regeneración equivalente,Cumple,5 grupos territoriales de referencia
+Partición de la asignación territorial documentada,Cumple,"172 municipios incluidos, 168 excluidos y 2 unidades no municipales"
+Conteos de los cinco grupos territoriales de referencia,Cumple,REG-PET-N=9; REG-PET-FTN=32; REG-TB-HUM=62; REG-ORI-EST=35; REG-SEC-MOT=34
+Municipios con proporción de regeneración equivalente,Cumple,172 municipios
 Intervalo de recuperación ponderada ordenado,Cumple,Límite inferior ≤ límite superior
 Completación nacional,Cumple,342 unidades conservadas
 Saldo ponderado nacional inferior,Cumple,"116,473.23156616 ha"

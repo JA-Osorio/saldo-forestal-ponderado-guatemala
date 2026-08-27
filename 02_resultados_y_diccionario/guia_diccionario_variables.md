@@ -12,8 +12,8 @@ construcción.
 | `perdida_bruta` | Pérdida de cobertura forestal antes de restar la recuperación reportada |
 | `recuperacion_bruta` | Recuperación reportada, medida como ganancia de cobertura; se llama `ganancia_bruta` en la fuente |
 | `perdida_neta` | $B-R$; un valor positivo representa pérdida |
-| `rho20` | Proporción de recuperación de biomasa aérea a veinte años; los valores provienen de Poorter et al. (2016) y Dryad |
-| `proporcion_region_id` | Identificador de la región analítica que aporta el intervalo de proporciones |
+| `proporcion_regeneracion_equivalente` | Prefijo de los campos que contienen el límite mínimo, el valor central o el límite máximo del factor aplicado |
+| `proporcion_grupo_id` | Identificador del grupo territorial que aporta el intervalo de proporciones |
 | `ponderado` | Resultado de $B-\rho R$ |
 | `estructural` | Aproximación local basada en carbono y área basal de series de parcelas permanentes |
 | `_inferior` | Menor magnitud de pérdida del intervalo, calculada con la mayor proporción |
@@ -21,22 +21,23 @@ construcción.
 | `_anual_ha` | Tasa media anual obtenida al dividir el acumulado 2016–2020 entre cuatro |
 | `_gtq` | Quetzales corrientes del año indicado por el parámetro |
 
-## Correspondencia territorial
+## Asignación territorial
 
-La asignación de municipios se denomina **correspondencia territorial experta
-codificada**. Las listas explícitas y una regla residual producen 172
+La **asignación documentada de municipios a grupos territoriales de
+referencia** utiliza cinco listas explícitas de códigos y una regla residual.
+El procedimiento produce 172
 municipios incluidos, 168 excluidos y dos unidades lacustres. Los conteos por
-región son 9/32/62/35/34 para `REG-PET-N`, `REG-PET-FTN`, `REG-TB-HUM`,
+grupo son 9/32/62/35/34 para `REG-PET-N`, `REG-PET-FTN`, `REG-TB-HUM`,
 `REG-ORI-EST` y `REG-SEC-MOT`.
 
 | Campo de trazabilidad | Uso |
 |---|---|
 | `codigo_canonico` | Código municipal de cuatro dígitos usado en las reglas |
-| `estado_dominio` | `elegible_recuperacion_20_anios`, `fuera_dominio_regla_residual` o `unidad_no_municipal` |
+| `estado_dominio` | `elegible_regeneracion_equivalente`, `fuera_dominio_regla_residual` o `unidad_no_municipal` |
 | `regla_id` | Regla determinista que produjo la asignación |
-| `tipo_decision` | Lista explícita, regla residual o unidad no municipal |
-| `criterio_operativo` | Explicación territorial de la decisión codificada |
-| `estado_evidencia` | Soporte disponible para la correspondencia |
+| `ruta_asignacion` | Lista explícita, regla residual o unidad no municipal |
+| `criterio_agrupacion` | Explicación territorial de la asignación documentada |
+| `estado_evidencia` | Soporte disponible para la asignación territorial |
 | `revision_ecologica` | Estado de la validación ecológica, actualmente pendiente cuando corresponde |
 | `version_metodo` | Versión de las reglas; en esta publicación, `1.0.0` |
 
@@ -54,8 +55,9 @@ Al leer la base oficial de cobertura, la cadena normaliza:
 | `ganancia_bruta_ha` | `recuperacion_bruta_ha` |
 | `balance_neto_cobertura_ha` | `perdida_neta_ha` |
 
-El catálogo de proporciones utiliza `rho20_min`, `rho20_central` y
-`rho20_max`, junto con la notación $\rho_{20}$.
+El catálogo conserva los nombres técnicos `proporcion_regeneracion_equivalente_min`, `proporcion_regeneracion_equivalente_central` y
+`proporcion_regeneracion_equivalente_max`. En la documentación pública, los tres campos se representan con
+$\rho$ y se denominan proporción de regeneración equivalente.
 
 ## Organización de archivos
 
@@ -77,8 +79,8 @@ las dos unidades lacustres. `cod_dep` identifica el departamento y
 `tipo_unidad` separa municipios de unidades no municipales.
 
 - `codigo` y `codigo_canonico` pueden faltar solo en unidades lacustres.
-- `proporcion_region_id` falta fuera del dominio de aplicación.
-- `rho_critica` falta cuando la recuperación es cero, porque $B/R$ no está
+- `proporcion_grupo_id` falta fuera del dominio de aplicación.
+- `proporcion_regeneracion_equivalente_critica` falta cuando la recuperación es cero, porque $B/R$ no está
   definida.
 - Los vacíos no deben convertirse silenciosamente en cero.
 

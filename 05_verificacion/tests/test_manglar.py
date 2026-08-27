@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from saldo_forestal.errores import DominiosSuperpuestosError
-from saldo_forestal.mangle import (
+from saldo_forestal.manglar import (
     comparar_metodos_locales,
     derivar_intervalo_estructural,
     validar_no_aditividad,
@@ -30,6 +30,6 @@ def test_resultado_local(local):
 def test_soporte_comun_y_no_aditividad(resultados_recuperacion, local):
     comparacion = comparar_metodos_locales(local, resultados_recuperacion)
     assert len(comparacion) == 13
-    assert comparacion["rho20_min"].notna().all()
+    assert comparacion["proporcion_regeneracion_equivalente_min"].notna().all()
     with pytest.raises(DominiosSuperpuestosError):
         validar_no_aditividad(resultados_recuperacion, local)

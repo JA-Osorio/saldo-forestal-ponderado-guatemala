@@ -82,25 +82,25 @@ def test_01_listas_explicitas_validas_y_disjuntas(repo_dir, base):
         (
             repo_dir
             / "01_metodologia"
-            / "reglas_correspondencia_territorial_experta_codificada.json"
+            / "reglas_asignacion_grupos_territoriales.json"
         ).read_text(encoding="utf-8")
     )
-    regiones = configuracion["regiones"]
+    regiones = configuracion["grupos_territoriales"]
     assert len(regiones) == 5
 
     conjuntos: dict[str, set[str]] = {}
     for region in regiones:
-        region_id = region["region_id"]
-        assert region["proporcion_region_id"] == region_id
+        grupo_territorial_id = region["grupo_territorial_id"]
+        assert region["proporcion_grupo_id"] == grupo_territorial_id
         assert "canasta_id" not in region
-        conjuntos[region_id] = _expandir_codigos(region["codigos"])
+        conjuntos[grupo_territorial_id] = _expandir_codigos(region["codigos"])
 
     assert set(conjuntos) == set(CONTEOS_REGIONALES)
     assert {clave: len(valor) for clave, valor in conjuntos.items()} == CONTEOS_REGIONALES
     items = list(conjuntos.items())
-    for indice, (region_id, codigos) in enumerate(items):
+    for indice, (grupo_territorial_id, codigos) in enumerate(items):
         for otra_region, otros in items[indice + 1 :]:
-            assert codigos.isdisjoint(otros), f"{region_id} se superpone con {otra_region}"
+            assert codigos.isdisjoint(otros), f"{grupo_territorial_id} se superpone con {otra_region}"
 
     universo = {
         _codigo_canonico(codigo)
@@ -111,15 +111,15 @@ def test_01_listas_explicitas_validas_y_disjuntas(repo_dir, base):
     assert union <= universo
 
 
-def test_02_particion_172_168_2_y_conteos_regionales(correspondencia):
-    es_municipio = correspondencia["codigo"].notna()
-    esta_incluido = correspondencia["proporcion_region_id"].notna()
-    assert len(correspondencia) == 342
+def test_02_particion_172_168_2_y_conteos_por_grupo(asignacion_territorial):
+    es_municipio = asignacion_territorial["codigo"].notna()
+    esta_incluido = asignacion_territorial["proporcion_grupo_id"].notna()
+    assert len(asignacion_territorial) == 342
     assert int((es_municipio & esta_incluido).sum()) == 172
     assert int((es_municipio & ~esta_incluido).sum()) == 168
     assert int((~es_municipio).sum()) == 2
     assert (
-        correspondencia.loc[esta_incluido, "proporcion_region_id"]
+        asignacion_territorial.loc[esta_incluido, "proporcion_grupo_id"]
         .value_counts()
         .to_dict()
         == CONTEOS_REGIONALES
@@ -127,45 +127,45 @@ def test_02_particion_172_168_2_y_conteos_regionales(correspondencia):
 
 
 def test_03_esquema_y_completitud_de_las_tres_bitacoras(
-    correspondencia,
+    asignacion_territorial,
     ejecucion_limpia,
 ):
     municipal_requeridas = {
         "cod_dep", "depto", "codigo", "codigo_canonico", "municipio",
-        "region_id", "region_nombre", "estado_dominio", "proporcion_region_id",
-        "regla_id", "tipo_decision", "criterio_operativo",
-        "decision_manual_codificada", "origen_decision", "estado_evidencia",
+        "grupo_territorial_id", "grupo_territorial_nombre", "estado_dominio", "proporcion_grupo_id",
+        "regla_id", "ruta_asignacion", "criterio_agrupacion",
+        "asignacion_fijada_en_regla", "origen_decision", "estado_evidencia",
         "revision_ecologica", "fuente_universo", "fuente_intervalo",
         "version_metodo",
     }
-    assert municipal_requeridas <= set(correspondencia.columns)
-    assert correspondencia[
+    assert municipal_requeridas <= set(asignacion_territorial.columns)
+    assert asignacion_territorial[
         [
-            "regla_id", "tipo_decision", "criterio_operativo", "origen_decision",
+            "regla_id", "ruta_asignacion", "criterio_agrupacion", "origen_decision",
             "estado_evidencia", "revision_ecologica", "fuente_universo",
             "version_metodo",
         ]
     ].notna().all().all()
 
     resultado = ejecucion_limpia["resultado"]
-    region_sitio = resultado["trazabilidad_region_sitio"]
-    reproduccion = resultado["reproduccion_por_sitio"]
+    grupo_sitio = resultado["trazabilidad_grupo_sitio"]
+    reproduccion = resultado["reproduccion_proporcion_regeneracion_equivalente_por_sitio"]
     assert {
-        "proporcion_region_id", "region_nombre", "site_id", "site_name", "country",
+        "proporcion_grupo_id", "grupo_territorial_nombre", "site_id", "site_name", "country",
         "relative_recovery_pct_20y", "uso_sitio", "regla_intervalo", "redondeo",
         "source_locator", "version_metodo",
-    } <= set(region_sitio.columns)
+    } <= set(grupo_sitio.columns)
     assert {
         "site_id", "site_name", "agb20_reproducida_mg_ha",
         "agb_bosque_maduro_mediana_mg_ha", "porcentaje_publicado",
         "porcentaje_reproducido", "porcentaje_reproducido_redondeado",
         "diferencia_puntos_porcentuales", "cumple_redondeo_una_decimal",
     } <= set(reproduccion.columns)
-    assert region_sitio[["proporcion_region_id", "site_id", "uso_sitio"]].notna().all().all()
+    assert grupo_sitio[["proporcion_grupo_id", "site_id", "uso_sitio"]].notna().all().all()
     assert reproduccion[["site_id", "site_name"]].notna().all().all()
 
 
-def test_04_fuentes_enlazadas_y_localizables(repo_dir, correspondencia, ejecucion_limpia):
+def test_04_fuentes_enlazadas_y_localizables(repo_dir, asignacion_territorial, ejecucion_limpia):
     fuentes = pd.read_csv(
         repo_dir
         / "00_trazabilidad_fuentes"
@@ -178,15 +178,15 @@ def test_04_fuentes_enlazadas_y_localizables(repo_dir, correspondencia, ejecucio
     assert dryad["doi"] == "10.5061/dryad.82vr4"
     assert str(dryad["url"]).startswith("https://doi.org/")
 
-    incluidos = correspondencia["proporcion_region_id"].notna()
-    assert correspondencia["fuente_universo"].notna().all()
-    assert correspondencia.loc[incluidos, "fuente_intervalo"].notna().all()
+    incluidos = asignacion_territorial["proporcion_grupo_id"].notna()
+    assert asignacion_territorial["fuente_universo"].notna().all()
+    assert asignacion_territorial.loc[incluidos, "fuente_intervalo"].notna().all()
     ids_fuentes = set(fuentes["fuente_id"])
-    assert set(correspondencia["fuente_universo"]) <= ids_fuentes
-    assert set(correspondencia.loc[incluidos, "fuente_intervalo"]) <= ids_fuentes
+    assert set(asignacion_territorial["fuente_universo"]) <= ids_fuentes
+    assert set(asignacion_territorial.loc[incluidos, "fuente_intervalo"]) <= ids_fuentes
 
-    region_sitio = ejecucion_limpia["resultado"]["trazabilidad_region_sitio"]
-    assert region_sitio["source_locator"].notna().all()
+    grupo_sitio = ejecucion_limpia["resultado"]["trazabilidad_grupo_sitio"]
+    assert grupo_sitio["source_locator"].notna().all()
     assert (
         repo_dir
         / "00_trazabilidad_fuentes"
@@ -196,18 +196,18 @@ def test_04_fuentes_enlazadas_y_localizables(repo_dir, correspondencia, ejecucio
 
 
 def test_05_cinco_intervalos_reconstruidos_exactamente(catalogo):
-    observado = catalogo.set_index("proporcion_region_id")
+    observado = catalogo.set_index("proporcion_grupo_id")
     assert set(observado.index) == set(INTERVALOS_ESPERADOS)
-    for region_id, esperado in INTERVALOS_ESPERADOS.items():
-        fila = observado.loc[region_id]
+    for grupo_territorial_id, esperado in INTERVALOS_ESPERADOS.items():
+        fila = observado.loc[grupo_territorial_id]
         np.testing.assert_allclose(
-            [fila["rho20_min"], fila["rho20_central"], fila["rho20_max"]],
+            [fila["proporcion_regeneracion_equivalente_min"], fila["proporcion_regeneracion_equivalente_central"], fila["proporcion_regeneracion_equivalente_max"]],
             esperado,
             atol=1e-12,
             rtol=0,
         )
-    assert observado.loc["REG-SEC-MOT", "rho20_min"] == 0.25
-    assert observado.loc["REG-SEC-MOT", "rho20_max"] == 0.65
+    assert observado.loc["REG-SEC-MOT", "proporcion_regeneracion_equivalente_min"] == 0.25
+    assert observado.loc["REG-SEC-MOT", "proporcion_regeneracion_equivalente_max"] == 0.65
 
 
 def test_06_dryad_13_reproducidos_4_contextuales_y_1_tabla_ampliada(
@@ -224,7 +224,7 @@ def test_06_dryad_13_reproducidos_4_contextuales_y_1_tabla_ampliada(
         rtol=0,
     )
 
-    relaciones = ejecucion_limpia["resultado"]["trazabilidad_region_sitio"]
+    relaciones = ejecucion_limpia["resultado"]["trazabilidad_grupo_sitio"]
     contextuales = relaciones.loc[
         relaciones["uso_sitio"].eq("contextual_sin_porcentaje"), "site_id"
     ]
@@ -253,13 +253,13 @@ def test_07_identidades_fila_a_fila_de_los_172_resultados(
     )
     np.testing.assert_allclose(
         resultados_recuperacion["saldo_ponderado_inferior_ha"],
-        perdida - resultados_recuperacion["rho20_max"] * recuperacion,
+        perdida - resultados_recuperacion["proporcion_regeneracion_equivalente_max"] * recuperacion,
         atol=1e-8,
         rtol=0,
     )
     np.testing.assert_allclose(
         resultados_recuperacion["saldo_ponderado_superior_ha"],
-        perdida - resultados_recuperacion["rho20_min"] * recuperacion,
+        perdida - resultados_recuperacion["proporcion_regeneracion_equivalente_min"] * recuperacion,
         atol=1e-8,
         rtol=0,
     )
@@ -278,7 +278,7 @@ def test_08_agregados_reconcilian_con_los_resultados_municipales(
     nacional = agregar_recuperacion(resultados_recuperacion).iloc[0]
     regional = agregar_recuperacion(
         resultados_recuperacion,
-        ["proporcion_region_id", "region_nombre"],
+        ["proporcion_grupo_id", "grupo_territorial_nombre"],
     )
     departamental = agregar_recuperacion(
         resultados_recuperacion,
@@ -315,7 +315,7 @@ def test_09_ejecucion_completa_sin_resultados_finales_congelados(ejecucion_limpi
     assert (
         raiz
         / "00_trazabilidad_fuentes"
-        / "trazabilidad_municipio_region_guatemala_2016_2020.csv"
+        / "trazabilidad_municipio_grupo_territorial_guatemala_2016_2020.csv"
     ).is_file()
     assert (
         raiz
@@ -325,7 +325,7 @@ def test_09_ejecucion_completa_sin_resultados_finales_congelados(ejecucion_limpi
     assert (
         raiz
         / "05_verificacion"
-        / "reproduccion_por_sitio_recuperacion_biomasa_20_anios.csv"
+        / "reproduccion_proporcion_regeneracion_equivalente_por_sitio.csv"
     ).is_file()
 
 
@@ -348,8 +348,8 @@ def test_10_determinismo_version_unica_y_nombres_publicos_normalizados(
     assert configuracion["project"]["version"] == "1.0.0"
     assert saldo_forestal.__version__ == "1.0.0"
     resultado_primero = ejecucion_limpia["resultado"]
-    versiones = set(resultado_primero["trazabilidad_municipio_region"]["version_metodo"])
-    versiones.update(resultado_primero["trazabilidad_region_sitio"]["version_metodo"])
+    versiones = set(resultado_primero["trazabilidad_municipio_grupo_territorial"]["version_metodo"])
+    versiones.update(resultado_primero["trazabilidad_grupo_sitio"]["version_metodo"])
     assert versiones == {"1.0.0"}
     metadatos = json.loads(
         (
@@ -358,7 +358,7 @@ def test_10_determinismo_version_unica_y_nombres_publicos_normalizados(
             / "metadatos_ejecucion.json"
         ).read_text(encoding="utf-8")
     )
-    assert metadatos["version"] == metadatos["version_metodo_correspondencia"] == "1.0.0"
+    assert metadatos["version"] == metadatos["version_metodo_asignacion_territorial"] == "1.0.0"
 
     nombres_productos = set(resultado_primero) | set(segunda)
     rutas_publicas = {

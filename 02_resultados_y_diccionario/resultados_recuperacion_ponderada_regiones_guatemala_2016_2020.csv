@@ -1,6 +1,0 @@
-proporcion_region_id,region_nombre,perdida_bruta_ha,recuperacion_bruta_ha,perdida_neta_ha,saldo_ponderado_inferior_ha,saldo_ponderado_superior_ha,municipios
-REG-ORI-EST,Bosques estacionales de Oriente,4415.3548150200,1517.1478364200,2898.2069786000,3127.2963018994,3905.5931419829,35
-REG-PET-FTN,Sur de Petén y tierras bajas de la FTN,84346.1548034000,74486.2955156400,9859.8592877600,40101.2952671098,40101.2952671098,32
-REG-PET-N,"Norte de Petén, bosque estacional sobre calizas",93450.4206068100,75505.8047899300,17944.6158168800,43088.0488119267,43314.5662262965,9
-REG-SEC-MOT,Corredor seco y valle del Motagua,7485.3048820500,3572.8686140300,3912.4362680200,5162.9402829305,6592.0877285425,34
-REG-TB-HUM,"Tierras bajas húmedas del Caribe, Izabal y Pacífico",30610.4769835600,29368.9860008100,1241.4909827500,8113.8337069395,13194.6682850797,62

@@ -25,10 +25,10 @@ def test_totales_nacionales(base):
     assert np.isclose(base["perdida_neta_ha"].sum(), 52_736.42652936)
 
 
-def test_catalogo_proporciones_recuperacion(catalogo):
+def test_catalogo_proporcion_regeneracion_equivalente(catalogo):
     assert len(catalogo) == 5
-    assert catalogo["proporcion_region_id"].is_unique
-    assert (catalogo["rho20_min"] <= catalogo["rho20_central"]).all()
-    assert (catalogo["rho20_central"] <= catalogo["rho20_max"]).all()
-    assert catalogo[["rho20_min", "rho20_central", "rho20_max"]].ge(0).all().all()
-    assert catalogo[["rho20_min", "rho20_central", "rho20_max"]].le(1).all().all()
+    assert catalogo["proporcion_grupo_id"].is_unique
+    assert (catalogo["proporcion_regeneracion_equivalente_min"] <= catalogo["proporcion_regeneracion_equivalente_central"]).all()
+    assert (catalogo["proporcion_regeneracion_equivalente_central"] <= catalogo["proporcion_regeneracion_equivalente_max"]).all()
+    assert catalogo[["proporcion_regeneracion_equivalente_min", "proporcion_regeneracion_equivalente_central", "proporcion_regeneracion_equivalente_max"]].ge(0).all().all()
+    assert catalogo[["proporcion_regeneracion_equivalente_min", "proporcion_regeneracion_equivalente_central", "proporcion_regeneracion_equivalente_max"]].le(1).all().all()

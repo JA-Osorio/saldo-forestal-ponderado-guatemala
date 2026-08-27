@@ -26,7 +26,7 @@ En Windows PowerShell, active el entorno con:
 .venv\Scripts\Activate.ps1
 ```
 
-La cadena reconstruye la correspondencia territorial, las proporciones de
+La cadena reconstruye la asignación territorial, las proporciones de
 recuperación, los resultados físicos y monetarios, las trayectorias y la
 aplicación local de manglar. Escribe una sola copia canónica de cada producto:
 
@@ -116,7 +116,7 @@ huella registrada; corrija la fuente o el código y reconstruya toda la cadena.
 ### El intervalo aparece invertido
 
 Una proporción mayor reduce $H=B-\rho R$. Por eso el límite inferior usa
-`rho20_max` y el superior usa `rho20_min`.
+`proporcion_regeneracion_equivalente_max` y el superior usa `proporcion_regeneracion_equivalente_min`.
 
 ### Los resultados de manglar no se suman al saldo nacional
 

@@ -32,7 +32,7 @@ FUENTES_APARATO = {
     "FUENTE_VALORACION": (
         "Banco Mundial et al. (2021) y Banco de Guatemala (s. f.); cálculos del autor."
     ),
-    "FUENTE_MANGLE": (
+    "FUENTE_MANGLAR": (
         "INAB (2023a), INAB et al. (2016), e INAB y CONAP (2023); "
         "cálculos del autor."
     ),
@@ -45,8 +45,8 @@ FUENTES_APARATO = {
 INTERPRETACIONES = {
     "Figura 1": (
         "La pérdida bruta anual aumenta entre el primer y el último intervalo disponible, "
-        "mientras la pérdida neta disminuye. La divergencia muestra por qué ambos indicadores "
-        "deben leerse juntos."
+        "mientras la pérdida neta disminuye. Las dos series describen magnitudes distintas y "
+        "se presentan por separado."
     ),
     "Tabla 1": (
         "La recuperación reportada equivale al 78.4 % de la pérdida bruta. En consecuencia, "
@@ -76,13 +76,14 @@ INTERPRETACIONES = {
         "al ponderador aplicado."
     ),
     "Tabla 4": (
-        "Los cinco primeros grupos describen el fundamento territorial de las listas que reciben "
-        "una proporción a veinte años. Los 168 municipios residuales no forman una sexta región "
-        "ecológica: lo único comprobado es que sus códigos no aparecen en esas listas."
+        "Las cinco listas reúnen 172 municipios y vinculan cada grupo con sitios científicos de "
+        "referencia y un intervalo de regeneración equivalente. Los otros 168 municipios no "
+        "reciben una proporción y conservan la pérdida neta reportada por INAB y CONAP."
     ),
     "Figura 5": (
-        "Los intervalos se superponen, pero no son idénticos. La amplitud mostrada se traslada al "
-        "saldo ponderado y debe interpretarse como variación de las proporciones regionales, no como error muestral."
+        "La figura distingue los límites aplicados, su punto medio aritmético y los valores "
+        "publicados por sitio. La amplitud de cada segmento se traslada al intervalo del saldo "
+        "ponderado y no representa error muestral."
     ),
     "Tabla 5": (
         "Dentro de los 172 municipios elegibles, el saldo ponderado asciende a "
@@ -90,7 +91,7 @@ INTERPRETACIONES = {
     ),
     "Tabla 6": (
         "El efecto de la ponderación difiere por departamento porque cambian tanto la recuperación "
-        "observada como la proporción regional asignada a sus municipios elegibles."
+        "observada como la proporción de cada grupo territorial asignada a sus municipios."
     ),
     "Figura 6": (
         "Después de ponderar la recuperación, los puntos se desplazan hacia abajo respecto de la "
@@ -102,7 +103,7 @@ INTERPRETACIONES = {
         "municipios cambian de clasificación, incluidos quince que pasan de ganancia reportada a pérdida."
     ),
     "Figura 8": (
-        "El 15.1 % de los municipios del dominio cambia de diagnóstico. La transición se concentra "
+        "El 15.1 % de los municipios del dominio cambia de clasificación. La transición se concentra "
         "en resultados próximos a cero, donde la resta completa de la recuperación determina el signo."
     ),
     "Tabla 7": (
@@ -119,7 +120,8 @@ INTERPRETACIONES = {
     ),
     "Tabla 9": (
         "La completación conservadora sitúa el saldo nacional entre 116,473 y 123,988 ha: de 2.21 "
-        "a 2.35 veces la pérdida neta reportada, sin extrapolar las proporciones fuera de su dominio de aplicación."
+        "a 2.35 veces la pérdida neta reportada. El total reúne 172 municipios ponderados, "
+        "168 municipios sin proporción asignada y dos unidades lacustres no municipales."
     ),
     "Figura 10": (
         "El saldo ponderado queda entre la pérdida bruta y la pérdida neta. La separación entre los "
@@ -180,7 +182,7 @@ INTERPRETACIONES = {
     "Tabla 16": (
         "Los intervalos estructural y de recuperación ponderada se superponen en el agregado, pero responden a fundamentos "
         "distintos. En doce municipios conservan la misma clasificación; Pasaco es pérdida en la "
-        "aplicación local e indeterminado con la proporción de recuperación a veinte años."
+        "aplicación local e indeterminado con la proporción de regeneración equivalente."
     ),
     "Recuadro 1": (
         "Las cifras muestran la escala económica del contexto ambiental y de desastres. Se mantienen "
@@ -344,9 +346,9 @@ def construir_cuaderno():
         _texto(
             """
             <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;max-width:960px;padding:28px 0 34px;border-top:4px solid #146c7a;border-bottom:1px solid #dfe6e9">
-              <div style="color:#146c7a;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase">Cuaderno reproducible y nota metodológica</div>
+              <div style="color:#146c7a;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase">Material suplementario en línea</div>
               <h1 style="color:#18242a;font-size:36px;line-height:1.16;letter-spacing:-.025em;font-weight:650;margin:15px 0 17px">Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala</h1>
-              <div style="color:#58666d;font-size:16px;line-height:1.55;max-width:850px">Resultados nacionales y municipales para 2016–2020, con una explicación paso a paso de la ponderación de la recuperación.</div>
+              <div style="color:#58666d;font-size:16px;line-height:1.55;max-width:850px">Reproducción de los datos, parámetros, operaciones y resultados nacionales y municipales para 2016–2020.</div>
               <div style="margin-top:26px;color:#334148;font-size:14px"><em>Autor:</em> Juan Alejandro Osorio · IARNA, Universidad Rafael Landívar</div>
             </div>
             """,
@@ -354,26 +356,21 @@ def construir_cuaderno():
         ),
         _texto(
             """
-            Este cuaderno responde una pregunta: ¿cuánto cambia la lectura de la pérdida
-            forestal cuando la ganancia de cobertura no se descuenta como si hubiera recuperado
-            inmediatamente toda la biomasa del bosque perdido? El punto de partida es la
-            dinámica oficial de cobertura forestal 2016–2020 (INAB y CONAP, 2023).
+            Este cuaderno es el material suplementario en línea del análisis forestal. Su función
+            es reproducir la secuencia de datos, parámetros, operaciones y resultados a partir de
+            la dinámica de cobertura forestal 2016–2020 reportada por INAB y CONAP (2023).
 
-            La lectura sigue seis preguntas:
-
-            1. ¿Qué registran la pérdida bruta, la ganancia de cobertura y la pérdida neta?
-            2. ¿Por qué una ganancia de cobertura no equivale de inmediato a la biomasa perdida?
-            3. ¿Cómo se decide qué municipios reciben una proporción a veinte años?
-            4. ¿Cómo se construyen esas proporciones a partir de sitios científicos?
-            5. ¿Cuánto cambia el resultado municipal y nacional?
-            6. ¿Qué añaden la valoración, las trayectorias y la aplicación local de manglar?
+            El contenido se organiza en ocho componentes: antecedente nacional, reproducción del
+            balance reportado, asignación territorial de la proporción de regeneración equivalente,
+            completación nacional, valoración indicativa, trayectorias, aplicación local de manglar
+            y contexto económico no aditivo. El anexo reúne las fórmulas completas.
 
             Salvo indicación expresa, las cifras son acumuladas para 2016–2020. Un resultado
             positivo representa pérdida y uno negativo, ganancia de cobertura. El código está
             oculto de inicio, pero puede desplegarse. Cada tabla ofrece el CSV completo y cada
-            salida está acompañada por su nota, fuente e interpretación.
+            salida está acompañada por su nota, fuente y lectura numérica.
 
-            > *Alcance.* La cobertura de origen es oficial. La ponderación, la completación
+            > *Alcance.* La cobertura de origen es reportada por INAB y CONAP. La ponderación, la completación
             > nacional, la valoración y las trayectorias son cálculos analíticos. La aplicación
             > de manglar es local y no se suma al resultado nacional.
             """
@@ -383,6 +380,7 @@ def construir_cuaderno():
             from pathlib import Path
             import subprocess
             import sys
+            from textwrap import wrap
 
             candidatos = [Path.cwd(), Path.cwd().parent, Path.cwd() / "saldo-forestal-ponderado-guatemala"]
             repo = next((
@@ -394,7 +392,7 @@ def construir_cuaderno():
                 destino_repo = Path.cwd() / "saldo-forestal-ponderado-guatemala"
                 subprocess.run(
                     [
-                        "git", "clone", "--depth", "1", "--branch", "v1.0.0",
+                        "git", "clone", "--depth", "1", "--branch", "main",
                         "https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala.git",
                         str(destino_repo),
                     ],
@@ -435,19 +433,18 @@ def construir_cuaderno():
             FUENTE_INAB = "INAB y CONAP (2023) e INAB (2023b); cálculos del autor."
             FUENTE_RECUPERACION = "INAB y CONAP (2023), INAB (2023b) y Poorter et al. (2016, 2017); cálculos del autor."
             FUENTE_VALORACION = "Banco Mundial et al. (2021) y Banco de Guatemala (s. f.); cálculos del autor."
-            FUENTE_MANGLE = "INAB (2023a), INAB et al. (2016), e INAB y CONAP (2023); cálculos del autor."
+            FUENTE_MANGLAR = "INAB (2023a), INAB et al. (2016), e INAB y CONAP (2023); cálculos del autor."
             FUENTE_ESCENARIOS = "INAB y CONAP (2023) e INAB (2023b); supuestos y cálculos del autor."
             """,
             titulo_colab="Preparar entorno y reconstruir resultados",
         ),
         _texto(
             r"""
-            ## 1. Por qué la pérdida bruta y la pérdida neta pueden contar historias distintas
+            ## 1. Antecedente nacional de pérdida bruta y pérdida neta
 
-            La identidad institucional $N=B-R$ es aritméticamente correcta. Su interpretación
-            como desempeño forestal descuenta toda recuperación de la pérdida en el mismo período.
-            *Bosques* reúne las estimaciones disponibles desde 1991 y documenta que, entre
-            1991–2001 y 2010–2016, la pérdida bruta anual aumentó aproximadamente 32 %, mientras
+            La publicación *Bosques* reúne las estimaciones nacionales disponibles desde 1991.
+            Entre los intervalos 1991–2001 y 2010–2016, la pérdida bruta anual aumentó
+            aproximadamente 32 %, mientras
             la pérdida neta anual disminuyó cerca de 75 % (Sandoval García et al., 2022).
 
             *El año 1991 aparece porque inicia el primer intervalo recopilado por esa fuente.* No
@@ -497,20 +494,21 @@ def construir_cuaderno():
         ),
         _texto(
             r"""
-            ## 2. Qué reporta la fuente oficial para 2016–2020
+            ## 2. Reproducción del balance reportado por INAB y CONAP, 2016–2020
 
-            Para las 342 unidades de la base oficial —340 municipios y dos unidades lacustres
-            documentadas por el Instituto Nacional de Bosques (INAB) y el Consejo Nacional de
-            Áreas Protegidas (CONAP) (2023), con detalle municipal en INAB (2023b)— se distinguen
-            tres magnitudes:
+            Guatemala tenía 340 municipios durante el período analizado. La tabla territorial de
+            INAB y CONAP (2023), con detalle municipal en INAB (2023b), contiene 342 registros
+            porque añade el Lago de Amatitlán y el Lago de Atitlán como unidades de reporte sin
+            código municipal. Para cada registro se distinguen tres magnitudes:
 
             | Símbolo | Nombre | Qué representa | Unidad |
             |---|---|---|---|
             | $B_i$ | Pérdida bruta | Cobertura registrada como pérdida en la unidad $i$ | ha |
             | $R_i$ | Ganancia de cobertura | Cobertura registrada como recuperación en la fuente | ha |
-            | $N_i$ | Pérdida neta oficial | Diferencia entre las dos magnitudes anteriores | ha |
+            | $N_i$ | Pérdida neta reportada | Diferencia entre las dos magnitudes anteriores | ha |
 
-            El cálculo oficial resta toda la ganancia de cobertura de la pérdida bruta:
+            INAB y CONAP obtienen la pérdida neta al restar toda la ganancia de cobertura de la
+            pérdida bruta:
 
             $$N_i=B_i-R_i.$$
 
@@ -521,13 +519,13 @@ def construir_cuaderno():
 
             El total nacional acumulado del período es 244,395 ha de pérdida bruta, 191,658 ha
             de recuperación y 52,736 ha de pérdida neta. Esta sección muestra primero el
-            resultado institucional en sus propios términos y establece el punto de comparación
+            resultado reportado en sus propios términos y establece el punto de comparación
             para la ponderación de la recuperación.
             """
         ),
         _codigo(
             """
-            nacional = productos["resultados_institucionales_nacionales"].iloc[0]
+            nacional = productos["resultados_reportados_inab_conap_nacionales"].iloc[0]
             tabla_nacional = pd.DataFrame({
                 "Magnitud": ["Pérdida bruta", "Ganancia de cobertura", "Pérdida neta reportada"],
                 "Acumulado 2016–2020 (ha)": [
@@ -538,19 +536,19 @@ def construir_cuaderno():
                 "Lectura": ["B", "R", "N = B − R"],
             })
             """,
-            titulo_colab="Preparar resultado nacional institucional",
+            titulo_colab="Preparar resultado nacional reportado por INAB y CONAP",
         ),
         _codigo(
             """
             mostrar_tabla(
                 tabla_nacional,
-                "Tabla 1. Magnitudes nacionales del cálculo institucional",
+                "Tabla 1. Balance nacional reportado por INAB y CONAP",
                 "La recuperación se descuenta en proporción uno a uno; las cifras acumuladas corresponden a 2016–2020.",
                 FUENTE_INAB,
                 decimales=1,
                 max_filas=None,
-                archivo="resultados_institucionales_guatemala_2016_2020.csv",
-                descarga=productos["resultados_institucionales_nacionales"],
+                archivo="resultados_reportados_inab_conap_guatemala_2016_2020.csv",
+                descarga=productos["resultados_reportados_inab_conap_nacionales"],
             )
             """,
             titulo_colab="Mostrar Tabla 2",
@@ -586,8 +584,8 @@ def construir_cuaderno():
             """
             mostrar_figura(
                 fig_componentes,
-                "Figura 2. Componentes del resultado institucional nacional, 2016–2020",
-                "La recuperación se muestra como una sustracción contable. La operación reproduce el reporte institucional, pero no demuestra equivalencia ecológica inmediata.",
+                "Figura 2. Componentes del balance nacional reportado por INAB y CONAP, 2016–2020",
+                "La recuperación se muestra como una sustracción contable. La operación reproduce el cálculo reportado por INAB y CONAP, pero no demuestra equivalencia ecológica inmediata.",
                 FUENTE_INAB,
                 alto=620,
             )
@@ -597,7 +595,7 @@ def construir_cuaderno():
         ),
         _codigo(
             """
-            departamentales = productos["resultados_institucionales_departamentales"].copy()
+            departamentales = productos["resultados_reportados_inab_conap_departamentales"].copy()
             tabla_departamental = departamentales[[
                 "depto", "perdida_bruta_ha", "recuperacion_bruta_ha", "perdida_neta_ha"
             ]].rename(columns={
@@ -607,18 +605,18 @@ def construir_cuaderno():
                 "perdida_neta_ha": "Pérdida neta (ha)",
             }).sort_values("Pérdida neta (ha)", ascending=False)
             """,
-            titulo_colab="Preparar resultados departamentales institucionales",
+            titulo_colab="Preparar resultados departamentales reportados por INAB y CONAP",
         ),
         _codigo(
             """
             mostrar_tabla(
                 tabla_departamental,
-                "Tabla 2. Resultados departamentales del cálculo institucional",
+                "Tabla 2. Balance reportado por INAB y CONAP por departamento",
                 "Orden descendente por pérdida neta acumulada. Las dos unidades lacustres permanecen en los agregados departamentales y se identifican en completacion_nacional_unidades.csv dentro de la descarga integral.",
                 FUENTE_INAB,
                 decimales=1,
                 max_filas=None,
-                archivo="resultados_institucionales_departamentos_guatemala_2016_2020.csv",
+                archivo="resultados_reportados_inab_conap_departamentos_guatemala_2016_2020.csv",
                 descarga=departamentales,
             )
             """,
@@ -652,7 +650,7 @@ def construir_cuaderno():
             fig_departamentos.update_yaxes(title=None)
             mostrar_figura(
                 fig_departamentos,
-                "Figura 3. Pérdida neta institucional por departamento, 2016–2020",
+                "Figura 3. Pérdida neta reportada por INAB y CONAP por departamento, 2016–2020",
                 "Las barras positivas indican pérdida y las negativas ganancia de cobertura bajo N = B − R.",
                 FUENTE_INAB,
                 alto=820,
@@ -663,26 +661,26 @@ def construir_cuaderno():
         ),
         _codigo(
             """
-            municipales = productos["resultados_institucionales_municipales"].copy()
+            municipales = productos["resultados_reportados_inab_conap_municipales"].copy()
             extremos_municipales = pd.concat([
                 municipales.nsmallest(10, "perdida_neta_ha"),
                 municipales.nlargest(10, "perdida_neta_ha"),
             ]).drop_duplicates("codigo").sort_values("perdida_neta_ha", ascending=False)
             tabla_municipal = extremos_municipales[[
-                "depto", "municipio", "perdida_neta_ha", "clasificacion_institucional"
+                "depto", "municipio", "perdida_neta_ha", "clasificacion_perdida_neta_reportada"
             ]].rename(columns={
                 "depto": "Departamento", "municipio": "Municipio",
                 "perdida_neta_ha": "Pérdida neta (ha)",
-                "clasificacion_institucional": "Clasificación",
+                "clasificacion_perdida_neta_reportada": "Clasificación",
             })
             mostrar_tabla(
                 tabla_municipal,
-                "Tabla 3. Municipios con mayores pérdidas y ganancias institucionales",
+                "Tabla 3. Municipios con mayores pérdidas y ganancias netas reportadas",
                 "Se muestran los diez valores más altos y los diez más bajos; el CSV contiene los 340 municipios.",
                 FUENTE_INAB,
                 decimales=1,
                 max_filas=None,
-                archivo="resultados_institucionales_municipios_guatemala_2016_2020.csv",
+                archivo="resultados_reportados_inab_conap_municipios_guatemala_2016_2020.csv",
                 descarga=municipales,
             )
             """,
@@ -696,13 +694,13 @@ def construir_cuaderno():
             fig_municipios = px.scatter(
                 municipales,
                 x="recuperacion_log1p", y="perdida_log1p",
-                color="clasificacion_institucional", symbol="clasificacion_institucional",
+                color="clasificacion_perdida_neta_reportada", symbol="clasificacion_perdida_neta_reportada",
                 hover_name="municipio",
                 custom_data=["depto", "recuperacion_bruta_ha", "perdida_bruta_ha", "perdida_neta_ha"],
                 labels={
                     "recuperacion_log1p": "Ganancia de cobertura (ha; escala log₁₀[1+x])",
                     "perdida_log1p": "Pérdida bruta (ha; escala log₁₀[1+x])",
-                    "clasificacion_institucional": "Clasificación",
+                    "clasificacion_perdida_neta_reportada": "Clasificación",
                 },
                 color_discrete_map={"Pérdida": "#D55E00", "Ganancia": "#0072B2", "Equilibrio": "#E69F00"},
                 symbol_map={"Pérdida": "circle", "Ganancia": "diamond", "Equilibrio": "square"},
@@ -733,7 +731,7 @@ def construir_cuaderno():
             mostrar_figura(
                 fig_municipios,
                 "Figura 4. Pérdida bruta y ganancia de cobertura por municipio",
-                "La transformación log₁₀(1+x) conserva los 340 municipios, incluidos los valores cero. Sobre B = R hay pérdida institucional; debajo hay ganancia.",
+                "La transformación log₁₀(1+x) conserva los 340 municipios, incluidos los valores cero. Sobre B = R hay pérdida neta reportada; debajo hay ganancia neta reportada.",
                 FUENTE_INAB,
                 alto=720,
             )
@@ -743,225 +741,275 @@ def construir_cuaderno():
         ),
         _texto(
             r"""
-            ## 3. Cómo se decide dónde ponderar la recuperación
+            ## 3. Asignación territorial de la proporción de regeneración equivalente
 
-            La base tiene 342 registros: 340 municipios y dos lagos tratados como unidades no
-            municipales. La ponderación se aplica a 172 municipios para los que se documentó una
-            *correspondencia territorial experta codificada*. Los otros 168 municipios conservan
-            el cálculo oficial.
+            ### 3.1 Definición del factor
 
-            ### 3.1 Regla de asignación
+            La *proporción de regeneración equivalente*, $\rho_i$, es el factor aplicado a la
+            recuperación de cobertura antes de restarla de la pérdida bruta. En este ejercicio se
+            parametriza con la recuperación relativa de biomasa aérea que los sitios de referencia
+            de Poorter et al. (2016) alcanzan después de veinte años respecto de la biomasa de su
+            bosque maduro de referencia.
 
-            La decisión usa el código municipal canónico de cuatro dígitos:
+            El horizonte de veinte años pertenece al parámetro científico utilizado. No indica la
+            edad de la ganancia de cobertura reportada por INAB y CONAP ni implica que las hectáreas
+            municipales hayan recuperado la misma composición, estructura o permanencia.
 
-            1. Si el registro no tiene código municipal, se identifica como unidad lacustre y
-               queda fuera del cálculo municipal.
-            2. Si el código aparece en una de cinco listas explícitas y disjuntas, el municipio
-               se asigna al grupo correspondiente y recibe su intervalo regional.
-            3. Si el código no aparece en ninguna lista, queda fuera del dominio de ponderación y
-               conserva la pérdida neta oficial.
+            $$H_i=B_i-\rho_iR_i.$$
 
-            Esta es una regla por pertenencia a listas. La computadora no clasifica los
-            municipios mediante umbrales de altitud, precipitación o tipo de bosque. Las
-            características territoriales de la tabla siguiente explican qué busca representar
-            cada grupo; todavía no demuestran homogeneidad ecológica municipio por municipio.
+            | Resultado reproducido | Valor de la proporción $\rho_i$ | Aplicación |
+            |---|---:|---|
+            | Pérdida bruta | 0 % | No se resta recuperación |
+            | Pérdida neta reportada por INAB y CONAP | 100 % | Se resta toda la recuperación y se reproduce $N_i=B_i-R_i$ |
+            | Saldo forestal ponderado | Intervalo del grupo territorial | Se resta únicamente la fracción parametrizada con los sitios de referencia |
 
-            Tres casos permiten seguir la decisión:
+            ### 3.2 Universo territorial y regla de asignación
 
-            | Registro | Resultado de la regla |
-            |---|---|
-            | San José del Golfo (`0104`) | El código aparece en la lista de valles secos; recibe su intervalo regional |
-            | Guatemala (`0101`) | El código no aparece en las cinco listas; queda fuera del dominio |
-            | Lago de Amatitlán | No tiene código municipal; se conserva como unidad no municipal |
+            Guatemala tenía 340 municipios durante el período analizado. La tabla de INAB y CONAP
+            contiene 342 registros porque incorpora además el Lago de Amatitlán y el Lago de
+            Atitlán como unidades de reporte sin código municipal.
+
+            La asignación municipal reproduce cinco listas explícitas y disjuntas de códigos. Los
+            172 municipios incluidos reciben el intervalo de su grupo territorial; los otros 168
+            municipios conservan la pérdida neta reportada por INAB y CONAP. Los dos lagos no se
+            clasifican como municipios ni reciben una proporción.
+
+            Las listas se formaron con criterios territoriales de posición geográfica, humedad,
+            estacionalidad y déficit hídrico. Estos criterios explican la agrupación utilizada en
+            el cálculo, pero no constituyen una medición ambiental individual de cada municipio.
             """
         ),
         _codigo(
             """
-            catalogo = productos["catalogo_proporciones_recuperacion"].copy()
-            trazabilidad_territorial = productos["trazabilidad_municipio_region"].copy()
-            regiones_resumen = productos["resultados_recuperacion_regiones"][[
-                "proporcion_region_id", "municipios"
-            ]].copy()
-            catalogo = catalogo.merge(regiones_resumen, on="proporcion_region_id", how="left")
-            resumen_trazabilidad = (
-                trazabilidad_territorial.groupby(
-                    ["region_id", "tipo_decision"], dropna=False
-                )
-                .size()
-                .rename("unidades")
-                .reset_index()
-            )
-            orden_regiones = [
-                "REG-PET-N", "REG-PET-FTN", "REG-TB-HUM", "REG-ORI-EST",
-                "REG-SEC-MOT", "REG-ALT-MON", "UNIDAD-NO-MUN",
-            ]
-            resumen_trazabilidad["region_id"] = pd.Categorical(
-                resumen_trazabilidad["region_id"], categories=orden_regiones, ordered=True
-            )
-            resumen_trazabilidad = resumen_trazabilidad.sort_values("region_id")
-            nombres_lectura = {
-                "REG-PET-N": "Norte y centro de Petén (REG-PET-N)",
-                "REG-PET-FTN": "Sur de Petén y vertiente norte (REG-PET-FTN)",
-                "REG-TB-HUM": "Tierras bajas húmedas del Caribe y del Pacífico (REG-TB-HUM)",
-                "REG-ORI-EST": "Bosques estacionales de Oriente (REG-ORI-EST)",
-                "REG-SEC-MOT": "Valles secos interiores, Motagua y Salamá–Chixoy (REG-SEC-MOT)",
-                "REG-ALT-MON": "Fuera del dominio: otros municipios (REG-ALT-MON)",
-                "UNIDAD-NO-MUN": "Lagos sin código municipal (UNIDAD-NO-MUN)",
-            }
-            fundamentos = dict(zip(
-                catalogo["proporcion_region_id"], catalogo["justificacion"]
+            catalogo = productos["catalogo_proporcion_regeneracion_equivalente"].copy()
+            trazabilidad_sitios = productos["trazabilidad_grupo_sitio"].copy()
+            resumen_grupos = productos["resumen_grupos_territoriales"].copy()
+            catalogo_tabla = resumen_grupos.loc[
+                resumen_grupos["tipo_unidad_analitica"].eq("municipios_con_proporcion")
+            ].sort_values("orden").copy()
+            orden_grupos = catalogo_tabla["grupo_territorial_id"].tolist()
+            nombres_publicos = dict(zip(
+                catalogo_tabla["grupo_territorial_id"],
+                catalogo_tabla["grupo_territorial_nombre"],
             ))
-            fundamentos.update({
-                "REG-ALT-MON": (
-                    "Códigos no incluidos en las cinco listas; no hay una característica "
-                    "ecológica común verificada"
+
+            def etiqueta_intervalo(fila):
+                if pd.isna(fila["proporcion_regeneracion_equivalente_min"]):
+                    return "No aplica"
+                minimo = 100 * fila["proporcion_regeneracion_equivalente_min"]
+                medio = 100 * fila["proporcion_regeneracion_equivalente_central"]
+                maximo = 100 * fila["proporcion_regeneracion_equivalente_max"]
+                if np.isclose(minimo, maximo):
+                    return f"{medio + 1e-9:.1f} % (valor único)"
+                return (
+                    f"{minimo + 1e-9:.1f}–{maximo + 1e-9:.1f} %; "
+                    f"punto medio {medio + 1e-9:.1f} %"
+                )
+
+            tabla_trazabilidad = pd.DataFrame({
+                "Grupo territorial en Guatemala": resumen_grupos["grupo_territorial_nombre"],
+                "Criterio de agrupación": resumen_grupos["criterio_agrupacion"],
+                "Territorios o sitios utilizados como referencia": resumen_grupos.apply(
+                    lambda fila: fila["territorios_sitios_referencia"]
+                    if fila["fundamento_vinculacion_sitios"] == "No aplica"
+                    else (
+                        f"{fila['territorios_sitios_referencia']}; "
+                        f"{fila['fundamento_vinculacion_sitios']}"
+                    ),
+                    axis=1,
                 ),
-                "UNIDAD-NO-MUN": "Lago de Amatitlán y Lago de Atitlán, registros sin código municipal",
+                "Proporción de regeneración equivalente": resumen_grupos.apply(
+                    etiqueta_intervalo, axis=1
+                ),
+                "Aplicación en el cálculo": resumen_grupos["aplicacion_calculo"],
+                "Unidades": resumen_grupos["unidades"].astype(int),
             })
-            tratamientos = {
-                "lista_explicita": "Lista explícita; recibe intervalo regional",
-                "regla_residual": "Regla residual; conserva el cálculo oficial",
-                "unidad_no_municipal": "Fuera del cálculo municipal",
-            }
-            resumen_trazabilidad["Grupo territorial (identificador)"] = (
-                resumen_trazabilidad["region_id"].astype(str).map(nombres_lectura)
-            )
-            resumen_trazabilidad["Fundamento territorial documentado"] = (
-                resumen_trazabilidad["region_id"].astype(str).map(fundamentos)
-            )
-            resumen_trazabilidad["Tratamiento"] = resumen_trazabilidad["tipo_decision"].map(
-                tratamientos
-            )
-            tabla_trazabilidad = resumen_trazabilidad[[
-                "Grupo territorial (identificador)",
-                "Fundamento territorial documentado",
-                "Tratamiento",
-                "unidades",
-            ]].rename(columns={"unidades": "n"})
-            tabla_trazabilidad["n"] = tabla_trazabilidad["n"].astype(int)
-            tabla_trazabilidad = tabla_trazabilidad.reset_index(drop=True)
             """,
-            titulo_colab="Preparar trazabilidad territorial compacta",
+            titulo_colab="Preparar asignación territorial y proporciones",
         ),
         _codigo(
             """
             mostrar_tabla(
                 tabla_trazabilidad,
-                "Tabla 4. Cómo se clasifican las unidades territoriales del análisis",
-                "Los primeros cinco grupos reciben una proporción regional. El sexto es un complemento residual, no una región ecológica; la última fila no es municipal. La descarga conserva la regla exacta para las 342 unidades.",
-                "Universo territorial: INAB y CONAP (2023) e INAB (2023b); correspondencia territorial experta codificada y cálculos del autor.",
+                "Tabla 4. Asignación territorial y proporciones de regeneración equivalente utilizadas en el cálculo",
+                "Los criterios describen las características compartidas que formaron cada lista. La vinculación con los sitios fundamenta el parámetro aplicado, pero no demuestra equivalencia ecológica de cada hectárea municipal. Para el grupo seco, 25.0–65.0 % es el redondeo exterior del intervalo observado de 25.4–64.5 %.",
+                "INAB y CONAP (2023), INAB (2023b) y Poorter et al. (2016, 2017); asignación territorial y cálculos del autor.",
                 decimales=0,
                 max_filas=None,
-                archivo="trazabilidad_municipio_region_guatemala_2016_2020.csv",
-                descarga=trazabilidad_territorial,
+                archivo="asignacion_grupos_territoriales_proporcion_regeneracion_equivalente.csv",
+                descarga=resumen_grupos,
             )
             """,
-            titulo_colab="Mostrar Tabla 5",
+            titulo_colab="Mostrar Tabla 4",
             resultado=True,
         ),
         _texto(
             r"""
-            <details>
-            <summary><em>Consultar las listas exactas de códigos municipales</em></summary>
+            La descarga de la Tabla 4 contiene, para cada grupo, la lista exacta de códigos,
+            los límites inferior y superior, el punto medio, los sitios de referencia y el
+            tratamiento aplicado. La trazabilidad individual de los 342 registros se conserva
+            por separado en `00_trazabilidad_fuentes/trazabilidad_municipio_grupo_territorial_guatemala_2016_2020.csv`.
 
-            La pertenencia se ejecuta con estas listas, no con una búsqueda por nombre:
+            Tres registros ilustran la aplicación de la regla de pertenencia:
 
-            | Grupo territorial | Regla exacta de pertenencia |
+            | Registro | Aplicación |
             |---|---|
-            | Norte y centro de Petén | `1701–1707, 1711, 1713` |
-            | Sur de Petén y vertiente norte | `1305, 1307, 1318, 1322, 1324–1326, 1331–1333, 1405, 1411, 1413, 1415, 1419–1420, 1607–1617, 1708–1710, 1712, 1714` |
-            | Tierras bajas húmedas del Caribe y del Pacífico | `0408, 0412, 0501–0510, 0513–0514, 0607–0611, 0917, 0919–0922, 1001–1002, 1004–1007, 1010, 1012–1014, 1020–1021, 1101–1109, 1212–1222, 1230, 1801–1805` |
-            | Bosques estacionales de Oriente | `2001–2011, 2101–2107, 2201–2217` |
-            | Valles secos interiores, Motagua y Salamá–Chixoy | `0104–0105, 0107, 0112, 0201–0208, 1416–1418, 1421, 1501–1507, 1901–1911` |
+            | San José del Golfo (`0104`) | El código pertenece a la lista de valles secos; recibe el intervalo de ese grupo |
+            | Guatemala (`0101`) | El código no pertenece a las cinco listas; conserva $N_i=B_i-R_i$ |
+            | Lago de Amatitlán | No tiene código municipal; permanece fuera de la clasificación municipal |
 
-            Cualquier otro código municipal sigue la regla residual. La descarga de la Tabla 4
-            permite buscar cada municipio por su código y conserva el criterio y la fuente.
-
-            </details>
-
-            ### 3.2 De los grupos territoriales a las proporciones de recuperación
-
-            Cada uno de los cinco grupos se vincula con sitios científicos publicados por
-            Poorter et al. (2016). La *proporción de recuperación de biomasa a veinte años*,
-            $\rho_{20}$, compara la biomasa aérea recuperada por esos sitios con la biomasa del
-            bosque de referencia.
-
-            | Recuperación reconocida | Lectura del cálculo |
-            |---:|---|
-            | 0 % | No se descuenta la ganancia de cobertura; se conserva la pérdida bruta |
-            | 100 % | Se descuenta toda la ganancia; se reproduce la pérdida neta oficial |
-            | Proporción a veinte años | Se descuenta solo la parte indicada por los sitios de referencia |
-
-            Una proporción de 60 % significa que el sitio de referencia recuperó
-            aproximadamente 60 % de la biomasa aérea del bosque de referencia a los veinte
-            años. No significa que 60 % de las hectáreas municipales se haya recuperado ni
-            expresa una probabilidad.
-
-            El saldo ponderado se calcula como:
-
-            $$
-            \text{saldo ponderado}
-            =\text{pérdida bruta}
-            -(\text{proporción a veinte años}\times\text{ganancia de cobertura}).
-            $$
-
-            En símbolos, $H_i=B_i-\rho_{20,i}R_i$. El intervalo se entiende mejor con un
-            municipio concreto:
+            ### 3.3 Ejemplo de aplicación municipal
 
             | Paso en San Andrés Villa Seca (`1106`) | Resultado |
             |---|---:|
             | Pérdida bruta | 793.8 ha |
             | Ganancia de cobertura reportada | 1,072.2 ha |
-            | Pérdida neta oficial | −278.4 ha |
+            | Pérdida neta reportada por INAB y CONAP | −278.4 ha |
             | Grupo territorial | Tierras bajas húmedas |
-            | Proporción a veinte años | 59.3–76.6 % |
-            | Ganancia reconocida por el cálculo | 635.8–821.3 ha |
+            | Proporción de regeneración equivalente | 59.3–76.6 % |
+            | Recuperación equivalente aplicada | 635.8–821.3 ha |
             | Saldo ponderado | −27.5 a 158.0 ha |
 
             Con 76.6 % se descuenta más recuperación y se obtiene el extremo menor del saldo;
             con 59.3 % se descuenta menos y se obtiene el extremo mayor. Como el intervalo cruza
-            cero, el diagnóstico queda indeterminado. Es un ejemplo pedagógico, no un municipio
-            representativo.
+            cero, el resultado se clasifica como indeterminado.
 
             Para los sitios secos, los valores observados de 25.4–64.5 % se redondean hacia
-            afuera a 25–65 %. La operación exacta y las listas completas de códigos permanecen en
-            el anexo metodológico y en los archivos descargables.
+            afuera a 25.0–65.0 %. La operación exacta permanece en el anexo metodológico y en los
+            archivos descargables.
             """
         ),
         _codigo(
             """
-            catalogo_fig = catalogo.sort_values("rho20_central")
-            fig_proporciones = go.Figure(go.Scatter(
-                x=catalogo_fig["rho20_central"],
-                y=catalogo_fig["region_nombre"],
+            posiciones = {
+                grupo_territorial_id: len(orden_grupos) - 1 - indice
+                for indice, grupo_territorial_id in enumerate(orden_grupos)
+            }
+            nombres_figura = {
+                grupo_territorial_id: "<br>".join(wrap(nombre, width=28))
+                for grupo_territorial_id, nombre in nombres_publicos.items()
+            }
+            catalogo_fig = catalogo_tabla.copy()
+            catalogo_fig["posicion"] = catalogo_fig["grupo_territorial_id"].map(posiciones)
+            catalogo_fig["etiqueta_publica"] = catalogo_fig["grupo_territorial_id"].map(
+                nombres_publicos
+            )
+
+            fig_proporciones = go.Figure()
+            for indice, fila in catalogo_fig.iterrows():
+                fig_proporciones.add_trace(go.Scatter(
+                    x=[fila["proporcion_regeneracion_equivalente_min"], fila["proporcion_regeneracion_equivalente_max"]],
+                    y=[fila["posicion"], fila["posicion"]],
+                    mode="lines",
+                    line=dict(color="#146C7A", width=6),
+                    hoverinfo="skip",
+                    name="Intervalo aplicado",
+                    legendgroup="intervalo",
+                    showlegend=indice == 0,
+                ))
+
+            extremos = []
+            for _, fila in catalogo_fig.iterrows():
+                limites = (
+                    [(fila["proporcion_regeneracion_equivalente_min"], "Valor único")]
+                    if np.isclose(fila["proporcion_regeneracion_equivalente_min"], fila["proporcion_regeneracion_equivalente_max"])
+                    else [
+                        (fila["proporcion_regeneracion_equivalente_min"], "Mínimo"),
+                        (fila["proporcion_regeneracion_equivalente_max"], "Máximo"),
+                    ]
+                )
+                for valor, tipo in limites:
+                    extremos.append({
+                        "valor": valor,
+                        "posicion": fila["posicion"],
+                        "grupo": fila["etiqueta_publica"],
+                        "tipo": tipo,
+                    })
+            extremos = pd.DataFrame(extremos)
+            fig_proporciones.add_trace(go.Scatter(
+                x=extremos["valor"],
+                y=extremos["posicion"],
                 mode="markers",
-                marker=dict(color="#6A3D9A", size=11, symbol="diamond"),
-                error_x=dict(
-                    type="data",
-                    array=catalogo_fig["rho20_max"] - catalogo_fig["rho20_central"],
-                    arrayminus=catalogo_fig["rho20_central"] - catalogo_fig["rho20_min"],
-                    color="#6A3D9A",
-                    thickness=2,
-                    width=7,
+                marker=dict(
+                    color="#146C7A", size=8, symbol="circle",
+                    line=dict(color="white", width=1),
                 ),
-                customdata=catalogo_fig[["sitios_referencia", "municipios"]],
+                customdata=extremos[["grupo", "tipo"]],
                 hovertemplate=(
-                    "%{y}<br>Proporción central: %{x:.3f}"
-                    "<br>Sitios: %{customdata[0]}<br>Municipios: %{customdata[1]}<extra></extra>"
+                    "<b>%{customdata[0]}</b><br>%{customdata[1]}: %{x:.1%}<extra></extra>"
                 ),
-                name="Proporción e intervalo",
+                name="Límite del intervalo",
+                showlegend=False,
+            ))
+
+            fig_proporciones.add_trace(go.Scatter(
+                x=catalogo_fig["proporcion_regeneracion_equivalente_central"],
+                y=catalogo_fig["posicion"],
+                mode="markers+text",
+                marker=dict(color="#24363D", size=12, symbol="diamond"),
+                text=catalogo_fig["proporcion_regeneracion_equivalente_central"].map(
+                    lambda valor: f"{100 * valor + 1e-9:.1f}%"
+                ),
+                textposition="bottom center",
+                textfont=dict(size=10, color="#24363D"),
+                customdata=catalogo_fig[[
+                    "etiqueta_publica", "proporcion_regeneracion_equivalente_min", "proporcion_regeneracion_equivalente_max", "territorios_sitios_referencia"
+                ]],
+                hovertemplate=(
+                    "<b>%{customdata[0]}</b>"
+                    "<br>Intervalo aplicado: %{customdata[1]:.1%}–%{customdata[2]:.1%}"
+                    "<br>Punto medio de los límites: %{x:.1%}"
+                    "<br>Referencias: %{customdata[3]}<extra></extra>"
+                ),
+                name="Punto medio del intervalo",
+            ))
+
+            sitios_fig = trazabilidad_sitios.loc[
+                trazabilidad_sitios["uso_sitio"].eq("numerico")
+                & trazabilidad_sitios["proporcion_grupo_id"].isin(orden_grupos)
+            ].copy()
+            sitios_fig["proporcion"] = sitios_fig["relative_recovery_pct_20y"] / 100
+            sitios_fig["pais_publico"] = sitios_fig["country"].replace({
+                "Mexico": "México", "Panama": "Panamá", "Brazil": "Brasil",
+                "Bolivia": "Bolivia", "Costa Rica": "Costa Rica",
+            })
+            sitios_fig["posicion"] = (
+                sitios_fig["proporcion_grupo_id"].map(posiciones) + 0.16
+            )
+            fig_proporciones.add_trace(go.Scatter(
+                x=sitios_fig["proporcion"],
+                y=sitios_fig["posicion"],
+                mode="markers",
+                marker=dict(
+                    color="#687980", size=9, symbol="circle-open",
+                    line=dict(color="#687980", width=1.5),
+                ),
+                customdata=sitios_fig[["site_name", "pais_publico"]],
+                hovertemplate=(
+                    "<b>%{customdata[0]}</b>, %{customdata[1]}"
+                    "<br>Valor publicado: %{x:.1%}<extra></extra>"
+                ),
+                name="Valor publicado por sitio",
             ))
             fig_proporciones.update_xaxes(
-                title="Proporción de recuperación de biomasa a veinte años",
-                range=[0, 1], tickformat=".0%"
+                title="Proporción de regeneración equivalente (%)",
+                range=[0, 1], dtick=0.2, tickformat=".0%"
             )
-            fig_proporciones.update_yaxes(title=None)
+            fig_proporciones.update_yaxes(
+                title=None,
+                tickmode="array",
+                tickvals=[posiciones[grupo_territorial_id] for grupo_territorial_id in orden_grupos],
+                ticktext=[nombres_figura[grupo_territorial_id] for grupo_territorial_id in orden_grupos],
+                range=[-0.45, len(orden_grupos) - 0.45],
+                showgrid=False,
+            )
+            fig_proporciones.update_layout(margin=dict(l=285, r=55), hovermode="closest")
             mostrar_figura(
                 fig_proporciones,
-                "Figura 5. Proporciones de recuperación aplicadas a los cinco grupos territoriales",
-                "El punto es la proporción central y la línea su intervalo. Son ponderadores transferidos, no mediciones de edad o biomasa municipal.",
+                "Figura 5. Intervalos y puntos medios de la proporción de regeneración equivalente por grupo territorial",
+                "Las líneas muestran los intervalos aplicados; los círculos delimitan sus extremos; los diamantes son el punto medio aritmético de los límites, no el promedio de los sitios; y los círculos abiertos son los valores publicados para los sitios seleccionados. Los intervalos no son intervalos de confianza.",
                 FUENTE_RECUPERACION,
-                alto=650,
+                alto=690,
             )
             """,
             titulo_colab="Construir Figura 5",
@@ -988,7 +1036,7 @@ def construir_cuaderno():
             mostrar_tabla(
                 tabla_dominio,
                 "Tabla 5. Resultado agregado dentro del dominio de 172 municipios",
-                "El dominio cubre municipios con una proporción regional defendible; estas cifras no se presentan como total nacional.",
+                "El dominio cubre los municipios incluidos en las cinco listas territoriales documentadas; estas cifras no se presentan como total nacional.",
                 FUENTE_RECUPERACION,
                 decimales=1,
                 max_filas=None,
@@ -1020,7 +1068,7 @@ def construir_cuaderno():
             mostrar_tabla(
                 tabla_recuperacion_departamentos,
                 "Tabla 6. Resultados departamentales dentro del dominio de aplicación",
-                "Cada agregado incluye únicamente municipios con proporción regional asignada; por ello no equivale necesariamente al total departamental.",
+                "Cada agregado incluye únicamente municipios con una proporción de su grupo territorial; por ello no equivale necesariamente al total departamental.",
                 FUENTE_RECUPERACION,
                 decimales=1,
                 max_filas=None,
@@ -1035,7 +1083,7 @@ def construir_cuaderno():
             """
             recuperacion_municipios = productos["resultados_recuperacion_municipios"].copy()
             recuperacion_municipios["recuperacion_reconocida_central_ha"] = (
-                recuperacion_municipios["rho20_central"] * recuperacion_municipios["recuperacion_bruta_ha"]
+                recuperacion_municipios["proporcion_regeneracion_equivalente_central"] * recuperacion_municipios["recuperacion_bruta_ha"]
             )
             recuperacion_municipios["clasificacion_central"] = np.select(
                 [
@@ -1045,17 +1093,17 @@ def construir_cuaderno():
                 ["Pérdida", "Ganancia"],
                 default="Equilibrio",
             )
-            panel_institucional = recuperacion_municipios.assign(
+            panel_reportado = recuperacion_municipios.assign(
                 Tratamiento="Cálculo reportado: R completa",
                 recuperacion_reconocida_ha=recuperacion_municipios["recuperacion_bruta_ha"],
-                Clasificación=recuperacion_municipios["clasificacion_institucional"],
+                Clasificación=recuperacion_municipios["clasificacion_perdida_neta_reportada"],
             )
             panel_ponderado = recuperacion_municipios.assign(
-                Tratamiento="Ponderación: ρ central × R",
+                Tratamiento="Ponderación: punto medio de ρ × R",
                 recuperacion_reconocida_ha=recuperacion_municipios["recuperacion_reconocida_central_ha"],
                 Clasificación=recuperacion_municipios["clasificacion_central"],
             )
-            dispersion_paneles = pd.concat([panel_institucional, panel_ponderado], ignore_index=True)
+            dispersion_paneles = pd.concat([panel_reportado, panel_ponderado], ignore_index=True)
             dispersion_paneles["x_log1p"] = np.log10(1 + dispersion_paneles["recuperacion_reconocida_ha"])
             dispersion_paneles["y_log1p"] = np.log10(1 + dispersion_paneles["perdida_bruta_ha"])
             fig_paneles = px.scatter(
@@ -1066,7 +1114,7 @@ def construir_cuaderno():
                 custom_data=["depto", "recuperacion_reconocida_ha", "perdida_bruta_ha"],
                 color_discrete_map={"Pérdida": "#D55E00", "Ganancia": "#0072B2", "Equilibrio": "#E69F00"},
                 symbol_map={"Pérdida": "circle", "Ganancia": "diamond", "Equilibrio": "square"},
-                category_orders={"Tratamiento": ["Cálculo reportado: R completa", "Ponderación: ρ central × R"]},
+                category_orders={"Tratamiento": ["Cálculo reportado: R completa", "Ponderación: punto medio de ρ × R"]},
             )
             limite_panel = max(
                 dispersion_paneles["recuperacion_reconocida_ha"].max(),
@@ -1122,7 +1170,7 @@ def construir_cuaderno():
             recuperacion_municipios["H_transformado"] = escala_simetica(recuperacion_municipios["saldo_ponderado_central_ha"])
             recuperacion_municipios["Estado del cambio"] = np.select(
                 [
-                    recuperacion_municipios["clasificacion_institucional"].eq("Ganancia")
+                    recuperacion_municipios["clasificacion_perdida_neta_reportada"].eq("Ganancia")
                     & recuperacion_municipios["clasificacion_ponderada"].eq("Pérdida"),
                     recuperacion_municipios["clasificacion_ponderada"].eq("Indeterminado"),
                 ],
@@ -1162,7 +1210,7 @@ def construir_cuaderno():
             marcas_simeticas = [-10000, -1000, -100, 0, 100, 1000, 10000]
             posiciones_simeticas = escala_simetica(np.array(marcas_simeticas))
             fig_cambio.update_xaxes(
-                title="Pérdida neta institucional, N (ha; escala simétrica)",
+                title="Pérdida neta reportada, N (ha; escala simétrica)",
                 tickvals=posiciones_simeticas, ticktext=[f"{v:,}" for v in marcas_simeticas]
             )
             fig_cambio.update_yaxes(
@@ -1174,7 +1222,7 @@ def construir_cuaderno():
                 marker=dict(size=8, opacity=0.8),
                 hovertemplate=(
                     "%{hovertext}<br>Departamento: %{customdata[0]}"
-                    "<br>N institucional: %{customdata[1]:,.1f} ha"
+                    "<br>N reportada: %{customdata[1]:,.1f} ha"
                     "<br>H central: %{customdata[2]:,.1f} ha"
                     "<br>Intervalo H: %{customdata[3]:,.1f}–%{customdata[4]:,.1f} ha<extra></extra>"
                 ),
@@ -1196,10 +1244,10 @@ def construir_cuaderno():
             orden_i = ["Ganancia", "Equilibrio", "Pérdida"]
             orden_p = ["Ganancia", "Indeterminado", "Pérdida"]
             matriz_n = transiciones.pivot(
-                index="clasificacion_institucional", columns="clasificacion_ponderada", values="municipios"
+                index="clasificacion_perdida_neta_reportada", columns="clasificacion_ponderada", values="municipios"
             ).reindex(index=orden_i, columns=orden_p).fillna(0)
             matriz_pct = transiciones.pivot(
-                index="clasificacion_institucional", columns="clasificacion_ponderada", values="porcentaje_fila"
+                index="clasificacion_perdida_neta_reportada", columns="clasificacion_ponderada", values="porcentaje_fila"
             ).reindex(index=orden_i, columns=orden_p).fillna(0)
             texto_matriz = [
                 [f"{int(matriz_n.iloc[i, j])}<br>{matriz_pct.iloc[i, j]:.1f}%" for j in range(len(orden_p))]
@@ -1213,14 +1261,14 @@ def construir_cuaderno():
                 texttemplate="%{text}",
                 colorscale=[[0, "#F7FAFA"], [1, "#6A3D9A"]],
                 colorbar=dict(title="Municipios"),
-                hovertemplate="Institucional: %{y}<br>Ponderada: %{x}<br>Municipios: %{z}<extra></extra>",
+                hovertemplate="Pérdida neta reportada: %{y}<br>Ponderada: %{x}<br>Municipios: %{z}<extra></extra>",
             ))
             fig_transiciones.update_xaxes(title="Clasificación con intervalo ponderado", side="bottom")
-            fig_transiciones.update_yaxes(title="Clasificación institucional", autorange="reversed")
+            fig_transiciones.update_yaxes(title="Clasificación según la pérdida neta reportada", autorange="reversed")
             mostrar_figura(
                 fig_transiciones,
                 "Figura 8. Transición de clasificaciones municipales al aplicar el ponderador",
-                "Cada celda muestra municipios y porcentaje dentro de la clasificación institucional de origen. Cambian 26 de 172 diagnósticos.",
+                "Cada celda muestra municipios y porcentaje dentro de la clasificación según la pérdida neta reportada. Cambian 26 de las 172 clasificaciones.",
                 FUENTE_RECUPERACION,
                 alto=650,
             )
@@ -1231,7 +1279,7 @@ def construir_cuaderno():
         _codigo(
             """
             tabla_transiciones = matriz_n.reset_index().rename(columns={
-                "clasificacion_institucional": "Clasificación institucional",
+                "clasificacion_perdida_neta_reportada": "Clasificación según pérdida neta reportada",
                 "Ganancia": "Ponderada: ganancia",
                 "Indeterminado": "Ponderada: indeterminado",
                 "Pérdida": "Ponderada: pérdida",
@@ -1268,7 +1316,7 @@ def construir_cuaderno():
             })
             mostrar_tabla(
                 tabla_cambios,
-                "Tabla 8. Municipios con mayor cambio de diagnóstico al ponderar la recuperación",
+                "Tabla 8. Municipios con mayor cambio de clasificación al ponderar la recuperación",
                 "Se muestran los veinte mayores aumentos del saldo; el CSV contiene los 26 municipios cuya clasificación cambia con el intervalo ponderado.",
                 FUENTE_RECUPERACION,
                 decimales=1,
@@ -1296,7 +1344,7 @@ def construir_cuaderno():
                 ))
             fig_departamentos_recuperacion.add_trace(go.Scatter(
                 x=forestal_dep["perdida_neta_ha"], y=forestal_dep["depto"],
-                mode="markers", name="Pérdida neta institucional",
+                mode="markers", name="Pérdida neta reportada",
                 marker=dict(color="#0072B2", symbol="square", size=8),
                 hovertemplate="%{y}<br>N: %{x:,.1f} ha<extra></extra>",
             ))
@@ -1328,21 +1376,22 @@ def construir_cuaderno():
         ),
         _texto(
             r"""
-            ## 4. Cómo se obtiene el resultado nacional sin extrapolar
+            ## 4. Completación del saldo forestal nacional
 
-            Las proporciones a veinte años solo se aplican donde existe una correspondencia
-            territorial documentada. El total nacional combina dos componentes:
+            La proporción de regeneración equivalente se aplica únicamente a los municipios de
+            las cinco listas territoriales. El total nacional combina dos componentes:
 
-            | Componente | Municipios | Tratamiento | Resultado |
+            | Componente | Unidades | Aplicación en el cálculo | Resultado |
             |---|---:|---|---:|
-            | Dentro del dominio | 172 | Saldo ponderado con proporciones regionales | 99,593–107,108 ha |
-            | Fuera del dominio | 168 | Pérdida neta oficial, sin asignar una proporción | 16,880 ha |
-            | Total nacional | 340 | Suma de los dos componentes | 116,473–123,988 ha |
+            | Municipios dentro del dominio | 172 municipios | Saldo ponderado con proporciones de regeneración equivalente | 99,593–107,108 ha |
+            | Otros municipios | 168 municipios | Pérdida neta reportada, sin asignar una proporción | 16,862 ha |
+            | Unidades lacustres | 2 lagos | Pérdida neta reportada; no reciben una proporción municipal | 18 ha |
+            | Total de la fuente | 342 registros | Suma de 340 municipios y 2 lagos | 116,473–123,988 ha |
 
-            Las dos unidades lacustres se conservan en los agregados de la fuente, pero no se
-            tratan como municipios. Esta completación es conservadora respecto del alcance: evita
-            inventar una equivalencia para territorios sin puente documentado. El resultado queda
-            entre la pérdida bruta y la pérdida neta oficial. La expresión formal se presenta en
+            Las dos unidades lacustres se conservan en la suma nacional de la fuente, pero no se
+            tratan como municipios ni forman un grupo territorial. Esta completación es conservadora respecto del alcance: evita
+            asignar un valor a municipios sin sitios de referencia documentados. El resultado queda
+            entre la pérdida bruta y la pérdida neta reportada. La expresión formal se presenta en
             el anexo metodológico.
             """
         ),
@@ -1352,7 +1401,7 @@ def construir_cuaderno():
             fila_completacion = completacion.iloc[0]
             tabla_completacion = pd.DataFrame({
                 "Magnitud": [
-                    "Unidades nacionales", "Municipios con proporción a veinte años",
+                    "Registros de la fuente (340 municipios y 2 lagos)", "Municipios con proporción de regeneración equivalente",
                     "Pérdida bruta", "Ganancia de cobertura", "Pérdida neta",
                     "Saldo ponderado nacional",
                 ],
@@ -1364,7 +1413,7 @@ def construir_cuaderno():
                     f"{fila_completacion.perdida_neta_ha:,.0f} ha",
                     f"{fila_completacion.saldo_ponderado_inferior_ha:,.0f}–{fila_completacion.saldo_ponderado_superior_ha:,.0f} ha",
                 ],
-                "Método": ["Cobertura", "ρ₂₀", "B", "R", "N = B − R", "Completación conservadora"],
+                "Método": ["Universo reportado", "Asignación territorial", "B", "R", "N = B − R", "Completación conservadora"],
             })
             """,
             titulo_colab="Preparar completación nacional",
@@ -1374,7 +1423,7 @@ def construir_cuaderno():
             mostrar_tabla(
                 tabla_completacion,
                 "Tabla 9. Completación conservadora del saldo forestal nacional",
-                "Dentro del dominio se aplica el intervalo de ρ₂₀; fuera se conserva ρ = 1. El intervalo refleja únicamente las proporciones transferidas.",
+                "Dentro del dominio se aplica el intervalo de la proporción de regeneración equivalente. En los otros 168 municipios y en las dos unidades lacustres se conserva B − R; los lagos no reciben una proporción municipal. El intervalo refleja únicamente los valores transferidos desde los sitios de referencia.",
                 FUENTE_RECUPERACION,
                 decimales=1,
                 max_filas=None,
@@ -1398,7 +1447,7 @@ def construir_cuaderno():
             resultados_nacionales["err_menos"] = (
                 resultados_nacionales["central"] - resultados_nacionales["resultado_inferior_ha"]
             )
-            orden_resultados = ["Deforestación bruta", "Saldo ponderado por recuperación", "Pérdida neta institucional"]
+            orden_resultados = ["Deforestación bruta", "Saldo ponderado por recuperación", "Pérdida neta reportada"]
             resultados_nacionales["regla"] = pd.Categorical(
                 resultados_nacionales["regla"], categories=orden_resultados, ordered=True
             )
@@ -1588,21 +1637,21 @@ def construir_cuaderno():
             colores_regla = {
                 "Deforestación bruta": "#D55E00",
                 "Saldo ponderado por recuperación": "#6A3D9A",
-                "Pérdida neta institucional": "#0072B2",
+                "Pérdida neta reportada": "#0072B2",
             }
             trazos_regla = {
                 "Deforestación bruta": "solid",
                 "Saldo ponderado por recuperación": "dash",
-                "Pérdida neta institucional": "dot",
+                "Pérdida neta reportada": "dot",
             }
             simbolos_regla = {
                 "Deforestación bruta": "circle",
                 "Saldo ponderado por recuperación": "diamond",
-                "Pérdida neta institucional": "square",
+                "Pérdida neta reportada": "square",
             }
             fig_sensibilidad = go.Figure()
             for regla_nombre in [
-                "Deforestación bruta", "Saldo ponderado por recuperación", "Pérdida neta institucional"
+                "Deforestación bruta", "Saldo ponderado por recuperación", "Pérdida neta reportada"
             ]:
                 serie = sensibilidad.loc[sensibilidad["regla"].eq(regla_nombre)].sort_values("tasa")
                 fig_sensibilidad.add_trace(go.Scatter(
@@ -1688,17 +1737,17 @@ def construir_cuaderno():
                 color_discrete_map={
                     "Deforestación bruta": "#D55E00",
                     "Saldo ponderado por recuperación": "#6A3D9A",
-                    "Pérdida neta institucional": "#0072B2",
+                    "Pérdida neta reportada": "#0072B2",
                 },
                 line_dash_map={
                     "Deforestación bruta": "solid",
                     "Saldo ponderado por recuperación": "dash",
-                    "Pérdida neta institucional": "dot",
+                    "Pérdida neta reportada": "dot",
                 },
                 symbol_map={
                     "Deforestación bruta": "circle",
                     "Saldo ponderado por recuperación": "diamond",
-                    "Pérdida neta institucional": "square",
+                    "Pérdida neta reportada": "square",
                 },
             )
             fig_trayectorias.update_traces(line_width=3, marker_size=7)
@@ -1747,17 +1796,17 @@ def construir_cuaderno():
                 color_discrete_map={
                     "Deforestación bruta": "#D55E00",
                     "Saldo ponderado por recuperación": "#6A3D9A",
-                    "Pérdida neta institucional": "#0072B2",
+                    "Pérdida neta reportada": "#0072B2",
                 },
                 line_dash_map={
                     "Deforestación bruta": "solid",
                     "Saldo ponderado por recuperación": "dash",
-                    "Pérdida neta institucional": "dot",
+                    "Pérdida neta reportada": "dot",
                 },
                 symbol_map={
                     "Deforestación bruta": "circle",
                     "Saldo ponderado por recuperación": "diamond",
-                    "Pérdida neta institucional": "square",
+                    "Pérdida neta reportada": "square",
                 },
             )
             fig_trayectorias_monetarias.update_traces(line_width=3, marker_size=7)
@@ -1861,7 +1910,8 @@ def construir_cuaderno():
             $B_i$ y $R_i$ siguen siendo la pérdida y la ganancia de cobertura forestal del
             municipio completo, no cambios exclusivos de manglar. La evidencia de campo informa
             únicamente el ponderador local. Los resultados se comparan con el cálculo neto y,
-            donde existe soporte común, con la recuperación ponderada a veinte años; no se suman
+            donde existe soporte común, con el saldo basado en la proporción de regeneración
+            equivalente; no se suman
             entre sí (INAB et al., 2016; INAB, 2023; Poorter et al., 2016, 2017).
             """
         ),
@@ -1904,20 +1954,20 @@ def construir_cuaderno():
         ),
         _codigo(
             """
-            evidencia_mangle = productos["evidencia_manglar"].copy()
-            evidencia_mangle["Total"] = evidencia_mangle["series_multitemporales"]
-            orden_mangle = evidencia_mangle.sort_values(["Total", "municipio"])["municipio"].tolist()
-            categorias_mangle = [
+            evidencia_manglar = productos["evidencia_manglar"].copy()
+            evidencia_manglar["Total"] = evidencia_manglar["series_multitemporales"]
+            orden_manglar = evidencia_manglar.sort_values(["Total", "municipio"])["municipio"].tolist()
+            categorias_manglar = [
                 ("Aumento conjunto", "suben_carbono_y_area_basal", "#009E73"),
                 ("Disminución conjunta", "bajan_carbono_y_area_basal", "#D55E00"),
                 ("Mixta", "trayectoria_mixta", "#6A3D9A"),
             ]
-            fig_evidencia_mangle = go.Figure()
-            for etiqueta, columna, color in categorias_mangle:
-                valores = evidencia_mangle[columna]
-                fig_evidencia_mangle.add_trace(go.Bar(
+            fig_evidencia_manglar = go.Figure()
+            for etiqueta, columna, color in categorias_manglar:
+                valores = evidencia_manglar[columna]
+                fig_evidencia_manglar.add_trace(go.Bar(
                     x=valores,
-                    y=evidencia_mangle["municipio"],
+                    y=evidencia_manglar["municipio"],
                     orientation="h",
                     name=etiqueta,
                     marker_color=color,
@@ -1926,17 +1976,17 @@ def construir_cuaderno():
                     insidetextanchor="middle",
                     hovertemplate="%{y}<br>%{fullData.name}: %{x:.0f}<extra></extra>",
                 ))
-            fig_evidencia_mangle.update_layout(
+            fig_evidencia_manglar.update_layout(
                 barmode="stack", legend_title_text="Trayectoria estructural",
                 margin=dict(l=210, r=60),
             )
-            fig_evidencia_mangle.update_xaxes(
+            fig_evidencia_manglar.update_xaxes(
                 title="Número de series multitemporales", range=[0, 17.5], dtick=2
             )
-            fig_evidencia_mangle.update_yaxes(
-                title=None, categoryorder="array", categoryarray=orden_mangle
+            fig_evidencia_manglar.update_yaxes(
+                title=None, categoryorder="array", categoryarray=orden_manglar
             )
-            fig_evidencia_mangle.add_annotation(
+            fig_evidencia_manglar.add_annotation(
                 x=0.25, y="Nueva Concepción", text="0", showarrow=False,
                 xanchor="left", font=dict(color="#5C6F77", size=11),
             )
@@ -1946,7 +1996,7 @@ def construir_cuaderno():
         _codigo(
             """
             mostrar_figura(
-                fig_evidencia_mangle,
+                fig_evidencia_manglar,
                 "Figura 15. Distribución municipal de las series estructurales de manglar",
                 "Las categorías describen el cambio conjunto de carbono y área basal en las series multitemporales. Nueva Concepción tiene cinco registros de parcela, pero ninguna serie multitemporal disponible; el ponderador utiliza las 55 series clasificadas.",
                 "INAB (2023a), Áreas potenciales de restauración de manglares; cálculos del autor.",
@@ -1958,7 +2008,7 @@ def construir_cuaderno():
         ),
         _codigo(
             """
-            resumen_local = productos["resumen_mangle_local"].iloc[0]
+            resumen_local = productos["resumen_manglar_local"].iloc[0]
             tabla_resumen_local = pd.DataFrame({
                 "Magnitud": [
                     "Municipios", "Pérdida bruta", "Ganancia de cobertura",
@@ -1982,11 +2032,11 @@ def construir_cuaderno():
                 tabla_resumen_local,
                 "Tabla 15. Resultados agregados en trece municipios con evidencia de manglar",
                 "La pérdida y recuperación proceden de la base municipal general; la evidencia de campo sustenta únicamente la ponderación estructural local.",
-                FUENTE_MANGLE,
+                FUENTE_MANGLAR,
                 decimales=1,
                 max_filas=None,
                 archivo="resumen_manglar_guatemala_2016_2020.csv",
-                descarga=productos["resumen_mangle_local"],
+                descarga=productos["resumen_manglar_local"],
             )
             """,
             titulo_colab="Mostrar Tabla 15",
@@ -1994,7 +2044,7 @@ def construir_cuaderno():
         ),
         _codigo(
             """
-            local_comp = productos["comparacion_recuperacion_ponderada_mangle"].copy()
+            local_comp = productos["comparacion_recuperacion_ponderada_manglar"].copy()
             graf_local = local_comp[[
                 "municipio", "perdida_neta_ha",
                 "saldo_estructural_inferior_ha", "saldo_estructural_superior_ha",
@@ -2008,7 +2058,7 @@ def construir_cuaderno():
             ))
             for etiqueta, inferior, superior, color, simbolo in [
                 ("Aproximación estructural local", "saldo_estructural_inferior_ha", "saldo_estructural_superior_ha", "#009E73", "diamond"),
-                ("Saldo ponderado con ρ₂₀", "saldo_ponderado_inferior_ha", "saldo_ponderado_superior_ha", "#E69F00", "circle"),
+                ("Saldo con regeneración equivalente", "saldo_ponderado_inferior_ha", "saldo_ponderado_superior_ha", "#E69F00", "circle"),
             ]:
                 centro = (graf_local[inferior] + graf_local[superior]) / 2
                 fig_local.add_trace(go.Scatter(
@@ -2027,7 +2077,7 @@ def construir_cuaderno():
             mostrar_figura(
                 fig_local,
                 "Figura 16. Resultados locales en municipios con evidencia de manglar",
-                "Los puntos e intervalos son resultados alternativos de la misma pérdida y ganancia de cobertura municipal. La aplicación estructural local y la recuperación ponderada a veinte años no se agregan entre sí.",
+                "Los puntos e intervalos son resultados alternativos de la misma pérdida y ganancia de cobertura municipal. La aplicación estructural local y el saldo basado en la proporción de regeneración equivalente no se agregan entre sí.",
                 "INAB y CONAP (2023), INAB (2023a) y Poorter et al. (2016, 2017); cálculos del autor.",
                 alto=760,
             )
@@ -2043,7 +2093,7 @@ def construir_cuaderno():
             tabla_local["Intervalo estructural (ha)"] = local_comp.apply(
                 lambda f: f"{f.saldo_estructural_inferior_ha:,.1f}–{f.saldo_estructural_superior_ha:,.1f}", axis=1
             )
-            tabla_local["Saldo ponderado con ρ₂₀ (ha)"] = local_comp.apply(
+            tabla_local["Saldo con regeneración equivalente (ha)"] = local_comp.apply(
                 lambda f: f"{f.saldo_ponderado_inferior_ha:,.1f}–{f.saldo_ponderado_superior_ha:,.1f}", axis=1
             )
             tabla_local = tabla_local.rename(columns={
@@ -2120,30 +2170,30 @@ def construir_cuaderno():
             <details>
             <summary><em>Mostrar las fórmulas y la definición de sus símbolos</em></summary>
 
-            ### A.1 Balance oficial y saldo ponderado
+            ### A.1 Balance reportado y saldo ponderado
 
             | Símbolo | Significado | Unidad |
             |---|---|---|
             | $B_i$ | Pérdida bruta de la unidad $i$ | ha |
             | $R_i$ | Ganancia de cobertura reportada | ha |
-            | $N_i$ | Pérdida neta oficial | ha |
-            | $\rho_{20,i}$ | Proporción a veinte años asignada | proporción |
+            | $N_i$ | Pérdida neta reportada por INAB y CONAP | ha |
+            | $\rho_i$ | Proporción de regeneración equivalente asignada | proporción |
             | $H_i$ | Saldo ponderado por recuperación | ha |
 
-            El balance oficial es:
+            El balance reportado por INAB y CONAP se reproduce como:
 
             $$N_i=B_i-R_i.$$
 
             El saldo ponderado descuenta solo la fracción indicada por la proporción:
 
-            $$H_i(\rho_{20})=B_i-\rho_{20,i}R_i.$$
+            $$H_i(\rho)=B_i-\rho_iR_i.$$
 
             Si la proporción tiene un límite inferior y otro superior, se calculan dos saldos.
             Como una proporción mayor descuenta más recuperación, produce el saldo menor:
 
-            $$H_i^{\mathrm{inf}}=B_i-\rho_{20,i}^{\mathrm{sup}}R_i,$$
+            $$H_i^{\mathrm{inf}}=B_i-\rho_i^{\mathrm{sup}}R_i,$$
 
-            $$H_i^{\mathrm{sup}}=B_i-\rho_{20,i}^{\mathrm{inf}}R_i.$$
+            $$H_i^{\mathrm{sup}}=B_i-\rho_i^{\mathrm{inf}}R_i.$$
 
             Para los sitios secos, el intervalo observado $[0.254,0.645]$ se amplía al múltiplo
             de 0.05 inmediatamente inferior y superior:
@@ -2155,12 +2205,14 @@ def construir_cuaderno():
 
             ### A.2 Completación nacional
 
-            Sea $P$ el conjunto de 172 municipios ponderados. El primer término aplica la
-            proporción dentro de $P$; el segundo conserva la pérdida neta oficial fuera de $P$:
+            Sea $U$ el conjunto de 342 registros de la fuente: 340 municipios y dos unidades
+            lacustres. Sea $P\subset U$ el conjunto de 172 municipios ponderados. El primer
+            término aplica la proporción dentro de $P$; el segundo conserva la pérdida neta
+            reportada por INAB y CONAP en los otros 168 municipios y en los dos lagos:
 
             $$
-            H_{GT}=\sum_{i\in P}(B_i-\rho_{20,i}R_i)
-            +\sum_{i\notin P}(B_i-R_i).
+            H_{GT}=\sum_{i\in P}(B_i-\rho_iR_i)
+            +\sum_{i\in U\setminus P}(B_i-R_i).
             $$
 
             ### A.3 Valoración indicativa
@@ -2235,15 +2287,19 @@ def construir_cuaderno():
         ),
         _texto(
             """
-            ## Conclusión
+            ## Resumen de resultados reproducidos
 
-            La comparación muestra que la pérdida neta puede disminuir mientras la pérdida bruta
-            permanece elevada, porque el cálculo institucional descuenta la recuperación de forma
-            completa dentro del mismo período. Incluso al conceder un horizonte de veinte años,
-            el saldo ponderado conserva una pérdida mayor que el resultado neto. La aproximación
-            cuantitativa no sustituye una medición ecológica longitudinal; muestra qué puede
-            establecerse al vincular fuentes disponibles y qué preguntas requieren investigación
-            adicional.
+            INAB y CONAP reportan 244,394.57 ha de pérdida bruta, 191,658.14 ha de ganancia de
+            cobertura y 52,736.43 ha de pérdida neta acumulada para 2016–2020. Al aplicar las
+            proporciones de regeneración equivalente en los 172 municipios incluidos, el saldo
+            ponderado es de 99,593.41–107,108.21 ha. La completación conserva la pérdida neta
+            reportada en los otros 168 municipios y en las dos unidades lacustres, y produce un intervalo nacional de
+            116,473.23–123,988.03 ha.
+
+            Estos resultados reproducen las operaciones documentadas en el cuaderno. La
+            ponderación utiliza referencias de recuperación relativa de biomasa aérea a los veinte
+            años y no convierte la ganancia de cobertura reportada en una medición contemporánea
+            de biomasa, composición o madurez forestal.
             """
         ),
         _texto(
@@ -2311,7 +2367,7 @@ def construir_cuaderno():
             ## Cómo citar
 
             > Osorio, J. A. (2026). *Deforestación bruta, recuperación y saldo forestal
-            > ponderado en Guatemala* (Versión 1.0.0) [Cuaderno reproducible]. Instituto de
+            > ponderado en Guatemala* (Versión 1.0.0) [Material suplementario en línea]. Instituto de
             > Investigación en Ciencias Naturales y Tecnología, Universidad Rafael Landívar.
             > https://doi.org/10.5281/zenodo.22119075
 

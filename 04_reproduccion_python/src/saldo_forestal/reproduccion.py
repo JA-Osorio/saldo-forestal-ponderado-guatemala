@@ -10,19 +10,20 @@ from pathlib import Path
 import pandas as pd
 
 from . import __version__
-from .correspondencia import (
+from .asignacion_territorial import (
     _reproducir_desde_marcos,
-    construir_catalogo_proporciones,
-    construir_correspondencia_territorial,
-    construir_trazabilidad_region_sitio,
+    construir_catalogo_proporcion_regeneracion_equivalente,
+    construir_asignacion_territorial,
+    construir_resumen_grupos_territoriales,
+    construir_trazabilidad_grupo_sitio,
 )
 from .datos import (
     directorio_datos,
     directorio_metodologia,
     extraer_parametros_valoracion,
     leer_base_forestal,
-    leer_configuracion_correspondencia,
-    leer_configuracion_regiones_sitios,
+    leer_configuracion_asignacion_territorial,
+    leer_configuracion_grupos_sitios,
     leer_costos_contextuales,
     leer_escenarios,
     leer_evidencia_manglar,
@@ -39,15 +40,15 @@ from .escenarios import (
     valorar_escenarios,
 )
 from .indicadores import (
-    agregar_institucional,
+    agregar_resultados_reportados,
     agregar_recuperacion,
-    calcular_resultados_institucionales,
+    calcular_resultados_reportados_inab_conap,
     calcular_resultados_recuperacion,
     completar_nacional_conservador,
     construir_comparacion_nacional,
     resumir_nacional_conservador,
 )
-from .mangle import (
+from .manglar import (
     calcular_aproximacion_local,
     comparar_metodos_locales,
     derivar_intervalo_estructural,
@@ -58,28 +59,32 @@ from .valoracion import sensibilidad_valor_presente, valorar_comparacion_naciona
 
 
 RUTAS_RESULTADOS = {
-    "resultados_institucionales_nacionales": (
-        "02_resultados_y_diccionario/resultados_institucionales_guatemala_2016_2020.csv"
+    "resultados_reportados_inab_conap_nacionales": (
+        "02_resultados_y_diccionario/resultados_reportados_inab_conap_guatemala_2016_2020.csv"
     ),
-    "resultados_institucionales_departamentales": (
+    "resultados_reportados_inab_conap_departamentales": (
         "02_resultados_y_diccionario/"
-        "resultados_institucionales_departamentos_guatemala_2016_2020.csv"
+        "resultados_reportados_inab_conap_departamentos_guatemala_2016_2020.csv"
     ),
-    "resultados_institucionales_municipales": (
+    "resultados_reportados_inab_conap_municipales": (
         "02_resultados_y_diccionario/"
-        "resultados_institucionales_municipios_guatemala_2016_2020.csv"
+        "resultados_reportados_inab_conap_municipios_guatemala_2016_2020.csv"
     ),
-    "catalogo_proporciones_recuperacion": (
+    "catalogo_proporcion_regeneracion_equivalente": (
         "02_resultados_y_diccionario/"
-        "catalogo_proporciones_recuperacion_biomasa_20_anios.csv"
+        "catalogo_proporcion_regeneracion_equivalente.csv"
+    ),
+    "resumen_grupos_territoriales": (
+        "02_resultados_y_diccionario/"
+        "asignacion_grupos_territoriales_proporcion_regeneracion_equivalente.csv"
     ),
     "resultados_recuperacion_dominio": (
         "02_resultados_y_diccionario/"
         "resultados_recuperacion_ponderada_dominio_guatemala_2016_2020.csv"
     ),
-    "resultados_recuperacion_regiones": (
+    "resultados_recuperacion_grupos_territoriales": (
         "02_resultados_y_diccionario/"
-        "resultados_recuperacion_ponderada_regiones_guatemala_2016_2020.csv"
+        "resultados_recuperacion_ponderada_grupos_territoriales_guatemala_2016_2020.csv"
     ),
     "resultados_recuperacion_departamentos": (
         "02_resultados_y_diccionario/"
@@ -134,28 +139,28 @@ RUTAS_RESULTADOS = {
     "intervalo_estructural_local": (
         "02_resultados_y_diccionario/intervalo_estructural_manglar_guatemala.csv"
     ),
-    "resultados_mangle_locales": (
+    "resultados_manglar_locales": (
         "02_resultados_y_diccionario/"
         "resultados_manglar_municipios_guatemala_2016_2020.csv"
     ),
-    "comparacion_recuperacion_ponderada_mangle": (
+    "comparacion_recuperacion_ponderada_manglar": (
         "02_resultados_y_diccionario/"
         "comparacion_recuperacion_ponderada_y_manglar_municipios_guatemala_2016_2020.csv"
     ),
-    "resumen_mangle_local": (
+    "resumen_manglar_local": (
         "02_resultados_y_diccionario/resumen_manglar_guatemala_2016_2020.csv"
     ),
 }
 
 RUTA_TRAZABILIDAD_MUNICIPAL = (
-    "00_trazabilidad_fuentes/trazabilidad_municipio_region_guatemala_2016_2020.csv"
+    "00_trazabilidad_fuentes/trazabilidad_municipio_grupo_territorial_guatemala_2016_2020.csv"
 )
 RUTA_TRAZABILIDAD_SITIOS = (
     "00_trazabilidad_fuentes/"
-    "trazabilidad_region_sitio_recuperacion_biomasa_20_anios.csv"
+    "trazabilidad_grupo_sitio_proporcion_regeneracion_equivalente.csv"
 )
 RUTA_REPRODUCCION_SITIOS = (
-    "05_verificacion/reproduccion_por_sitio_recuperacion_biomasa_20_anios.csv"
+    "05_verificacion/reproduccion_proporcion_regeneracion_equivalente_por_sitio.csv"
 )
 RUTA_CONTROLES = (
     "05_verificacion/controles_calidad_saldo_forestal_guatemala_2016_2020.csv"
@@ -193,13 +198,13 @@ def _directorio_metodologia_entrada(datos: Path) -> Path | None:
     candidatas = [datos, datos.parent, datos / "01_metodologia"]
     for candidata in candidatas:
         if (
-            candidata / "reglas_correspondencia_territorial_experta_codificada.json"
+            candidata / "reglas_asignacion_grupos_territoriales.json"
         ).is_file():
             return candidata
         if (
             candidata
             / "01_metodologia"
-            / "reglas_correspondencia_territorial_experta_codificada.json"
+            / "reglas_asignacion_grupos_territoriales.json"
         ).is_file():
             return candidata / "01_metodologia"
     return None
@@ -217,18 +222,22 @@ def ejecutar_reproduccion(
 
     base = leer_base_forestal(datos)
     sitios = leer_sitios_referencia(datos)
-    configuracion_territorial = leer_configuracion_correspondencia(
+    configuracion_territorial = leer_configuracion_asignacion_territorial(
         metodologia_alternativa or directorio_metodologia()
     )
-    configuracion_sitios = leer_configuracion_regiones_sitios(
+    configuracion_sitios = leer_configuracion_grupos_sitios(
         metodologia_alternativa or directorio_metodologia()
     )
-    correspondencia = construir_correspondencia_territorial(
+    asignacion_territorial = construir_asignacion_territorial(
         base,
         configuracion_territorial,
     )
-    catalogo = construir_catalogo_proporciones(configuracion_sitios, sitios)
-    trazabilidad_sitios = construir_trazabilidad_region_sitio(
+    catalogo = construir_catalogo_proporcion_regeneracion_equivalente(configuracion_sitios, sitios)
+    resumen_grupos = construir_resumen_grupos_territoriales(
+        catalogo,
+        configuracion_territorial,
+    )
+    trazabilidad_sitios = construir_trazabilidad_grupo_sitio(
         configuracion_sitios,
         sitios,
     )
@@ -249,28 +258,28 @@ def ejecutar_reproduccion(
     horizonte_servicios = int(parametros["horizonte_servicios"])
     horizonte_escenarios = int(parametros["horizonte_escenario"])
 
-    institucional = calcular_resultados_institucionales(base)
-    institucional_nacional = agregar_institucional(institucional)
-    institucional_departamental = agregar_institucional(institucional, ["cod_dep", "depto"])
-    institucional_municipal = institucional.loc[
-        institucional["tipo_unidad"].eq("Municipio")
+    reportado_inab_conap = calcular_resultados_reportados_inab_conap(base)
+    reportado_inab_conap_nacional = agregar_resultados_reportados(reportado_inab_conap)
+    reportado_inab_conap_departamental = agregar_resultados_reportados(reportado_inab_conap, ["cod_dep", "depto"])
+    reportado_inab_conap_municipal = reportado_inab_conap.loc[
+        reportado_inab_conap["tipo_unidad"].eq("Municipio")
     ].copy()
 
-    recuperacion = calcular_resultados_recuperacion(base, correspondencia, catalogo)
+    recuperacion = calcular_resultados_recuperacion(base, asignacion_territorial, catalogo)
     recuperacion_nacional = agregar_recuperacion(recuperacion)
-    recuperacion_regiones = agregar_recuperacion(
+    recuperacion_grupos_territoriales = agregar_recuperacion(
         recuperacion,
-        ["proporcion_region_id", "region_nombre"],
+        ["proporcion_grupo_id", "grupo_territorial_nombre"],
     )
     recuperacion_departamental = agregar_recuperacion(recuperacion, ["cod_dep", "depto"])
 
-    orden_institucional = ["Ganancia", "Equilibrio", "Pérdida"]
+    orden_reportado = ["Ganancia", "Equilibrio", "Pérdida"]
     orden_ponderado = ["Ganancia", "Indeterminado", "Pérdida"]
     transiciones = (
         pd.crosstab(
             pd.Categorical(
-                recuperacion["clasificacion_institucional"],
-                categories=orden_institucional,
+                recuperacion["clasificacion_perdida_neta_reportada"],
+                categories=orden_reportado,
                 ordered=True,
             ),
             pd.Categorical(
@@ -280,24 +289,24 @@ def ejecutar_reproduccion(
             ),
             dropna=False,
         )
-        .rename_axis(index="clasificacion_institucional", columns="clasificacion_ponderada")
+        .rename_axis(index="clasificacion_perdida_neta_reportada", columns="clasificacion_ponderada")
         .stack(future_stack=True)
         .rename("municipios")
         .reset_index()
     )
-    total_origen = transiciones.groupby("clasificacion_institucional", observed=False)[
+    total_origen = transiciones.groupby("clasificacion_perdida_neta_reportada", observed=False)[
         "municipios"
     ].transform("sum")
     transiciones["porcentaje_fila"] = (
         100 * transiciones["municipios"] / total_origen.replace(0, pd.NA)
     ).fillna(0.0)
     cambios = recuperacion.loc[
-        recuperacion["clasificacion_institucional"].ne(
+        recuperacion["clasificacion_perdida_neta_reportada"].ne(
             recuperacion["clasificacion_ponderada"]
         )
     ].copy()
     cambios["cambio_clasificacion"] = (
-        cambios["clasificacion_institucional"]
+        cambios["clasificacion_perdida_neta_reportada"]
         + " → "
         + cambios["clasificacion_ponderada"]
     )
@@ -349,7 +358,7 @@ def ejecutar_reproduccion(
 
     controles = ejecutar_controles(
         base,
-        correspondencia,
+        asignacion_territorial,
         catalogo,
         recuperacion,
         completacion,
@@ -364,15 +373,16 @@ def ejecutar_reproduccion(
         "parametros_valoracion": parametros_valoracion,
         "evidencia_manglar": evidencia,
         "costos_contextuales": costos,
-        "trazabilidad_municipio_region": correspondencia,
-        "trazabilidad_region_sitio": trazabilidad_sitios,
-        "reproduccion_por_sitio": reproduccion_sitios,
-        "resultados_institucionales_nacionales": institucional_nacional,
-        "resultados_institucionales_departamentales": institucional_departamental,
-        "resultados_institucionales_municipales": institucional_municipal,
-        "catalogo_proporciones_recuperacion": catalogo,
+        "trazabilidad_municipio_grupo_territorial": asignacion_territorial,
+        "trazabilidad_grupo_sitio": trazabilidad_sitios,
+        "reproduccion_proporcion_regeneracion_equivalente_por_sitio": reproduccion_sitios,
+        "resultados_reportados_inab_conap_nacionales": reportado_inab_conap_nacional,
+        "resultados_reportados_inab_conap_departamentales": reportado_inab_conap_departamental,
+        "resultados_reportados_inab_conap_municipales": reportado_inab_conap_municipal,
+        "catalogo_proporcion_regeneracion_equivalente": catalogo,
+        "resumen_grupos_territoriales": resumen_grupos,
         "resultados_recuperacion_dominio": recuperacion_nacional,
-        "resultados_recuperacion_regiones": recuperacion_regiones,
+        "resultados_recuperacion_grupos_territoriales": recuperacion_grupos_territoriales,
         "resultados_recuperacion_departamentos": recuperacion_departamental,
         "resultados_recuperacion_municipios": recuperacion,
         "transiciones_clasificacion_ponderada": transiciones,
@@ -387,9 +397,9 @@ def ejecutar_reproduccion(
         "trayectorias_fisicas": trayectorias,
         "trayectorias_monetarias": trayectorias_monetarias,
         "intervalo_estructural_local": intervalo_local,
-        "resultados_mangle_locales": local,
-        "comparacion_recuperacion_ponderada_mangle": local_comparacion,
-        "resumen_mangle_local": local_resumen,
+        "resultados_manglar_locales": local,
+        "comparacion_recuperacion_ponderada_manglar": local_comparacion,
+        "resumen_manglar_local": local_resumen,
         "controles_calidad": controles,
     }
 
@@ -398,7 +408,7 @@ def ejecutar_reproduccion(
         archivos_publicados.append(_escribir_csv(productos[nombre], repo / ruta_relativa))
     archivos_publicados.extend(
         [
-            _escribir_csv(correspondencia, repo / RUTA_TRAZABILIDAD_MUNICIPAL),
+            _escribir_csv(asignacion_territorial, repo / RUTA_TRAZABILIDAD_MUNICIPAL),
             _escribir_csv(trazabilidad_sitios, repo / RUTA_TRAZABILIDAD_SITIOS),
             _escribir_csv(reproduccion_sitios, repo / RUTA_REPRODUCCION_SITIOS),
             _escribir_csv(controles, repo / RUTA_CONTROLES),
@@ -407,7 +417,7 @@ def ejecutar_reproduccion(
 
     metadatos = {
         "version": __version__,
-        "version_metodo_correspondencia": configuracion_territorial["version_metodo"],
+        "version_metodo_asignacion_territorial": configuracion_territorial["version_metodo"],
         "fecha_corte": "2026-08-26",
         "periodo_forestal": "2016-2020",
         "unidades_base": len(base),
@@ -417,7 +427,7 @@ def ejecutar_reproduccion(
             base["tipo_unidad"].eq("Municipio").sum() - len(recuperacion)
         ),
         "unidades_lacustres": int(base["tipo_unidad"].ne("Municipio").sum()),
-        "municipios_mangle": len(local),
+        "municipios_manglar": len(local),
         "porcentajes_reproducidos_dryad": len(reproduccion_sitios),
         "valor_unitario_2026_gtq_ha_anio": valor_unitario,
         "tasa_descuento_central": tasa_descuento,

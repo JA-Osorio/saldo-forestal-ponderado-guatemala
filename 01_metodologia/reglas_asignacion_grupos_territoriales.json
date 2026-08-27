@@ -1,0 +1,97 @@
+{
+  "version_metodo": "1.0.0",
+  "metodo": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+  "llave_primaria": "codigo",
+  "formato_codigo": "cuatro_digitos",
+  "conteos_esperados": {
+    "municipios_incluidos": 172,
+    "municipios_excluidos": 168,
+    "unidades_lacustres": 2
+  },
+  "regla_residual": {
+    "grupo_territorial_id": "REG-ALT-MON",
+    "grupo_territorial_nombre": "Otros municipios fuera del dominio",
+    "estado_dominio": "fuera_dominio_regla_residual",
+    "proporcion_grupo_id": null,
+    "regla_id": "R-RESIDUAL-01",
+    "criterio_agrupacion": "Código municipal no incluido en ninguna de las cinco listas de asignación territorial",
+    "estado_evidencia": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+    "revision_ecologica": "pendiente"
+  },
+  "regla_no_municipal": {
+    "grupo_territorial_id": "UNIDAD-NO-MUN",
+    "grupo_territorial_nombre": "Lagos de Amatitlán y Atitlán",
+    "estado_dominio": "unidad_no_municipal",
+    "proporcion_grupo_id": null,
+    "regla_id": "R-NOMUN-01",
+    "criterio_agrupacion": "Registros de la fuente sin código municipal",
+    "estado_evidencia": "verificada_en_fuente_inab"
+  },
+  "grupos_territoriales": [
+    {
+      "prioridad": 1,
+      "grupo_territorial_id": "REG-PET-N",
+      "grupo_territorial_nombre": "Norte y centro de Petén",
+      "estado_dominio": "elegible_regeneracion_equivalente",
+      "proporcion_grupo_id": "REG-PET-N",
+      "conteo_municipios": 9,
+      "regla_id": "R-PET-N-01",
+      "codigos": ["1701-1707", "1711", "1713"],
+      "criterio_agrupacion": "Municipios del norte y centro de Petén tratados como plataforma kárstica y bosque tropical estacional sobre calizas",
+      "estado_evidencia": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+      "revision_ecologica": "pendiente"
+    },
+    {
+      "prioridad": 2,
+      "grupo_territorial_id": "REG-PET-FTN",
+      "grupo_territorial_nombre": "Sur de Petén y vertiente norte",
+      "estado_dominio": "elegible_regeneracion_equivalente",
+      "proporcion_grupo_id": "REG-PET-FTN",
+      "conteo_municipios": 32,
+      "regla_id": "R-PET-FTN-01",
+      "codigos": ["1305", "1307", "1318", "1322", "1324-1326", "1331-1333", "1405", "1411", "1413", "1415", "1419-1420", "1607-1617", "1708-1710", "1712", "1714"],
+      "criterio_agrupacion": "Municipios del sur de Petén y de la vertiente norte agrupados por continuidad territorial con la Franja Transversal del Norte",
+      "estado_evidencia": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+      "revision_ecologica": "pendiente"
+    },
+    {
+      "prioridad": 3,
+      "grupo_territorial_id": "REG-TB-HUM",
+      "grupo_territorial_nombre": "Tierras bajas húmedas del Caribe y del Pacífico",
+      "estado_dominio": "elegible_regeneracion_equivalente",
+      "proporcion_grupo_id": "REG-TB-HUM",
+      "conteo_municipios": 62,
+      "regla_id": "R-TB-HUM-01",
+      "codigos": ["0408", "0412", "0501-0510", "0513-0514", "0607-0611", "0917", "0919-0922", "1001-1002", "1004-1007", "1010", "1012-1014", "1020-1021", "1101-1109", "1212-1222", "1230", "1801-1805"],
+      "criterio_agrupacion": "Municipios seleccionados del Caribe, Izabal, costa y bocacosta húmeda del Pacífico y Costa Cuca; baja altitud y alta disponibilidad de agua",
+      "estado_evidencia": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+      "revision_ecologica": "pendiente"
+    },
+    {
+      "prioridad": 4,
+      "grupo_territorial_id": "REG-ORI-EST",
+      "grupo_territorial_nombre": "Oriente de Guatemala",
+      "estado_dominio": "elegible_regeneracion_equivalente",
+      "proporcion_grupo_id": "REG-ORI-EST",
+      "conteo_municipios": 35,
+      "regla_id": "R-ORI-EST-01",
+      "codigos": ["2001-2011", "2101-2107", "2201-2217"],
+      "criterio_agrupacion": "Los 11 municipios de Chiquimula, 7 de Jalapa y 17 de Jutiapa, tratados como un bloque territorial de bosque tropical estacional",
+      "estado_evidencia": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+      "revision_ecologica": "pendiente"
+    },
+    {
+      "prioridad": 5,
+      "grupo_territorial_id": "REG-SEC-MOT",
+      "grupo_territorial_nombre": "Valles secos interiores, Motagua y Salamá–Chixoy",
+      "estado_dominio": "elegible_regeneracion_equivalente",
+      "proporcion_grupo_id": "REG-SEC-MOT",
+      "conteo_municipios": 34,
+      "regla_id": "R-SEC-MOT-01",
+      "codigos": ["0104-0105", "0107", "0112", "0201-0208", "1416-1418", "1421", "1501-1507", "1901-1911"],
+      "criterio_agrupacion": "Municipios seleccionados de Guatemala, El Progreso, Quiché, Baja Verapaz y Zacapa en valles secos interiores y con mayor déficit hídrico",
+      "estado_evidencia": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+      "revision_ecologica": "pendiente"
+    }
+  ]
+}

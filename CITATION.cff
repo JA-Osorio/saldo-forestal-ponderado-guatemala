@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: >-
-  Cite este compendio y mantenga la atribución a las fuentes primarias indicada
+  Cite este material suplementario y mantenga la atribución a las fuentes primarias indicada
   en cada producto.
 title: "Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala"
-type: software
+type: dataset
 version: 1.0.0
 date-released: 2026-08-26
 doi: "10.5281/zenodo.22119075"
@@ -15,24 +15,24 @@ authors:
     orcid: "https://orcid.org/0009-0001-4260-772X"
     affiliation: "IARNA, Universidad Rafael Landívar"
 abstract: >-
-  Compendio reproducible que reconstruye la pérdida bruta, la recuperación y
+  Material suplementario reproducible que reconstruye la pérdida bruta, la recuperación y
   la pérdida neta de cobertura forestal de Guatemala para 2016–2020, y calcula
-  el saldo forestal ponderado por recuperación mediante proporciones de
-  biomasa a veinte años. Documenta la asignación de 172 municipios como
-  correspondencia territorial experta codificada, mantiene 168 municipios
-  fuera del dominio y separa dos unidades lacustres. Incluye una completación
-  nacional conservadora, valoración económica indicativa, trayectorias
-  2026–2035 y una aproximación local de manglar.
+  el saldo forestal ponderado mediante proporciones de regeneración
+  equivalente, derivadas de la recuperación relativa de biomasa aérea a los
+  veinte años en sitios de referencia. Incluye la asignación documentada de
+  municipios a grupos territoriales de referencia: 172 municipios incluidos,
+  168 fuera del dominio y dos unidades lacustres separadas. Incluye una
+  completación nacional conservadora, valoración económica indicativa,
+  trayectorias 2026–2035 y una aproximación local de manglar.
 keywords:
   - Guatemala
   - deforestación bruta
   - pérdida neta
   - recuperación forestal
+  - proporción de regeneración equivalente
   - biomasa secundaria
-  - correspondencia territorial
+  - asignación territorial documentada
   - trazabilidad
   - valoración de servicios ecosistémicos
   - reproducibilidad
-license:
-  - CC-BY-4.0
-  - MIT
+license: CC-BY-4.0

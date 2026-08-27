@@ -1,6 +1,6 @@
-# Fuentes para una validación ecológica posterior
+# Fuentes para una validación ecológica complementaria
 
-Estas fuentes no son necesarias para repetir la correspondencia territorial experta codificada de la versión 1.0.0. Se registran para una evaluación posterior de las hectáreas recuperadas mediante variables ambientales observables.
+Estas fuentes no son necesarias para repetir la *asignación documentada de municipios a grupos territoriales de referencia*. Se registran para evaluar las superficies reportadas como ganancia de cobertura mediante variables ambientales observables.
 
 | Insumo | Fuente | Variable o uso |
 |---|---|---|
@@ -25,4 +25,4 @@ p_{mk}
 
 donde $R_m$ son las hectáreas de ganancia forestal 2016–2020 dentro del municipio y $E_k$ representa elevación, tipo de bosque u otra clase ambiental.
 
-Antes de ejecutar esa versión debe fijarse una regla de asignación: mayoría absoluta, pluralidad, mezcla ponderada o exclusión de municipios sin una clase dominante. Los umbrales no deben calibrarse para recuperar artificialmente el conteo histórico de 172 municipios.
+Antes de ejecutar esa validación debe fijarse una regla de asignación: mayoría absoluta, pluralidad, mezcla ponderada o exclusión de municipios sin una clase dominante. Los umbrales no deben calibrarse para reproducir artificialmente el conteo actual de 172 municipios.

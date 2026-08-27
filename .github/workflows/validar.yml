@@ -73,6 +73,6 @@ jobs:
             build/cuadernos/*.ipynb
             build/resultados_saldo_forestal_guatemala.zip
             05_verificacion/controles_calidad_saldo_forestal_guatemala_2016_2020.csv
-            05_verificacion/reproduccion_por_sitio_recuperacion_biomasa_20_anios.csv
+            05_verificacion/reproduccion_proporcion_regeneracion_equivalente_por_sitio.csv
             05_verificacion/manifiesto_archivos.csv
             05_verificacion/manifiesto_resultados.csv

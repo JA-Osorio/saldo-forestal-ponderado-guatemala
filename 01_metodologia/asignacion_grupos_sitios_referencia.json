@@ -1,0 +1,60 @@
+{
+  "version_metodo": "1.0.0",
+  "metodo": "asignacion_documentada_municipios_grupos_territoriales_referencia",
+  "variable_fuente": "relative_recovery_pct_20y",
+  "estado_validacion_ecologica": "pendiente",
+  "grupos_territoriales": [
+    {
+      "proporcion_grupo_id": "REG-PET-N",
+      "conteo_municipios": 9,
+      "etiqueta_sitios": "Quintana Roo y Yucatán, México",
+      "tratamiento_intervalo": "Intervalo directo de valores publicados por sitio",
+      "fundamento_vinculacion_sitios": "Plataforma kárstica, estacionalidad y bosques tropicales estacionales.",
+      "sitios_numericos": ["Quintana Roo", "Yucatán"],
+      "regla_intervalo": "minimo_maximo",
+      "redondeo": "ninguno"
+    },
+    {
+      "proporcion_grupo_id": "REG-PET-FTN",
+      "conteo_municipios": 32,
+      "etiqueta_sitios": "Chajul, México",
+      "tratamiento_intervalo": "Intervalo directo de valores publicados por sitio",
+      "fundamento_vinculacion_sitios": "Bosques húmedos de tierras bajas del ámbito de la Selva Maya.",
+      "sitios_numericos": ["Chajul"],
+      "regla_intervalo": "valor_unico",
+      "redondeo": "ninguno"
+    },
+    {
+      "proporcion_grupo_id": "REG-TB-HUM",
+      "conteo_municipios": 62,
+      "etiqueta_sitios": "Barro Colorado, Panamá, y Sarapiquí, Costa Rica",
+      "tratamiento_intervalo": "Intervalo directo de valores publicados por sitio",
+      "fundamento_vinculacion_sitios": "Bosques tropicales húmedos de baja altitud y alta disponibilidad de agua.",
+      "sitios_numericos": ["Barro Colorado Island", "Sarapiquí (Chazdon)", "Sarapiquí (Letcher)"],
+      "regla_intervalo": "minimo_maximo",
+      "redondeo": "ninguno"
+    },
+    {
+      "proporcion_grupo_id": "REG-ORI-EST",
+      "conteo_municipios": 35,
+      "etiqueta_sitios": "El Ocote, México, y Santa Rosa, Costa Rica",
+      "tratamiento_intervalo": "Intervalo directo de valores publicados por sitio",
+      "fundamento_vinculacion_sitios": "Bosques tropicales estacionales del oriente de Guatemala.",
+      "sitios_numericos": ["El Ocote 1", "El Ocote 2", "Santa Rosa"],
+      "regla_intervalo": "minimo_maximo",
+      "redondeo": "ninguno"
+    },
+    {
+      "proporcion_grupo_id": "REG-SEC-MOT",
+      "conteo_municipios": 34,
+      "etiqueta_sitios": "Sitios secos de Bolivia, Brasil y México",
+      "tratamiento_intervalo": "Intervalo de sitios secos con redondeo exterior a incrementos de 0.05",
+      "fundamento_vinculacion_sitios": "Mayor déficit hídrico y recuperación generalmente más lenta.",
+      "sitios_numericos": ["Salvatierra", "San Lorenzo", "Sao Paulo", "Chamela", "Nizanda"],
+      "sitios_contextuales_sin_porcentaje": ["Cajueiro", "Mata Seca", "Patos", "Palo Verde"],
+      "sitios_secos_asignados_a_otro_grupo": ["Quintana Roo", "Yucatán"],
+      "regla_intervalo": "minimo_maximo",
+      "redondeo": "minimo_hacia_abajo_y_maximo_hacia_arriba_a_incrementos_de_0.05"
+    }
+  ]
+}
