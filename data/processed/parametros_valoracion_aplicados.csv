@@ -1,9 +1,0 @@
-parametro,valor,unidad,anio_base,fuente,nota
-valor_documentado,21206.7000000000,GTQ millones por año,2019,Banco Mundial et al. (2021),Suma documentada en 21 estudios
-superficie_valorada,9403.0000000000,km2,2019,Banco Mundial et al. (2021),Aproximadamente 8 por ciento del territorio
-valor_unitario,22553.0000000000,GTQ por ha por año,2019,Banco Mundial et al. (2021),Transferencia indicativa de valor promedio
-factor_homologacion,1.3296021827,proporcion,2026,Banco de Guatemala (s. f.),Cociente entre los deflactores implicitos del PIB de 2026 escenario bajo y 2019
-valor_unitario_homologado,29986.5180275607,GTQ por ha por año,2026,Calculo propio,No constituye una nueva valoracion primaria
-tasa_descuento_central,0.0400000000,proporcion,,Supuesto del ejercicio,Sensibilidades de 0.02 y 0.05
-horizonte_servicios,25.0000000000,anios,,Supuesto del ejercicio,Horizonte analitico patrimonial
-horizonte_escenario,10.0000000000,anios,2026-2035,Supuesto del ejercicio,Diez cohortes anuales

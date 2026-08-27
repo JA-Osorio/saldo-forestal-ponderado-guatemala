@@ -1,0 +1,3 @@
+# Fuentes externas conservadas byte por byte en su codificación y terminadores originales
+00_trazabilidad_fuentes/fuentes_originales/base_biomasa_bosques_secundarios_neotropicales_dryad.csv -text -whitespace
+00_trazabilidad_fuentes/fuentes_originales/leame_base_biomasa_bosques_secundarios_neotropicales_dryad.txt -text -whitespace

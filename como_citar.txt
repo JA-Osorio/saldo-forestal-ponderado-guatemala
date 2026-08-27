@@ -1,0 +1,11 @@
+CÓMO CITAR
+
+Osorio, J. A. (2026). Deforestación bruta, recuperación y saldo forestal
+ponderado en Guatemala (Versión 1.0.0) [Compendio reproducible]. Instituto de
+Investigación en Ciencias Naturales y Tecnología, Universidad Rafael Landívar.
+https://doi.org/10.5281/zenodo.22119075
+
+Esta referencia identifica la versión pública 1.0.0. El compendio documenta la
+asignación municipal como correspondencia territorial experta codificada:
+172 municipios incluidos, 168 excluidos y dos unidades lacustres. Cada tabla y
+figura atribuye además los datos y publicaciones primarias empleados.

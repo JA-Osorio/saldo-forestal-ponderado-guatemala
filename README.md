@@ -3,18 +3,19 @@
 [![Datos: CC BY 4.0](https://img.shields.io/badge/datos-CC%20BY%204.0-1682FC.svg)](LICENSE)
 [![Código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-2EA44F.svg)](LICENSE_CODE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22119074.svg)](https://doi.org/10.5281/zenodo.22119074)
-[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JA-Osorio/saldo-forestal-ponderado-guatemala/blob/v1.0.0/notebooks/saldo_forestal_ponderado_guatemala.ipynb)
+[![Validación automática](https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/actions/workflows/validar.yml/badge.svg?branch=main)](https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/actions/workflows/validar.yml)
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JA-Osorio/saldo-forestal-ponderado-guatemala/blob/main/04_reproduccion_python/cuaderno_saldo_forestal_ponderado_guatemala_2016_2020.ipynb)
 
 Este repositorio publica un compendio reproducible sobre pérdida bruta,
 recuperación reportada y pérdida neta de cobertura forestal en Guatemala para
-2016–2020. Reconstruye los resultados institucionales y examina cuánto cambia
-el diagnóstico cuando la recuperación se pondera mediante proporciones de
-biomasa a veinte años.
+el periodo acumulado 2016–2020. También muestra cuánto cambia el diagnóstico
+cuando la recuperación se pondera mediante proporciones de biomasa aérea
+recuperada a veinte años.
 
-El paquete reúne datos documentados, resultados nacionales, departamentales y
-municipales, una nota metodológica en cuaderno, valoración económica
-indicativa, trayectorias 2026–2035 y una aplicación local para municipios con
-evidencia estructural de manglar.
+La correspondencia entre municipios y regiones de referencia se documenta
+como **correspondencia territorial experta codificada**. Es una clasificación
+analítica reproducible, no una regionalización oficial ni una validación
+ecológica de las hectáreas recuperadas.
 
 > [!WARNING]
 > Los datos de cobertura proceden de fuentes oficiales, pero la ponderación de
@@ -23,7 +24,7 @@ evidencia estructural de manglar.
 
 > [!NOTE]
 > La aplicación de manglar es una aproximación local y no se suma al saldo
-> ponderado nacional. Cada tabla y figura identifica sus fuentes primarias.
+> ponderado nacional. Cada producto identifica sus fuentes primarias.
 
 ## Autor
 
@@ -31,36 +32,48 @@ evidencia estructural de manglar.
 |---|---|---|
 | [Juan Alejandro Osorio](https://github.com/JA-Osorio) | IARNA, Universidad Rafael Landívar | [0009-0001-4260-772X](https://orcid.org/0009-0001-4260-772X) |
 
-## Qué contiene
+## Resultado verificado de la correspondencia territorial
 
-| Componente | Contenido | Acceso directo |
-|---|---|---|
-| Cuaderno metodológico | Fórmulas, resultados, figuras, tablas e interpretación | [`notebooks/saldo_forestal_ponderado_guatemala.ipynb`](notebooks/saldo_forestal_ponderado_guatemala.ipynb) |
-| Datos de entrada | Insumos preservados para reconstruir el análisis | [`data/raw/`](data/raw/) |
-| Resultados y diccionario | Tablas derivadas, variables y registro de fuentes | [`data/processed/`](data/processed/) y [`data/metadata/`](data/metadata/) |
-| Metodología | Definiciones, secuencia de cálculo, alcance y limitaciones | [`docs/metodologia.md`](docs/metodologia.md) |
-| Reproducción | Script maestro y módulos de lectura, cálculo y validación | [`scripts/run_pipeline.py`](scripts/run_pipeline.py) y [`src/saldo_forestal/`](src/saldo_forestal/) |
-| Verificación | Pruebas automatizadas, controles y manifiesto SHA-256 | [`tests/`](tests/) y [`manifiesto_archivos.txt`](manifiesto_archivos.txt) |
-| Paquete integral | Tablas, metadatos, fuentes y guía de citación en un ZIP | [`resultados_saldo_forestal_guatemala.zip`](outputs/downloads/resultados_saldo_forestal_guatemala.zip) |
+El universo contiene 342 unidades. Las listas explícitas de códigos asignan
+172 municipios a cinco regiones; una regla residual mantiene fuera del dominio
+los 168 municipios restantes y una regla independiente identifica las dos
+unidades lacustres.
+
+| Resultado | Unidades |
+|---|---:|
+| Municipios incluidos | 172 |
+| Municipios excluidos | 168 |
+| Unidades lacustres no municipales | 2 |
+| `REG-PET-N` | 9 |
+| `REG-PET-FTN` | 32 |
+| `REG-TB-HUM` | 62 |
+| `REG-ORI-EST` | 35 |
+| `REG-SEC-MOT` | 34 |
+
+Cada una de las 342 filas conserva el código territorial, la región, la regla
+aplicada, el criterio operativo, las fuentes y el estado de revisión. La
+clasificación y los intervalos se pueden regenerar sin leer los resultados
+finales congelados.
 
 ## Accesos rápidos
 
-| Objetivo | Recurso recomendado | Uso |
-|---|---|---|
-| Explorar sin instalar software | [Cuaderno en Google Colab](https://colab.research.google.com/github/JA-Osorio/saldo-forestal-ponderado-guatemala/blob/v1.0.0/notebooks/saldo_forestal_ponderado_guatemala.ipynb) | Recorrer la nota metodológica y consultar 33 resultados ejecutados |
-| Consultar el balance nacional | [`resultados_forestales_nacionales.csv`](outputs/tables/resultados_forestales_nacionales.csv) | Comparar pérdida bruta, recuperación, pérdida neta y saldo ponderado |
-| Analizar los 340 municipios | [`resultados_institucionales_municipales.csv`](outputs/tables/resultados_institucionales_municipales.csv) | Examinar la desagregación institucional completa |
-| Consultar el dominio de ponderación | [`resultados_recuperacion_municipales.csv`](outputs/tables/resultados_recuperacion_municipales.csv) | Revisar los 172 municipios elegibles y sus intervalos |
-| Revisar la aplicación de manglar | [`resumen_mangle_local.csv`](outputs/tables/resumen_mangle_local.csv) | Consultar la evidencia estructural local sin agregarla al resultado nacional |
-| Entender variables y unidades | [`diccionario_variables.csv`](data/metadata/diccionario_variables.csv) | Identificar definiciones, dominios y convenciones |
-| Auditar las fuentes | [`registro_fuentes.csv`](data/metadata/registro_fuentes.csv) | Revisar procedencia, uso, acceso y limitaciones |
-| Descargar todos los resultados | [`resultados_saldo_forestal_guatemala.zip`](outputs/downloads/resultados_saldo_forestal_guatemala.zip) | Obtener 35 archivos con manifiesto interno |
+| Objetivo | Recurso |
+|---|---|
+| Explorar el análisis | [Cuaderno en Google Colab](https://colab.research.google.com/github/JA-Osorio/saldo-forestal-ponderado-guatemala/blob/main/04_reproduccion_python/cuaderno_saldo_forestal_ponderado_guatemala_2016_2020.ipynb) |
+| Consultar el balance nacional | [`02_resultados_y_diccionario/resultados_forestales_guatemala_2016_2020.csv`](02_resultados_y_diccionario/resultados_forestales_guatemala_2016_2020.csv) |
+| Examinar los 340 municipios | [`02_resultados_y_diccionario/resultados_institucionales_municipios_guatemala_2016_2020.csv`](02_resultados_y_diccionario/resultados_institucionales_municipios_guatemala_2016_2020.csv) |
+| Revisar los 172 municipios incluidos | [`02_resultados_y_diccionario/resultados_recuperacion_ponderada_municipios_guatemala_2016_2020.csv`](02_resultados_y_diccionario/resultados_recuperacion_ponderada_municipios_guatemala_2016_2020.csv) |
+| Auditar la asignación territorial | [`00_trazabilidad_fuentes/trazabilidad_municipio_region_guatemala_2016_2020.csv`](00_trazabilidad_fuentes/trazabilidad_municipio_region_guatemala_2016_2020.csv) |
+| Auditar regiones, sitios e intervalos | [`00_trazabilidad_fuentes/trazabilidad_region_sitio_recuperacion_biomasa_20_anios.csv`](00_trazabilidad_fuentes/trazabilidad_region_sitio_recuperacion_biomasa_20_anios.csv) |
+| Leer el procedimiento | [`01_metodologia/procedimiento_correspondencia_territorial_experta_codificada.md`](01_metodologia/procedimiento_correspondencia_territorial_experta_codificada.md) |
+| Revisar la brecha ecológica | [`01_metodologia/brechas_validacion_ecologica.md`](01_metodologia/brechas_validacion_ecologica.md) |
+| Entender las variables | [`02_resultados_y_diccionario/diccionario_variables.csv`](02_resultados_y_diccionario/diccionario_variables.csv) |
+| Auditar las fuentes | [`00_trazabilidad_fuentes/registro_fuentes_saldo_forestal_guatemala.csv`](00_trazabilidad_fuentes/registro_fuentes_saldo_forestal_guatemala.csv) |
 
 ## Resultados principales
 
 La base 2016–2020 contiene 340 municipios y dos unidades lacustres no
-municipales. Los resultados acumulados, conservando los decimales de la
-fuente, son los siguientes:
+municipales. Los acumulados, conservando los decimales de la fuente, son:
 
 | Resultado acumulado 2016–2020 | Hectáreas |
 |---|---:|
@@ -69,101 +82,95 @@ fuente, son los siguientes:
 | Pérdida neta institucional | 52,736.43 |
 | Saldo ponderado nacional conservador | 116,473.23–123,988.03 |
 
-El dominio construido para aplicar las proporciones regionales comprende 172
-municipios. Dentro de ese dominio, el saldo ponderado es
+Dentro del dominio de 172 municipios, el saldo ponderado es
 99,593.41–107,108.21 ha, frente a una pérdida neta de 35,856.61 ha. Fuera del
 dominio se mantiene el cálculo institucional para evitar extrapolar las
-proporciones a ecosistemas incompatibles.
+proporciones a condiciones sin correspondencia documentada.
 
 La pérdida bruta de 244,394.57 ha corresponde al acumulado 2016–2020; no debe
 describirse como deforestación ocurrida únicamente en 2020.
 
-## Método y alcance
+## Método y fórmulas
 
-El cálculo comienza con el balance institucional de cobertura forestal:
-
-$$
-N_i = B_i - R_i
-$$
-
-Se lee como: *la pérdida neta es igual a la pérdida bruta menos la recuperación
-reportada*.
-
-| Símbolo | Significado | Unidad |
-|:---:|---|---:|
-| $i$ | Municipio o unidad territorial analizada | — |
-| $B_i$ | Pérdida bruta de cobertura forestal | ha |
-| $R_i$ | Recuperación reportada como ganancia de cobertura forestal | ha |
-| $N_i$ | Pérdida neta institucional | ha |
-| $\rho_i$ | Proporción utilizada para ponderar la recuperación | Adimensional, entre 0 y 1 |
-| $\rho_{20,i}$ | Proporción de biomasa recuperada a veinte años | Adimensional, entre 0 y 1 |
-| $H_i(\rho_i)$ | Saldo forestal ponderado | ha |
-
-Esta identidad expresa un balance de cobertura. Por sí sola no implica que una
-hectárea recuperada tenga de inmediato la misma biomasa que una hectárea de
-bosque perdida.
-
-Para incorporar esa diferencia, la recuperación se multiplica por una
-proporción antes de restarla:
+Para cada unidad territorial $i$, la identidad institucional es:
 
 $$
-H_i(\rho_i) = B_i - \rho_i R_i
+N_i=B_i-R_i,
 $$
 
-El término $\rho_i R_i$ es la parte de la recuperación que se descuenta de la
-pérdida bruta. La operación puede leerse como: *pérdida bruta menos
-recuperación ponderada*. Como $\rho_i$ no tiene unidad, el resultado continúa
-expresándose en hectáreas.
+donde $B_i$ es la pérdida bruta, $R_i$ la recuperación reportada y $N_i$ la
+pérdida neta institucional, todas en hectáreas. Un valor positivo representa
+pérdida.
 
-Los tres casos usados en el cuaderno son:
+La recuperación ponderada se calcula como:
 
-| Caso | Sustitución en la fórmula | Interpretación |
-|---|---:|---|
-| Sin descontar la recuperación | $H_i(0)=B_i$ | El saldo coincide con la pérdida bruta. |
-| Balance institucional | $H_i(1)=B_i-R_i=N_i$ | La recuperación se descuenta por completo. |
-| Recuperación ponderada a veinte años | $H_i(\rho_{20,i})=B_i-\rho_{20,i}R_i$ | Solo se descuenta la proporción de biomasa recuperada a veinte años. |
+$$
+H_i(\rho_i)=B_i-\rho_iR_i,
+$$
 
-Las proporciones $\rho_{20,i}$ se derivan de Poorter et al. (2016) y se aplican
-únicamente dentro del dominio documentado.
+donde $\rho_i$ es adimensional. Los tres casos publicados son
+$H_i(0)=B_i$, $H_i(1)=N_i$ y
+$H_i(\rho_{20,i})=B_i-\rho_{20,i}R_i$.
 
-La [nota metodológica](docs/metodologia.md) presenta las fórmulas de
-completación nacional, valoración, trayectorias y aplicación local de manglar.
-El [alcance y las limitaciones](docs/alcance_y_limitaciones.md) explican los
-supuestos y las fronteras de interpretación.
+Para un intervalo $[\rho_{20,i}^{\min},\rho_{20,i}^{\max}]$, los límites se
+orientan por la monotonía de $H_i$:
 
-## Estado de calidad
+$$
+H_i^{\inf}=B_i-\rho_{20,i}^{\max}R_i,
+\qquad
+H_i^{\sup}=B_i-\rho_{20,i}^{\min}R_i.
+$$
 
-[![Validación automática](https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/actions/workflows/validar.yml/badge.svg?branch=main)](https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala/actions/workflows/validar.yml)
-[![Python 3.11–3.13](https://img.shields.io/badge/Python-3.11%E2%80%933.13-3776AB.svg)](https://www.python.org/)
+Los valores regionales provienen de sitios publicados por
+Poorter et al. (2016) y del conjunto asociado en Dryad. Cuatro intervalos se
+obtienen directamente de los valores publicados por sitio. En `REG-SEC-MOT`,
+el mínimo y el máximo numéricos son 0.254 y 0.645; el redondeo exterior en
+incrementos de 0.05 produce exactamente $[0.25,0.65]$.
 
-| Componente verificado | Evidencia | Estado |
-|---|---:|---|
-| Tablas listas para reutilización | 28 | Reconstruidas por el pipeline |
-| Cuaderno público | 82 celdas y 33 resultados | Ejecutado sin errores |
-| Pruebas automatizadas | 58 | Aprobadas |
-| Inventario público | 112 huellas SHA-256 | Verificadas |
-| Paquete integral | 35 archivos | Manifiesto interno conforme |
+La completación nacional conserva $\rho=1$ fuera del dominio:
 
-La integración continua instala un entorno limpio, reconstruye los resultados,
-ejecuta el cuaderno con Jupyter y conserva la evidencia de la validación.
+$$
+H_{GT}^{\inf}
+=\sum_{i\in P}(B_i-\rho_{20,i}^{\max}R_i)
++\sum_{i\notin P}(B_i-R_i),
+$$
 
-## Cuaderno en Google Colab
+$$
+H_{GT}^{\sup}
+=\sum_{i\in P}(B_i-\rho_{20,i}^{\min}R_i)
++\sum_{i\notin P}(B_i-R_i),
+$$
 
-[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JA-Osorio/saldo-forestal-ponderado-guatemala/blob/v1.0.0/notebooks/saldo_forestal_ponderado_guatemala.ipynb)
+donde $P$ contiene los 172 municipios incluidos. La metodología completa está
+en
+[`01_metodologia/metodologia_saldo_forestal_guatemala_2016_2020.md`](01_metodologia/metodologia_saldo_forestal_guatemala_2016_2020.md)
+y sus límites de interpretación en
+[`01_metodologia/alcance_y_limitaciones.md`](01_metodologia/alcance_y_limitaciones.md).
 
-El cuaderno es simultáneamente una nota metodológica y una entrada didáctica a
-los resultados. Presenta las fórmulas utilizadas, 16 figuras, 16 tablas y un
-recuadro. El código permanece oculto en la lectura normal, pero está disponible
-para auditoría y reproducción.
+## Estado de trazabilidad
 
-El enlace de Colab está fijado a la etiqueta inmutable `v1.0.0`, de modo que la
-ejecución corresponde a la versión archivada en Zenodo.
+La reproducibilidad computacional está resuelta para la clasificación y los
+intervalos:
+
+- las listas de códigos y la regla residual están versionadas como `1.0.0`;
+- la partición es 172 municipios incluidos, 168 excluidos y dos unidades
+  lacustres;
+- los conteos regionales son 9/32/62/35/34;
+- trece porcentajes se reproducen desde el CSV público de Dryad a una decimal;
+- Quintana Roo se verifica en la tabla ampliada del artículo porque no aparece
+  en ese CSV;
+- las reglas y las fuentes regeneran la clasificación sin depender de los
+  archivos finales usados como referencia de regresión.
+
+La brecha pendiente es ecológica: todavía se requiere contrastar las hectáreas
+de recuperación 2016–2020 con elevación, tipo de bosque, estacionalidad y otras
+variables espaciales antes de afirmar comparabilidad empírica con los sitios de
+referencia. Los insumos y cruces propuestos están documentados en
+[`00_trazabilidad_fuentes/fuentes_validacion_ecologica.md`](00_trazabilidad_fuentes/fuentes_validacion_ecologica.md).
 
 ## Reproducir el análisis
 
 Requiere Python 3.11, 3.12 o 3.13.
-
-### Linux, macOS o Git Bash
 
 ```bash
 git clone https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala.git
@@ -172,69 +179,51 @@ python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
-python scripts/run_pipeline.py
+python 04_reproduccion_python/reproducir_saldo_forestal_guatemala.py
 python -m pytest -q
 ```
 
-### Windows
-
-```bat
-git clone https://github.com/JA-Osorio/saldo-forestal-ponderado-guatemala.git
-cd saldo-forestal-ponderado-guatemala
-py -3 -m venv .venv
-.venv\Scripts\activate
-python -m pip install --upgrade pip
-python -m pip install -e ".[dev]"
-python scripts\run_pipeline.py
-python -m pytest -q
-```
-
-La ejecución genera las tablas de `data/processed/` y `outputs/tables/`,
-registra los parámetros monetarios aplicados y reconstruye el ZIP integral.
-Las instrucciones ampliadas están en [`docs/reproduccion.md`](docs/reproduccion.md).
+En Windows, active el entorno con `.venv\Scripts\activate`. Las instrucciones
+ampliadas están en
+[`04_reproduccion_python/instrucciones_reproduccion_python.md`](04_reproduccion_python/instrucciones_reproduccion_python.md).
+La ejecución genera el paquete determinista en
+`build/resultados_saldo_forestal_guatemala.zip`.
 
 ## Estructura del repositorio
 
 ```text
 .
-├── data/
-│   ├── raw/                   # insumos preservados
-│   ├── processed/             # productos derivados
-│   └── metadata/              # fuentes y diccionario
-├── docs/                      # método, alcance y reproducción
-├── notebooks/                 # cuaderno público ejecutado
-├── outputs/
-│   ├── tables/                # tablas listas para reutilización
-│   └── downloads/             # paquete integral y manifiesto
-├── scripts/                   # puntos de ejecución y construcción
-├── src/saldo_forestal/        # módulos analíticos
-└── tests/                     # controles automatizados
+├── 00_trazabilidad_fuentes/       # insumos, fuentes y bitácoras
+├── 01_metodologia/                # método, reglas y parámetros
+├── 02_resultados_y_diccionario/   # tablas publicadas y diccionario
+├── 04_reproduccion_python/        # cuaderno y cadena reproducible
+├── 05_verificacion/               # pruebas, controles y manifiestos
+├── CITATION.cff
+├── codemeta.json
+└── como_citar.txt
 ```
 
-Los productos de `data/processed/` y `outputs/` se reconstruyen a partir de
-`data/raw/`. El [`manifiesto_archivos.txt`](manifiesto_archivos.txt) registra
-el tamaño y la huella SHA-256 de cada artefacto público.
+Los nombres de los archivos describen contenido, territorio y periodo; los
+prefijos numéricos expresan el orden de lectura y auditoría. Los manifiestos de
+`05_verificacion/` registran tamaño y huella SHA-256 de los artefactos públicos.
 
-## Fuentes y trazabilidad
+## Fuentes y límites de uso
 
-Las fuentes principales son el INAB y el CONAP para la dinámica de cobertura
-forestal 2016–2020; Poorter et al. (2016) y el depósito asociado en Dryad para
-las proporciones de recuperación de biomasa; el INAB para la evidencia de
-parcelas permanentes de manglar; y fuentes oficiales y académicas para la
-valoración y los escenarios.
+Las fuentes principales son INAB y CONAP para la dinámica de cobertura
+forestal 2016–2020; Poorter et al. (2016) y Dryad para las proporciones de
+recuperación de biomasa; INAB, ICC y CONAP para la evidencia de parcelas de
+manglar; y fuentes oficiales y académicas para valoración y escenarios.
 
-El [`registro_fuentes.csv`](data/metadata/registro_fuentes.csv) documenta URL,
-fecha de acceso, uso analítico, archivos relacionados y limitaciones. La guía
-de [`fuentes`](docs/fuentes.md) desarrolla la atribución y las condiciones de
-reutilización.
-
-## Limitaciones
+El
+[`00_trazabilidad_fuentes/registro_fuentes_saldo_forestal_guatemala.csv`](00_trazabilidad_fuentes/registro_fuentes_saldo_forestal_guatemala.csv)
+documenta procedencia, acceso, uso analítico, archivos relacionados,
+limitaciones y condiciones de reutilización.
 
 - Las proporciones a veinte años no describen la edad de la recuperación
   reportada para 2016–2020.
-- La completación nacional aplica $\rho_{20}$ solo dentro de 172 municipios
-  elegibles y mantiene $\rho=1$ fuera del dominio.
-- Los flujos municipales usados en la aplicación de manglar no son cambios
+- Las cinco regiones son construcciones analíticas y no divisiones
+  administrativas u oficiales.
+- Los flujos municipales usados en la aproximación de manglar no son cambios
   exclusivos de cobertura de manglar.
 - La recuperación ponderada y la aproximación local de manglar se comparan,
   pero no se suman.
@@ -246,20 +235,22 @@ reutilización.
 ## Citación
 
 Use la opción *Cite this repository* de GitHub o consulte
-[`CITATION.cff`](CITATION.cff). La referencia de la versión archivada es:
+[`CITATION.cff`](CITATION.cff). La referencia de la publicación archivada es:
 
 > Osorio, J. A. (2026). *Deforestación bruta, recuperación y saldo forestal
-> ponderado en Guatemala* (Versión 1.0.0) [Cuaderno reproducible]. Instituto de
-> Investigación en Ciencias Naturales y Tecnología, Universidad Rafael
+> ponderado en Guatemala* (Versión 1.0.0) [Compendio reproducible]. Instituto
+> de Investigación en Ciencias Naturales y Tecnología, Universidad Rafael
 > Landívar. https://doi.org/10.5281/zenodo.22119075
 
 El DOI [`10.5281/zenodo.22119075`](https://doi.org/10.5281/zenodo.22119075)
 identifica la versión 1.0.0. El DOI conceptual
 [`10.5281/zenodo.22119074`](https://doi.org/10.5281/zenodo.22119074) dirige a
-la versión más reciente. La cita dentro del texto es *(Osorio, 2026)*.
+la versión más reciente. El botón de Colab abre la organización vigente de la
+rama `main`; la cita identifica la publicación archivada.
 
-Al reutilizar una tabla, figura o conjunto de resultados, conserve esta
-referencia y la atribución a las fuentes primarias indicada en la salida.
+Al reutilizar una tabla, figura o conjunto de resultados, conserve la
+referencia del compendio y la atribución a las fuentes primarias indicada en el
+producto correspondiente.
 
 ## Licencias
 

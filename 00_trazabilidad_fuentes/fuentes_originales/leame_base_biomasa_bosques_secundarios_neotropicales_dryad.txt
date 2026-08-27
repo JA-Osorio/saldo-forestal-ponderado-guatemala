@@ -1,0 +1,22 @@
+Poorter et al. Aboveground biomass of Neotropical secondary forests database. 
+
+"Citation for the database: Poorter L, Bongers F, Aide TM, Almeyda Zambrano AM, Balvanera P, Becknell JM, Boukili V, Brancalion PHS, Broadbent EN, Chazdon RL, Craven D, de Almeida-Cortez JS, Cabral GAL, de Jong BHJ, Denslow JS, Dent DH, DeWalt SJ, Dupuy JM, Durán SM, Espírito-Santo MM, Fandino MC, César RG, Hall JS, Hernandez-Stefanoni JL, Jakovac CC, Junqueira AB, Kennard D, Letcher SG, Licona J, Lohbeck M, Marín-Spiotta E, Martínez-Ramos M, Massoca P, Meave JA, Mesquita R, Mora F, Muñoz R, Muscarella R, Nunes YRF, Ochoa-Gaona S, de Oliveira AA, Orihuela-Belmonte E, Peña-Claros M, Pérez-García EA, Piotto D, Powers JS, Rodríguez-Velázquez J, Romero-Pérez IE, Ruíz J, Saldarriaga JG, Sanchez-Azofeifa A, Schwartz NB, Steininger MK, Swenson NG, Toledo M, Uriarte M, van Breugel M, van der Wal H, Veloso MDM, Vester HFM, Vicentini A, Vieira ICG, Vizcarra Bentos T, Williamson GB, Rozendaal DMA Data from: Biomass resilience of Neotropical secondary forests. Nature http://dx.doi.org/10.5061/dryad.82vr4 "
+
+This database is the product of the 2ndFOR collaborative research network on secondary forests. 
+
+"The database contains aboveground biomass data (in Mg ha-1) for 1334 secondary forest plots differing in time since abandonment. The plots belong to different chonosequence studies. For a description of the database, see Poorter et al. 2016. Biomass resilience of Neotropical secondary forests. Nature doi:10.1038/nature16512."
+
+Conditions of use of the database: Cite both the database and the original paper.
+
+"We encourage the users of this database to contact the site principal investigators/contact persons before using the data in future studies, and to provide them with the opportunity to be involved (if they are interested in doing so). Contact information for the principal investigators is provided in the paper."
+
+
+
+"The file ""Aboveground biomass 2ndFOR.csv"" contains the following variables:"
+Chronosequence: name of the chronosequence site
+"Age: age of the plot (in years), ""OG"" indicates old-growth forest of unknown age"
+AGB: aboveground biomass of the plot in (in Mg/ha)
+"Reference: a citation for the chronosequence study, if available"
+PI/contact person: name(s) of the principal investigator(s) or contact person(s) for the chronosequence study.
+
+Note that plots with AGB >500 Mg/ha and the plots of the Marqués de Comillas site were excluded from analyses in the Poorter et al. 2016 paper.

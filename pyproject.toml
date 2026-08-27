@@ -36,12 +36,12 @@ dev = [
 ]
 
 [tool.setuptools]
-package-dir = { "" = "src" }
+package-dir = { "" = "04_reproduccion_python/src" }
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["04_reproduccion_python/src"]
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-markers --strict-config"
-testpaths = ["tests"]
+testpaths = ["05_verificacion/tests"]
 xfail_strict = true
