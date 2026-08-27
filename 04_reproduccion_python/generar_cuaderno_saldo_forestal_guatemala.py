@@ -76,9 +76,9 @@ INTERPRETACIONES = {
         "al ponderador aplicado."
     ),
     "Tabla 4": (
-        "La correspondencia territorial queda explícita: 172 municipios se asignan mediante cinco "
-        "listas de códigos, 168 siguen la regla residual y dos unidades lacustres permanecen fuera "
-        "del universo municipal."
+        "Los cinco primeros grupos describen el fundamento territorial de las listas que reciben "
+        "una proporción a veinte años. Los 168 municipios residuales no forman una sexta región "
+        "ecológica: lo único comprobado es que sus códigos no aparecen en esas listas."
     ),
     "Figura 5": (
         "Los intervalos se superponen, pero no son idénticos. La amplitud mostrada se traslada al "
@@ -342,46 +342,40 @@ def construir_cuaderno():
 
     celdas = [
         _texto(
-            r"""
-            # Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala
-
-            *Resultados nacionales y municipales, 2016–2020*
-
-            Juan Alejandro Osorio · IARNA, Universidad Rafael Landívar
-
-            Este cuaderno examina qué cambia cuando la recuperación reportada deja de descontarse
-            de inmediato y en proporción uno a uno de la pérdida bruta. El punto de partida es la
-            información oficial de la dinámica de cobertura forestal 2016–2020 (INAB & CONAP, 2023).
-
-            El recorrido reproduce primero el reporte institucional de pérdida bruta ($B$),
-            recuperación bruta ($R$) y pérdida neta ($N=B-R$). Después introduce una
-            *proporción de recuperación de biomasa a veinte años*, $\rho_{20}$, derivada de
-            evidencia científica publicada, y calcula el saldo forestal ponderado
-
-            $$H_i(\rho)=B_i-\rho_iR_i.$$
-
-            Los resultados son una aproximación cuantitativa bajo limitaciones explícitas de
-            datos. No constituyen una cuenta SCAE-CE completa, una medición contemporánea de
-            biomasa ni una equivalencia ecológica entre pérdida y recuperación.
+            """
+            <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;max-width:960px;padding:28px 0 34px;border-top:4px solid #146c7a;border-bottom:1px solid #dfe6e9">
+              <div style="color:#146c7a;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase">Cuaderno reproducible y nota metodológica</div>
+              <h1 style="color:#18242a;font-size:36px;line-height:1.16;letter-spacing:-.025em;font-weight:650;margin:15px 0 17px">Deforestación bruta, recuperación y saldo forestal ponderado en Guatemala</h1>
+              <div style="color:#58666d;font-size:16px;line-height:1.55;max-width:850px">Resultados nacionales y municipales para 2016–2020, con una explicación paso a paso de la ponderación de la recuperación.</div>
+              <div style="margin-top:26px;color:#334148;font-size:14px"><em>Autor:</em> Juan Alejandro Osorio · IARNA, Universidad Rafael Landívar</div>
+            </div>
             """,
             etiquetas=("remove-input",),
         ),
         _texto(
             """
-            ## Cómo leer el cuaderno
+            Este cuaderno responde una pregunta: ¿cuánto cambia la lectura de la pérdida
+            forestal cuando la ganancia de cobertura no se descuenta como si hubiera recuperado
+            inmediatamente toda la biomasa del bosque perdido? El punto de partida es la
+            dinámica oficial de cobertura forestal 2016–2020 (INAB y CONAP, 2023).
 
-            Salvo indicación expresa, las magnitudes corresponden al período de análisis
-            2016–2020. Una cifra positiva representa pérdida y una negativa, ganancia de cobertura.
-            El dominio de aplicación comprende 172 municipios asignados mediante
-            *correspondencia territorial experta codificada*; los otros 168 municipios siguen una regla residual.
-            Las dos unidades lacustres se conservan en la base como unidades no municipales. El
-            total nacional se construye después mediante una completación conservadora.
+            La lectura sigue seis preguntas:
 
-            La aproximación de manglar es local y utiliza evidencia estructural de campo. No se
-            suma a la recuperación ponderada. Los costos de desastres y degradación se mantienen
-            como contexto no aditivo. El código puede desplegarse, aunque se oculta de inicio para
-            privilegiar la lectura. Las fórmulas permiten seguir cada cálculo y, después de cada
-            resultado, una celda Markdown reúne la nota, la fuente y su interpretación.
+            1. ¿Qué registran la pérdida bruta, la ganancia de cobertura y la pérdida neta?
+            2. ¿Por qué una ganancia de cobertura no equivale de inmediato a la biomasa perdida?
+            3. ¿Cómo se decide qué municipios reciben una proporción a veinte años?
+            4. ¿Cómo se construyen esas proporciones a partir de sitios científicos?
+            5. ¿Cuánto cambia el resultado municipal y nacional?
+            6. ¿Qué añaden la valoración, las trayectorias y la aplicación local de manglar?
+
+            Salvo indicación expresa, las cifras son acumuladas para 2016–2020. Un resultado
+            positivo representa pérdida y uno negativo, ganancia de cobertura. El código está
+            oculto de inicio, pero puede desplegarse. Cada tabla ofrece el CSV completo y cada
+            salida está acompañada por su nota, fuente e interpretación.
+
+            > *Alcance.* La cobertura de origen es oficial. La ponderación, la completación
+            > nacional, la valoración y las trayectorias son cálculos analíticos. La aplicación
+            > de manglar es local y no se suma al resultado nacional.
             """
         ),
         _codigo(
@@ -448,7 +442,7 @@ def construir_cuaderno():
         ),
         _texto(
             r"""
-            ## 1. Antecedente descriptivo del problema de la deforestación neta
+            ## 1. Por qué la pérdida bruta y la pérdida neta pueden contar historias distintas
 
             La identidad institucional $N=B-R$ es aritméticamente correcta. Su interpretación
             como desempeño forestal descuenta toda recuperación de la pérdida en el mismo período.
@@ -503,18 +497,27 @@ def construir_cuaderno():
         ),
         _texto(
             r"""
-            ## 2. Reproducción del resultado institucional 2016–2020
+            ## 2. Qué reporta la fuente oficial para 2016–2020
 
             Para las 342 unidades de la base oficial —340 municipios y dos unidades lacustres
             documentadas por el Instituto Nacional de Bosques (INAB) y el Consejo Nacional de
-            Áreas Protegidas (CONAP) (2023), con detalle municipal en INAB (2023b)— se reproduce
-            la identidad:
+            Áreas Protegidas (CONAP) (2023), con detalle municipal en INAB (2023b)— se distinguen
+            tres magnitudes:
+
+            | Símbolo | Nombre | Qué representa | Unidad |
+            |---|---|---|---|
+            | $B_i$ | Pérdida bruta | Cobertura registrada como pérdida en la unidad $i$ | ha |
+            | $R_i$ | Ganancia de cobertura | Cobertura registrada como recuperación en la fuente | ha |
+            | $N_i$ | Pérdida neta oficial | Diferencia entre las dos magnitudes anteriores | ha |
+
+            El cálculo oficial resta toda la ganancia de cobertura de la pérdida bruta:
 
             $$N_i=B_i-R_i.$$
 
-            $R_i$ es la recuperación reportada, denominada *ganancia de cobertura forestal* en
-            la fuente. Se obtiene al comparar las coberturas de 2016 y 2020; no informa la edad,
-            biomasa, origen o permanencia de esa ganancia.
+            Si una unidad registra 100 ha de pérdida y 60 ha de ganancia, su pérdida neta es
+            40 ha. Si la ganancia supera la pérdida, el resultado es negativo y se lee como
+            ganancia neta. La variable $R_i$ no informa la edad, la biomasa, el origen ni la
+            permanencia de la nueva cobertura.
 
             El total nacional acumulado del período es 244,395 ha de pérdida bruta, 191,658 ha
             de recuperación y 52,736 ha de pérdida neta. Esta sección muestra primero el
@@ -740,44 +743,36 @@ def construir_cuaderno():
         ),
         _texto(
             r"""
-            ## 3. Correspondencia territorial e intervalos de recuperación a veinte años
+            ## 3. Cómo se decide dónde ponderar la recuperación
 
-            La clasificación se reconstruye como una *correspondencia territorial experta codificada*.
-            La llave es el código municipal canónico de cuatro dígitos; los nombres
-            se conservan como etiquetas. Cinco listas explícitas, disjuntas y versionadas asignan
-            172 municipios a regiones analíticas. Los 168 códigos municipales que no aparecen en
-            esas listas siguen una regla residual y quedan fuera del dominio de aplicación. Los
-            dos registros lacustres, sin código municipal, se identifican como unidades no
-            municipales. La partición completa es, por tanto, $172+168+2=342$ unidades.
+            La base tiene 342 registros: 340 municipios y dos lagos tratados como unidades no
+            municipales. La ponderación se aplica a 172 municipios para los que se documentó una
+            *correspondencia territorial experta codificada*. Los otros 168 municipios conservan
+            el cálculo oficial.
 
-            Las listas producen exactamente 9 municipios en `REG-PET-N`, 32 en `REG-PET-FTN`,
-            62 en `REG-TB-HUM`, 35 en `REG-ORI-EST` y 34 en `REG-SEC-MOT`. Cada región se vincula
-            después con sitios científicos de referencia y con un intervalo de recuperación
-            relativa de biomasa a veinte años (Poorter et al., 2016, 2017). Esta transferencia
-            codificada es reproducible; no constituye por sí sola una validación ecológica de las
-            hectáreas recuperadas en cada municipio.
+            ### 3.1 Regla de asignación
 
-            Para cuatro regiones, los extremos de $\rho_{20}$ son el mínimo y el máximo de los
-            valores publicados para los sitios seleccionados. En `REG-SEC-MOT`, los sitios con
-            valor numérico producen $[0.254,0.645]$ y se aplica redondeo exterior a incrementos
-            de 0.05:
+            La decisión usa el código municipal canónico de cuatro dígitos:
 
-            $$\left[0.05\left\lfloor\frac{0.254}{0.05}\right\rfloor,
-            0.05\left\lceil\frac{0.645}{0.05}\right\rceil\right]=[0.25,0.65].$$
+            1. Si el registro no tiene código municipal, se identifica como unidad lacustre y
+               queda fuera del cálculo municipal.
+            2. Si el código aparece en una de cinco listas explícitas y disjuntas, el municipio
+               se asigna al grupo correspondiente y recibe su intervalo regional.
+            3. Si el código no aparece en ninguna lista, queda fuera del dominio de ponderación y
+               conserva la pérdida neta oficial.
 
-            Los intervalos se incorporan al saldo forestal ponderado mediante
+            Esta es una regla por pertenencia a listas. La computadora no clasifica los
+            municipios mediante umbrales de altitud, precipitación o tipo de bosque. Las
+            características territoriales de la tabla siguiente explican qué busca representar
+            cada grupo; todavía no demuestran homogeneidad ecológica municipio por municipio.
 
-            $$H_i(\rho_{20})=B_i-\rho_{20,i}R_i.$$
+            Tres casos permiten seguir la decisión:
 
-            Como $R_i\geq0$, el límite inferior de $H$ usa el límite superior de $\rho_{20}$,
-            y el límite superior de $H$ usa el límite inferior de $\rho_{20}$:
-
-            $$H_i^{\mathrm{inf}}=B_i-\rho_{20,i}^{\mathrm{sup}}R_i,$$
-
-            $$H_i^{\mathrm{sup}}=B_i-\rho_{20,i}^{\mathrm{inf}}R_i.$$
-
-            $H$ es un *saldo forestal ponderado por recuperación*, no una medición contemporánea
-            de biomasa ni una corrección oficial de cobertura.
+            | Registro | Resultado de la regla |
+            |---|---|
+            | San José del Golfo (`0104`) | El código aparece en la lista de valles secos; recibe su intervalo regional |
+            | Guatemala (`0101`) | El código no aparece en las cinco listas; queda fuera del dominio |
+            | Lago de Amatitlán | No tiene código municipal; se conserva como unidad no municipal |
             """
         ),
         _codigo(
@@ -796,25 +791,6 @@ def construir_cuaderno():
                 .rename("unidades")
                 .reset_index()
             )
-            resumen_trazabilidad = resumen_trazabilidad.merge(
-                catalogo[["proporcion_region_id", "rho20_min", "rho20_max"]],
-                left_on="region_id",
-                right_on="proporcion_region_id",
-                how="left",
-            )
-            resumen_trazabilidad["Intervalo ρ₂₀"] = resumen_trazabilidad.apply(
-                lambda f: (
-                    f"[{f.rho20_min:.3f}, {f.rho20_max:.3f}]"
-                    if pd.notna(f.rho20_min)
-                    else "No aplica"
-                ),
-                axis=1,
-            )
-            resumen_trazabilidad["Ruta aplicada"] = resumen_trazabilidad["tipo_decision"].map({
-                "lista_explicita": "Lista explícita",
-                "regla_residual": "Regla residual",
-                "unidad_no_municipal": "Unidad no municipal",
-            })
             orden_regiones = [
                 "REG-PET-N", "REG-PET-FTN", "REG-TB-HUM", "REG-ORI-EST",
                 "REG-SEC-MOT", "REG-ALT-MON", "UNIDAD-NO-MUN",
@@ -822,10 +798,48 @@ def construir_cuaderno():
             resumen_trazabilidad["region_id"] = pd.Categorical(
                 resumen_trazabilidad["region_id"], categories=orden_regiones, ordered=True
             )
+            resumen_trazabilidad = resumen_trazabilidad.sort_values("region_id")
+            nombres_lectura = {
+                "REG-PET-N": "Norte y centro de Petén (REG-PET-N)",
+                "REG-PET-FTN": "Sur de Petén y vertiente norte (REG-PET-FTN)",
+                "REG-TB-HUM": "Tierras bajas húmedas del Caribe y del Pacífico (REG-TB-HUM)",
+                "REG-ORI-EST": "Bosques estacionales de Oriente (REG-ORI-EST)",
+                "REG-SEC-MOT": "Valles secos interiores, Motagua y Salamá–Chixoy (REG-SEC-MOT)",
+                "REG-ALT-MON": "Fuera del dominio: otros municipios (REG-ALT-MON)",
+                "UNIDAD-NO-MUN": "Lagos sin código municipal (UNIDAD-NO-MUN)",
+            }
+            fundamentos = dict(zip(
+                catalogo["proporcion_region_id"], catalogo["justificacion"]
+            ))
+            fundamentos.update({
+                "REG-ALT-MON": (
+                    "Códigos no incluidos en las cinco listas; no hay una característica "
+                    "ecológica común verificada"
+                ),
+                "UNIDAD-NO-MUN": "Lago de Amatitlán y Lago de Atitlán, registros sin código municipal",
+            })
+            tratamientos = {
+                "lista_explicita": "Lista explícita; recibe intervalo regional",
+                "regla_residual": "Regla residual; conserva el cálculo oficial",
+                "unidad_no_municipal": "Fuera del cálculo municipal",
+            }
+            resumen_trazabilidad["Grupo territorial (identificador)"] = (
+                resumen_trazabilidad["region_id"].astype(str).map(nombres_lectura)
+            )
+            resumen_trazabilidad["Fundamento territorial documentado"] = (
+                resumen_trazabilidad["region_id"].astype(str).map(fundamentos)
+            )
+            resumen_trazabilidad["Tratamiento"] = resumen_trazabilidad["tipo_decision"].map(
+                tratamientos
+            )
             tabla_trazabilidad = resumen_trazabilidad[[
-                "region_id", "Ruta aplicada", "unidades", "Intervalo ρ₂₀"
-            ]].rename(columns={"region_id": "Región o salida", "unidades": "Unidades"})
-            tabla_trazabilidad = tabla_trazabilidad.sort_values("Región o salida")
+                "Grupo territorial (identificador)",
+                "Fundamento territorial documentado",
+                "Tratamiento",
+                "unidades",
+            ]].rename(columns={"unidades": "n"})
+            tabla_trazabilidad["n"] = tabla_trazabilidad["n"].astype(int)
+            tabla_trazabilidad = tabla_trazabilidad.reset_index(drop=True)
             """,
             titulo_colab="Preparar trazabilidad territorial compacta",
         ),
@@ -833,10 +847,10 @@ def construir_cuaderno():
             """
             mostrar_tabla(
                 tabla_trazabilidad,
-                "Tabla 4. Trazabilidad compacta de la correspondencia territorial",
-                "Las cinco listas explícitas contienen 172 municipios; la regla residual, 168; y las unidades no municipales, dos. El CSV conserva la regla, el criterio operativo y la fuente para las 342 unidades.",
-                "INAB y CONAP (2023), INAB (2023b) y Poorter et al. (2016, 2017); cálculos del autor.",
-                decimales=3,
+                "Tabla 4. Cómo se clasifican las unidades territoriales del análisis",
+                "Los primeros cinco grupos reciben una proporción regional. El sexto es un complemento residual, no una región ecológica; la última fila no es municipal. La descarga conserva la regla exacta para las 342 unidades.",
+                "Universo territorial: INAB y CONAP (2023) e INAB (2023b); correspondencia territorial experta codificada y cálculos del autor.",
+                decimales=0,
                 max_filas=None,
                 archivo="trazabilidad_municipio_region_guatemala_2016_2020.csv",
                 descarga=trazabilidad_territorial,
@@ -844,6 +858,75 @@ def construir_cuaderno():
             """,
             titulo_colab="Mostrar Tabla 5",
             resultado=True,
+        ),
+        _texto(
+            r"""
+            <details>
+            <summary><em>Consultar las listas exactas de códigos municipales</em></summary>
+
+            La pertenencia se ejecuta con estas listas, no con una búsqueda por nombre:
+
+            | Grupo territorial | Regla exacta de pertenencia |
+            |---|---|
+            | Norte y centro de Petén | `1701–1707, 1711, 1713` |
+            | Sur de Petén y vertiente norte | `1305, 1307, 1318, 1322, 1324–1326, 1331–1333, 1405, 1411, 1413, 1415, 1419–1420, 1607–1617, 1708–1710, 1712, 1714` |
+            | Tierras bajas húmedas del Caribe y del Pacífico | `0408, 0412, 0501–0510, 0513–0514, 0607–0611, 0917, 0919–0922, 1001–1002, 1004–1007, 1010, 1012–1014, 1020–1021, 1101–1109, 1212–1222, 1230, 1801–1805` |
+            | Bosques estacionales de Oriente | `2001–2011, 2101–2107, 2201–2217` |
+            | Valles secos interiores, Motagua y Salamá–Chixoy | `0104–0105, 0107, 0112, 0201–0208, 1416–1418, 1421, 1501–1507, 1901–1911` |
+
+            Cualquier otro código municipal sigue la regla residual. La descarga de la Tabla 4
+            permite buscar cada municipio por su código y conserva el criterio y la fuente.
+
+            </details>
+
+            ### 3.2 De los grupos territoriales a las proporciones de recuperación
+
+            Cada uno de los cinco grupos se vincula con sitios científicos publicados por
+            Poorter et al. (2016). La *proporción de recuperación de biomasa a veinte años*,
+            $\rho_{20}$, compara la biomasa aérea recuperada por esos sitios con la biomasa del
+            bosque de referencia.
+
+            | Recuperación reconocida | Lectura del cálculo |
+            |---:|---|
+            | 0 % | No se descuenta la ganancia de cobertura; se conserva la pérdida bruta |
+            | 100 % | Se descuenta toda la ganancia; se reproduce la pérdida neta oficial |
+            | Proporción a veinte años | Se descuenta solo la parte indicada por los sitios de referencia |
+
+            Una proporción de 60 % significa que el sitio de referencia recuperó
+            aproximadamente 60 % de la biomasa aérea del bosque de referencia a los veinte
+            años. No significa que 60 % de las hectáreas municipales se haya recuperado ni
+            expresa una probabilidad.
+
+            El saldo ponderado se calcula como:
+
+            $$
+            \text{saldo ponderado}
+            =\text{pérdida bruta}
+            -(\text{proporción a veinte años}\times\text{ganancia de cobertura}).
+            $$
+
+            En símbolos, $H_i=B_i-\rho_{20,i}R_i$. El intervalo se entiende mejor con un
+            municipio concreto:
+
+            | Paso en San Andrés Villa Seca (`1106`) | Resultado |
+            |---|---:|
+            | Pérdida bruta | 793.8 ha |
+            | Ganancia de cobertura reportada | 1,072.2 ha |
+            | Pérdida neta oficial | −278.4 ha |
+            | Grupo territorial | Tierras bajas húmedas |
+            | Proporción a veinte años | 59.3–76.6 % |
+            | Ganancia reconocida por el cálculo | 635.8–821.3 ha |
+            | Saldo ponderado | −27.5 a 158.0 ha |
+
+            Con 76.6 % se descuenta más recuperación y se obtiene el extremo menor del saldo;
+            con 59.3 % se descuenta menos y se obtiene el extremo mayor. Como el intervalo cruza
+            cero, el diagnóstico queda indeterminado. Es un ejemplo pedagógico, no un municipio
+            representativo.
+
+            Para los sitios secos, los valores observados de 25.4–64.5 % se redondean hacia
+            afuera a 25–65 %. La operación exacta y las listas completas de códigos permanecen en
+            el anexo metodológico y en los archivos descargables.
+            """
         ),
         _codigo(
             """
@@ -875,7 +958,7 @@ def construir_cuaderno():
             fig_proporciones.update_yaxes(title=None)
             mostrar_figura(
                 fig_proporciones,
-                "Figura 5. Intervalos de recuperación de biomasa a veinte años por región de referencia",
+                "Figura 5. Proporciones de recuperación aplicadas a los cinco grupos territoriales",
                 "El punto es la proporción central y la línea su intervalo. Son ponderadores transferidos, no mediciones de edad o biomasa municipal.",
                 FUENTE_RECUPERACION,
                 alto=650,
@@ -1245,17 +1328,22 @@ def construir_cuaderno():
         ),
         _texto(
             r"""
-            ## 4. Completación conservadora del resultado nacional
+            ## 4. Cómo se obtiene el resultado nacional sin extrapolar
 
-            Para no extrapolar las proporciones regionales a ecosistemas sin un puente defendible, la
-            completación nacional aplica $\rho_{20}$ únicamente dentro del dominio de 172
-            municipios. Fuera de él conserva el cálculo institucional $\rho=1$:
+            Las proporciones a veinte años solo se aplican donde existe una correspondencia
+            territorial documentada. El total nacional combina dos componentes:
 
-            $$H_{GT}=\sum_{i\in P}(B_i-\rho_{20,i}R_i)+\sum_{i\notin P}(B_i-R_i).$$
+            | Componente | Municipios | Tratamiento | Resultado |
+            |---|---:|---|---:|
+            | Dentro del dominio | 172 | Saldo ponderado con proporciones regionales | 99,593–107,108 ha |
+            | Fuera del dominio | 168 | Pérdida neta oficial, sin asignar una proporción | 16,880 ha |
+            | Total nacional | 340 | Suma de los dos componentes | 116,473–123,988 ha |
 
-            Esta decisión conserva fuera del dominio la compensación completa de la recuperación.
-            El resultado nacional ponderado (116,473–123,988 ha) permanece entre la pérdida
-            bruta y la pérdida neta institucional (INAB & CONAP, 2023; Poorter et al., 2016, 2017).
+            Las dos unidades lacustres se conservan en los agregados de la fuente, pero no se
+            tratan como municipios. Esta completación es conservadora respecto del alcance: evita
+            inventar una equivalencia para territorios sin puente documentado. El resultado queda
+            entre la pérdida bruta y la pérdida neta oficial. La expresión formal se presenta en
+            el anexo metodológico.
             """
         ),
         _codigo(
@@ -1365,22 +1453,17 @@ def construir_cuaderno():
             (escenario bajo) y 2019, calculados como PIB nominal dividido por PIB real. Con las
             series oficiales, el factor es 1.3296 (Banco de Guatemala, s. f.).
 
-            Se distinguen tres objetos: (a) flujo anual asociado a una cohorte anual de pérdida;
-            (b) valor presente de 25 años de servicios para esa cohorte; y (c) valor presente de
-            diez cohortes anuales. No deben intercambiarse como si fueran la misma magnitud.
+            La cadena de cálculo tiene cuatro pasos:
 
-            Para un resultado acumulado $H_i$ de cuatro años, el flujo físico anual medio es
+            | Paso | Operación | Resultado que representa |
+            |---:|---|---|
+            | 1 | Dividir el resultado acumulado de cuatro años entre cuatro | Superficie anual media |
+            | 2 | Multiplicar esa superficie por Q29,986 por ha y año | Flujo monetario anual indicativo |
+            | 3 | Descontar 25 años de ese flujo | Valor presente de una cohorte anual |
+            | 4 | Incorporar diez cohortes anuales consecutivas | Valor presente de la década |
 
-            $$h_i=\frac{H_i}{4}.$$
-
-            Con valor unitario anual $v$, el flujo monetario es $F_i=v h_i$. Su valor presente
-            durante $T$ años a una tasa $r$ se calcula como
-
-            $$VP_i=F_i\left[\frac{1-(1+r)^{-T}}{r}\right].$$
-
-            Para diez cohortes anuales consecutivas:
-
-            $$VP_{i,10}=\sum_{k=1}^{10}\frac{VP_i}{(1+r)^k}.$$
+            Son objetos distintos y no deben intercambiarse. La tabla siguiente los muestra en
+            columnas separadas; las expresiones de descuento permanecen en el anexo metodológico.
             """
         ),
         _codigo(
@@ -1551,15 +1634,15 @@ def construir_cuaderno():
             r"""
             ## 6. Escenarios 2026–2035
 
-            Los escenarios modifican por separado la pérdida bruta y la recuperación mediante
-            $m_s^B$ y $m_s^R$:
+            Esta sección no pronostica el futuro. Compara qué ocurriría si los flujos anuales
+            observados entre 2016 y 2020 se redujeran, continuaran o aumentaran durante una
+            década. Cada supuesto se aplica por separado a la pérdida bruta y a la ganancia de
+            cobertura.
 
-            $$H_{i,s}=m_s^B B_i-\rho_i m_s^R R_i.$$
-
-            Los tres escenarios son proporcionales: contención ($0.25,0.25$), continuidad
-            ($1,1$) y deterioro acelerado ($2,2$). La contención *no se denomina restauración*,
-            porque no incorpora una trayectoria adicional de recuperación. La
-            formulación deja preparado el modelo para escenarios asimétricos futuros.
+            La *contención proporcional* usa una cuarta parte de ambos flujos; la *continuidad*
+            conserva los flujos observados; y el *deterioro proporcional acelerado* los duplica.
+            La contención no se denomina restauración porque no añade una trayectoria nueva de
+            recuperación. La formulación general queda en el anexo metodológico.
             """
         ),
         _codigo(
@@ -1755,31 +1838,25 @@ def construir_cuaderno():
             ## 7. Manglar: aproximación local con evidencia estructural
 
             El módulo local parte de 55 trayectorias multitemporales de estructura de manglar
-            disponibles en el portal de INAB: 30 favorables, 21 desfavorables y 4 mixtas. De ahí
-            se deriva $\omega_M$, el *ponderador estructural local de manglar*:
+            disponibles en el portal de INAB: 30 muestran aumento conjunto de carbono y área
+            basal, 21 muestran disminución conjunta y 4 son mixtas.
 
-            $$\underline{\omega}_M=\frac{n_F}{n}=\frac{30}{55}=0.5455,$$
+            El límite inferior cuenta solo las 30 trayectorias favorables: 30 de 55, o 54.5 %.
+            El superior incorpora también las cuatro mixtas: 34 de 55, o 61.8 %. Este rango no es
+            un intervalo de confianza; resume dos formas explícitas de contar la evidencia local.
+            Las 55 series representan 73.3 % de los 75 registros de parcela del archivo analítico,
+            pero esa cobertura se documenta y no se usa como multiplicador.
 
-            $$\overline{\omega}_M=\frac{n_F+n_M}{n}=\frac{34}{55}=0.6182.$$
+            El cálculo sigue la misma intuición que el saldo ponderado nacional:
 
-            El límite inferior cuenta solo trayectorias con aumento conjunto de carbono y área
-            basal; el superior incorpora las cuatro trayectorias mixtas. No es un intervalo de
-            confianza. Las 55 series representan 73.3 % de los 75 registros de parcela contenidos
-            en el archivo analítico; esa cobertura se documenta y no se usa como multiplicador.
+            $$
+            \text{saldo local}
+            =\text{pérdida bruta}
+            -(\text{proporción estructural local}\times\text{ganancia de cobertura}).
+            $$
 
-            Para cada municipio, la aplicación se define como
-
-            $$H_{i,M}(\omega_M)=B_i-\omega_MR_i,$$
-
-            $$\underline H_{i,M}=B_i-\overline{\omega}_MR_i,\qquad
-            \overline H_{i,M}=B_i-\underline{\omega}_MR_i.$$
-
-            La inversión de los extremos se debe a que $\partial H_{i,M}/\partial\omega_M=-R_i$.
-            Con la tolerancia numérica $\varepsilon=10^{-8}$ utilizada por el código, la
-            clasificación es pérdida si $\underline H_{i,M}>\varepsilon$, ganancia si
-            $\overline H_{i,M}<-\varepsilon$ e indeterminada en otro caso. Además,
-
-            $$H_{i,M}(\omega_M)-N_i=(1-\omega_M)R_i.$$
+            Los dos extremos, la tolerancia de clasificación y la relación con la pérdida neta
+            se detallan en el anexo metodológico.
 
             $B_i$ y $R_i$ siguen siendo la pérdida y la ganancia de cobertura forestal del
             municipio completo, no cambios exclusivos de manglar. La evidencia de campo informa
@@ -2031,6 +2108,105 @@ def construir_cuaderno():
             """,
             titulo_colab="Mostrar Recuadro 1",
             resultado=True,
+        ),
+        _texto(
+            r"""
+            ## Anexo metodológico. Fórmulas de reproducción
+
+            La ruta principal explicó cada operación con palabras y ejemplos. Este anexo reúne
+            la notación formal para quien necesite reproducir o adaptar los cálculos. Puede
+            omitirse sin perder la lectura de los resultados.
+
+            <details>
+            <summary><em>Mostrar las fórmulas y la definición de sus símbolos</em></summary>
+
+            ### A.1 Balance oficial y saldo ponderado
+
+            | Símbolo | Significado | Unidad |
+            |---|---|---|
+            | $B_i$ | Pérdida bruta de la unidad $i$ | ha |
+            | $R_i$ | Ganancia de cobertura reportada | ha |
+            | $N_i$ | Pérdida neta oficial | ha |
+            | $\rho_{20,i}$ | Proporción a veinte años asignada | proporción |
+            | $H_i$ | Saldo ponderado por recuperación | ha |
+
+            El balance oficial es:
+
+            $$N_i=B_i-R_i.$$
+
+            El saldo ponderado descuenta solo la fracción indicada por la proporción:
+
+            $$H_i(\rho_{20})=B_i-\rho_{20,i}R_i.$$
+
+            Si la proporción tiene un límite inferior y otro superior, se calculan dos saldos.
+            Como una proporción mayor descuenta más recuperación, produce el saldo menor:
+
+            $$H_i^{\mathrm{inf}}=B_i-\rho_{20,i}^{\mathrm{sup}}R_i,$$
+
+            $$H_i^{\mathrm{sup}}=B_i-\rho_{20,i}^{\mathrm{inf}}R_i.$$
+
+            Para los sitios secos, el intervalo observado $[0.254,0.645]$ se amplía al múltiplo
+            de 0.05 inmediatamente inferior y superior:
+
+            $$
+            \left[0.05\left\lfloor\frac{0.254}{0.05}\right\rfloor,
+            0.05\left\lceil\frac{0.645}{0.05}\right\rceil\right]=[0.25,0.65].
+            $$
+
+            ### A.2 Completación nacional
+
+            Sea $P$ el conjunto de 172 municipios ponderados. El primer término aplica la
+            proporción dentro de $P$; el segundo conserva la pérdida neta oficial fuera de $P$:
+
+            $$
+            H_{GT}=\sum_{i\in P}(B_i-\rho_{20,i}R_i)
+            +\sum_{i\notin P}(B_i-R_i).
+            $$
+
+            ### A.3 Valoración indicativa
+
+            Si $H_i$ es una superficie acumulada durante cuatro años, su media anual es
+            $h_i=H_i/4$. Con un valor anual por hectárea $v$, el flujo monetario es $F_i=v h_i$.
+            El valor presente de ese flujo durante $T$ años, a una tasa $r$, es:
+
+            $$VP_i=F_i\left[\frac{1-(1+r)^{-T}}{r}\right].$$
+
+            Para diez cohortes que comienzan en años consecutivos:
+
+            $$VP_{i,10}=\sum_{k=1}^{10}\frac{VP_i}{(1+r)^k}.$$
+
+            ### A.4 Trayectorias comparativas
+
+            Los multiplicadores $m_s^B$ y $m_s^R$ cambian por separado la pérdida y la
+            recuperación del supuesto $s$:
+
+            $$H_{i,s}=m_s^B B_i-\rho_i m_s^R R_i.$$
+
+            ### A.5 Aplicación local de manglar
+
+            Con $n_F=30$ trayectorias favorables, $n_M=4$ mixtas y $n=55$ series, los dos
+            límites del ponderador estructural local son:
+
+            $$\underline{\omega}_M=\frac{n_F}{n}=\frac{30}{55}=0.5455,$$
+
+            $$\overline{\omega}_M=\frac{n_F+n_M}{n}=\frac{34}{55}=0.6182.$$
+
+            El saldo local y sus extremos se calculan así:
+
+            $$H_{i,M}(\omega_M)=B_i-\omega_MR_i,$$
+
+            $$\underline H_{i,M}=B_i-\overline{\omega}_MR_i,\qquad
+            \overline H_{i,M}=B_i-\underline{\omega}_MR_i.$$
+
+            Una proporción mayor produce un saldo menor porque
+            $\partial H_{i,M}/\partial\omega_M=-R_i$. El código usa
+            $\varepsilon=10^{-8}$ para distinguir pérdida, ganancia e intervalos que cruzan cero.
+            La diferencia respecto de la pérdida neta es:
+
+            $$H_{i,M}(\omega_M)-N_i=(1-\omega_M)R_i.$$
+
+            </details>
+            """
         ),
         _texto(
             """

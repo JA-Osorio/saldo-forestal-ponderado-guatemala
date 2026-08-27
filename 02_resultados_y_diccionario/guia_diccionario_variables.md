@@ -32,7 +32,7 @@ región son 9/32/62/35/34 para `REG-PET-N`, `REG-PET-FTN`, `REG-TB-HUM`,
 | Campo de trazabilidad | Uso |
 |---|---|
 | `codigo_canonico` | Código municipal de cuatro dígitos usado en las reglas |
-| `estado_dominio` | `elegible_recuperacion_20_anios`, `fuera_dominio_altiplano_montano` o `unidad_no_municipal` |
+| `estado_dominio` | `elegible_recuperacion_20_anios`, `fuera_dominio_regla_residual` o `unidad_no_municipal` |
 | `regla_id` | Regla determinista que produjo la asignación |
 | `tipo_decision` | Lista explícita, regla residual o unidad no municipal |
 | `criterio_operativo` | Explicación territorial de la decisión codificada |

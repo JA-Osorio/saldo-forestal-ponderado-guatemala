@@ -168,7 +168,7 @@ def construir_correspondencia_territorial(
     conteos = resultado["estado_dominio"].value_counts()
     esperados = {
         ESTADO_RECUPERACION_ELEGIBLE: 172,
-        "fuera_dominio_altiplano_montano": 168,
+        "fuera_dominio_regla_residual": 168,
         "unidad_no_municipal": 2,
     }
     if any(int(conteos.get(estado, 0)) != cantidad for estado, cantidad in esperados.items()):

@@ -68,9 +68,12 @@ La función determinista es:
 
 1. código nulo → `UNIDAD-NO-MUN`;
 2. código presente en una lista → región correspondiente y `elegible_recuperacion_20_anios`;
-3. cualquier otro código municipal → `REG-ALT-MON` y `fuera_dominio_altiplano_montano`.
+3. cualquier otro código municipal → `REG-ALT-MON` y `fuera_dominio_regla_residual`.
 
 Las listas son disjuntas. El resultado contiene 172 códigos y la regla residual contiene 168.
+El identificador `REG-ALT-MON` se conserva por compatibilidad interna, pero no
+demuestra que los 168 municipios residuales formen una región ecológica de
+altiplano o bosque montano.
 
 ## 4. Interpretación territorial operativa
 
